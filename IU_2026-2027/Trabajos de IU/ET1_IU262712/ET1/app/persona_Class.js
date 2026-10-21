@@ -35,7 +35,7 @@ class persona extends Validations {
 			<br>
 			
 			<label class="label_fechaNacimiento_persona">Fecha de Nacimiento</label>
-			<input type='text' id='fechanacimiento_persona' name='fechanacimiento_persona' onblur=" return entidad.ADD_fechanacimiento_persona_validation();"></input>
+			<input type='text' id='fechaNacimiento_persona' name='fechaNacimiento_persona' onblur=" return entidad.ADD_fechaNacimiento_persona_validation();"></input>
 			<span id="span_error_fechaNacimiento_persona" ><a id="error_fechaNacimiento_persona"></a></span>
 			
 			<br>
@@ -164,23 +164,23 @@ class persona extends Validations {
     return true;
   }
 
-  ADD_fechanacimiento_persona_validation() {
-    if (!this.format("fechanacimiento_persona", "^\\d{1,2}\/\\d{1,2}\/\\d{4}$")) {
-      this.dom.mostrar_error_campo("fechanacimiento_persona", "fechanacimiento_persona_format_ko");
-      return "fechanacimiento_persona_format_ko";
+  ADD_fechaNacimiento_persona_validation() {
+    if (!this.format("fechaNacimiento_persona", "^\\d{1,2}\/\\d{1,2}\/\\d{4}$")) {
+      this.dom.mostrar_error_campo("fechaNacimiento_persona", "fechaNacimiento_persona_format_ko");
+      return "fechaNacimiento_persona_format_ko";
     }
     //Comprobar que la fecha no sea superior a la actual
-    if (!(this.verificar_fechaNacimiento_valida('fechanacimiento_persona') === true)) {
+    if (!(this.verificar_fechaNacimiento_valida('fechaNacimiento_persona') === true)) {
 
     }
 
     //Comprobar que la fecha sea posible
-    if (!this.format("fechanacimiento_persona", "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19[2-9][0-9]|20[0-2][0-9])$")) {
-      this.dom.mostrar_error_campo("fechanacimiento_persona", "fechanacimiento_persona_fecha_valida_ko");
-      return "fechanacimiento_persona_fecha_valida_ko";
+    if (!this.format("fechaNacimiento_persona", "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19[2-9][0-9]|20[0-2][0-9])$")) {
+      this.dom.mostrar_error_campo("fechaNacimiento_persona", "fechaNacimiento_persona_fecha_valida_ko");
+      return "fechaNacimiento_persona_fecha_valida_ko";
     }
 
-    this.dom.mostrar_exito_campo("fechanacimiento_persona");
+    this.dom.mostrar_exito_campo("fechaNacimiento_persona");
     return true;
   }
 
@@ -349,8 +349,8 @@ class persona extends Validations {
     return this.ADD_apellidos_persona_validation();
   }
 
-  EDIT_fechanacimiento_persona_validation() {
-    return this.ADD_fechanacimiento_persona_validation();
+  EDIT_fechaNacimiento_persona_validation() {
+    return this.ADD_fechaNacimiento_persona_validation();
   }
 
   EDIT_direccion_persona_validation() {
@@ -497,17 +497,17 @@ class persona extends Validations {
     return true;
   }
 
-  SEARCH_fechanacimiento_persona_validation() {
-    let elem = document.getElementById("fechanacimiento_persona") || document.getElementById("fechaNacimiento_persona");
-    let id = elem ? elem.id : "fechanacimiento_persona";
+  SEARCH_fechaNacimiento_persona_validation() {
+    let id = "fechaNacimiento_persona";
+    let elem = document.getElementById(id);
     let valor = elem ? elem.value : "";
     if (valor === "") {
       this.dom.mostrar_exito_campo(id);
       return true;
     }
     if (!this.format(id, "^\\d{1,2}\/\\d{1,2}\/\\d{4}$")) {
-      this.dom.mostrar_error_campo(id, "fechanacimiento_persona_format_ko");
-      return "fechanacimiento_persona_format_ko";
+      this.dom.mostrar_error_campo(id, "fechaNacimiento_persona_format_ko");
+      return "fechaNacimiento_persona_format_ko";
     }
     this.dom.mostrar_exito_campo(id);
     return true;
@@ -607,7 +607,7 @@ class persona extends Validations {
     }
   }
 
-  verificar_fechanacimiento_valida(id_campo) {
+  verificar_fechaNacimiento_valida(id_campo) {
     const campo = document.getElementById(id_campo);
     if (!campo || campo.value === '') {
       return false;
