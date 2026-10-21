@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checker ET1</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --card: #ffffff; --text: #1c2230; --muted: #5e6778; --line: #e2e5ea;
+    --accent: #2f5bea; --accent-soft: #e8eefe;
+    --ok: #18804a; --ok-bg: #e5f4eb; --err: #c22d2d; --err-bg: #fcebeb; --warn: #9a6200; --warn-bg: #fff3d9;
+    --radius: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151a; --card: #1b1f26; --text: #e6e9ef; --muted: #98a1b0; --line: #2b313b;
+      --accent: #7d9cff; --accent-soft: #1f2843;
+      --ok: #5ccf8c; --ok-bg: #15301f; --err: #ff7e7e; --err-bg: #3a1a1a; --warn: #f2b84b; --warn-bg: #382c12;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  #drop { border: 2px dashed var(--line); text-align: center; padding: 40px 20px; transition: border-color .15s, background .15s; }
+  #drop.over { border-color: var(--accent); background: var(--accent-soft); }
+  #drop p { margin: 8px 0; color: var(--muted); }
+  #drop .big { font-size: 17px; color: var(--text); font-weight: 600; }
+  button { font: inherit; cursor: pointer; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--text); padding: 8px 14px; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; padding: 10px 18px; }
+  button:hover { filter: brightness(1.05); }
+  .opts { margin-top: 14px; color: var(--muted); font-size: 14px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+  .opts label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  #resultado { margin-top: 24px; display: none; }
+  .barra { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .barra h2 { margin: 0; font-size: 19px; }
+  .barra .acciones { display: flex; gap: 8px; flex-wrap: wrap; }
+  .veredicto { border-radius: var(--radius); padding: 14px 18px; font-weight: 600; margin-bottom: 14px; }
+  .veredicto.ok { background: var(--ok-bg); color: var(--ok); }
+  .veredicto.err { background: var(--err-bg); color: var(--err); }
+  .veredicto.warn { background: var(--warn-bg); color: var(--warn); }
+  .resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+  .kpi .n { font-size: 26px; font-weight: 700; }
+  .kpi .l { color: var(--muted); font-size: 13px; }
+  .kpi.err .n { color: var(--err); } .kpi.warn .n { color: var(--warn); } .kpi.ok .n { color: var(--ok); }
+  details.ent { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+  details.ent > summary { list-style: none; cursor: pointer; padding: 14px 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  details.ent > summary::-webkit-details-marker { display: none; }
+  details.ent > summary .nom { font-weight: 600; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  details.ent > summary .meta { color: var(--muted); font-size: 13px; margin-right: auto; }
+  details.ent > summary::before { content: "▸"; color: var(--muted); transition: transform .15s; }
+  details.ent[open] > summary::before { transform: rotate(90deg); }
+  .badge { font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .badge.err { background: var(--err-bg); color: var(--err); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn); }
+  .badge.ok { background: var(--ok-bg); color: var(--ok); }
+  ul.items { list-style: none; margin: 0; padding: 0 18px 14px; }
+  ul.items li { padding: 8px 10px; border-radius: 8px; margin-top: 6px; font-size: 14px; display: flex; gap: 10px; }
+  ul.items li .tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; flex: none; padding-top: 2px; min-width: 64px; }
+  ul.items li.entrega, ul.items li.def, ul.items li.pruebas { background: var(--err-bg); }
+  ul.items li.entrega .tag, ul.items li.def .tag, ul.items li.pruebas .tag { color: var(--err); }
+  ul.items li.aviso { background: var(--warn-bg); }
+  ul.items li.aviso .tag { color: var(--warn); }
+  ul.items li.vacio { color: var(--ok); }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; overflow-wrap: anywhere; }
+  .oculto-avisos li.aviso { display: none; }
+  .nota { color: var(--muted); font-size: 13px; margin-top: 18px; }
+  #fallo { display: none; margin-top: 16px; background: var(--err-bg); color: var(--err); border-radius: var(--radius); padding: 12px 16px; }
+  input[type=file] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Checker ET1 · Interfaces de Usuario</h1>
+  <p class="sub">Selecciona la carpeta <code>ET1_IUxxxxxx</code> (ya descomprimida) y se comprueban la entrega, los tests y las pruebas.</p>
+
+  <section class="card" id="drop">
+    <p class="big">Arrastra aquí la carpeta de la entrega</p>
+    <p>o</p>
+    <button class="primary" id="btnElegir">Seleccionar carpeta…</button>
+    <input type="file" id="inputDir" webkitdirectory directory multiple>
+    <div class="opts">
+      <label><input type="checkbox" id="optSearch"> Exigir también tests SEARCH</label>
+      <label><input type="checkbox" id="optAvisos" checked> Mostrar avisos</label>
+    </div>
+  </section>
+  <div id="fallo"></div>
+
+  <section id="resultado">
+    <div class="barra">
+      <h2 id="titulo"></h2>
+      <div class="acciones">
+        <button id="btnRecheck">↻ Volver a comprobar</button>
+        <button id="btnCopiar">Copiar informe</button>
+      </div>
+    </div>
+    <div id="veredicto" class="veredicto"></div>
+    <div class="resumen" id="resumen"></div>
+    <div id="detalle"></div>
+    <p class="nota">Los <b>avisos</b> no restan por sí solos: indican cosas a revisar, como una prueba cuyo valor no provoca el fallo que dice provocar o un resultado que no sigue el convenio <code>campo_validacion_ko</code>. El descuento estimado cuenta 0,1 por cada error en tests y en pruebas.</p>
+  </section>
+</main>
+
+<script>
+// ============================== CORE-START ==============================
+// Reglas de la entrega ET1. Si el profesor aclara algo distinto, se cambia aquí.
+
+const ACCIONES_PERMITIDAS = ['ADD', 'EDIT', 'SEARCH', 'DELETE', 'SHOWCURRENT'];
+const ELEMENTOS = ['input', 'file', 'select', 'checkbox', 'radio', 'textarea', 'hidden', 'date', 'email', 'password', 'tel', 'number'];
+const VALIDACIONES_CONOCIDAS = [
+  'min_size', 'max_size', 'format', 'personalized', 'valid',
+  'exist_file', 'min_size_name_file', 'max_size_name_file', 'format_name_file', 'type_file', 'max_size_file',
+];
+const ACENTOS = 'ÁÉÍÓÚáéíóúÜü';
+const PUNTUACION = ' .,;:¡!¿?()"\'\\-';
+
+const letraDni = (s) => {
+  const m = /^(\d{8})([A-Za-z])$/.exec(s);
+  return !!m && 'TRWAGMYFPDXBNJZSQVHLCKE'[parseInt(m[1], 10) % 23] === m[2].toUpperCase();
+};
+const fechaReal = (s) => {
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(s);
+  if (!m) return false;
+  const d = +m[1], mo = +m[2], y = +m[3];
+  const f = new Date(y, mo - 1, d);
+  return f.getFullYear() === y && f.getMonth() === mo - 1 && f.getDate() === d && f <= new Date();
+};
+
+const REQ = ['min_size', 'max_size', 'format', 'valid'];
+const ID = { min: 1, max: 11, re: /^\d+$/, requeridas: REQ };
+const TEXTO_N = (min, max) => ({ min, max, re: /^[A-Za-zÑñ]+$/, requeridas: REQ });
+const DESCRIP = { min: 5, max: 200, re: new RegExp(`^[A-Za-zÑñ${PUNTUACION}]+$`), requeridas: REQ };
+const NOMBRE_P = (min, max) => ({ min, max, re: new RegExp(`^[A-Za-zÑñ${ACENTOS}. \\-]+$`), requeridas: REQ });
+
+const CAMPOS = {
+  dni: { min: 9, max: 9, re: /^\d{8}[A-Za-z]$/, pers: letraDni, requeridas: REQ, recomendadas: ['personalized'] },
+  nombre_persona: NOMBRE_P(2, 45),
+  apellidos_persona: NOMBRE_P(3, 100),
+  fechaNacimiento_persona: { min: 10, max: 10, re: /^\d{2}\/\d{2}\/\d{4}$/, pers: fechaReal, requeridas: ['format', 'valid'], recomendadas: ['personalized'] },
+  direccion_persona: { min: 10, max: 200, re: new RegExp(`^[A-Za-z0-9Ññ${ACENTOS}.;/ \\-]+$`), requeridas: REQ },
+  telefono_persona: { min: 9, max: 9, re: /^[6789]\d{8}$/, requeridas: REQ },
+  email_persona: { min: 6, max: 45, re: /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/, requeridas: ['max_size', 'format', 'valid'], recomendadas: ['min_size'] },
+  foto_persona: {
+    file: true, minNombre: 3, maxNombre: 15, maxBytes: 2 * 1024 * 1024,
+    reNombre: /^[A-Za-z.]+\.(jpg|jpeg)$/i, tipos: ['image/jpeg', 'image/jpg'],
+    requeridas: ['min_size_name_file', 'max_size_name_file', 'format_name_file', 'type_file', 'max_size_file'],
+    recomendadas: ['exist_file', 'valid'],
+  },
+  id_accion: ID, nombre_accion: TEXTO_N(5, 48), descrip_accion: DESCRIP,
+  id_funcionalidad: ID, nombre_funcionalidad: TEXTO_N(5, 48), descrip_funcionalidad: DESCRIP,
+  id_rol: ID, rol_name: { min: 5, max: 48, re: /^[A-Za-z]+$/, requeridas: REQ }, rol_description: DESCRIP,
+  usuario: { min: 5, max: 45, re: /^[A-Za-z]+$/, requeridas: REQ },
+  contrasena: { min: 8, max: 45, re: /^[A-Za-z]+$/, requeridas: REQ },
+};
+
+const ENTIDADES = {
+  accion: { campos: ['id_accion', 'nombre_accion', 'descrip_accion'], autoinc: 'id_accion' },
+  funcionalidad: { campos: ['id_funcionalidad', 'nombre_funcionalidad', 'descrip_funcionalidad'], autoinc: 'id_funcionalidad' },
+  funcionalidad_accion: { campos: ['id_funcionalidad', 'id_accion'] },
+  persona: { campos: ['dni', 'nombre_persona', 'apellidos_persona', 'fechaNacimiento_persona', 'direccion_persona', 'telefono_persona', 'email_persona', 'foto_persona'] },
+  rol: { campos: ['id_rol', 'rol_name', 'rol_description'], autoinc: 'id_rol' },
+  rolaccionfuncionalidad: { campos: ['id_funcionalidad', 'id_accion', 'id_rol'] },
+  usuario: { campos: ['dni', 'usuario', 'contrasena', 'id_rol'] },
+};
+
+const fmt = (v) => { try { const s = JSON.stringify(v); return s && s.length > 60 ? s.slice(0, 57) + '…"' : s; } catch (e) { return String(v); } };
+const base = (campo) => String(campo).replace(/^nuevo_/, '');
+
+// Ejecuta el código del fichero y devuelve las variables pedidas (let/const/var o sin declarar).
+function cargarCodigo(codigo, nombres) {
+  const salida = nombres.map((n) => `${JSON.stringify(n)}: (typeof ${n} !== 'undefined' ? ${n} : undefined)`).join(',');
+  const fn = new Function(`${codigo.replace(/^﻿/, '')}\n;return {${salida}};`);
+  try { return fn(); }
+  finally { nombres.forEach((n) => { try { delete globalThis[n]; } catch (e) { /* nada */ } }); }
+}
+
+// Validaciones atómicas que FALLA un valor
+function fallos(spec, v) {
+  if (spec.file) {
+    if (v === undefined || v === null || v === '' || (typeof v === 'object' && Object.keys(v).length === 0)) return ['exist_file'];
+    if (typeof v !== 'object') return ['?'];
+    const f = [];
+    const nombre = v.format_name_file ?? v.name ?? v.nombre ?? v.min_size_name_file ?? v.max_size_name_file;
+    const tipo = v.type_file ?? v.type;
+    const tam = v.max_size_file ?? v.size;
+    if (typeof nombre === 'string') {
+      if (nombre.length < spec.minNombre) f.push('min_size_name_file');
+      if (nombre.length > spec.maxNombre) f.push('max_size_name_file');
+      if (!spec.reNombre.test(nombre)) f.push('format_name_file');
+    }
+    if (tipo !== undefined && !spec.tipos.includes(String(tipo).toLowerCase())) f.push('type_file');
+    if (tam !== undefined && Number(tam) > spec.maxBytes) f.push('max_size_file');
+    return f;
+  }
+  const s = v === undefined || v === null ? '' : String(v);
+  const f = [];
+  if (spec.min !== undefined && s.length < spec.min) f.push('min_size');
+  if (spec.max !== undefined && s.length > spec.max) f.push('max_size');
+  if (spec.re && !spec.re.test(s)) f.push('format');
+  if (spec.pers && spec.re && spec.re.test(s) && !spec.pers(s)) f.push('personalized');
+  return f;
+}
+
+/**
+ * nombreDir: nombre de la carpeta; ficheros: { nombreFichero: texto | null }
+ * Devuelve { nombreDir, items: [{cat, ent, msg}], stats }
+ *   cat: 'entrega' | 'def' | 'pruebas' | 'aviso';  ent: 'general' | nombre de entidad
+ */
+function verificar(nombreDir, ficheros, opciones = {}) {
+  const ACC_OBL = opciones.search ? ['ADD', 'EDIT', 'SEARCH'] : ['ADD', 'EDIT'];
+  const items = [];
+  const stats = {};
+  const add = (cat, ent, msg) => items.push({ cat, ent, msg });
+
+  const m = /^ET1_(IU\d{6})$/.exec(nombreDir);
+  if (!m) add('entrega', 'general', `La carpeta se llama "${nombreDir}"; debe llamarse ET1_IU seguido de 6 dígitos (p. ej. ET1_IU262712).`);
+  const codigo = m ? m[1] : nombreDir.replace(/^ET1_/, '');
+
+  // ---------- ET1_IUxxxxxx.js ----------
+  const fg = `ET1_${codigo}.js`;
+  if (typeof ficheros[fg] !== 'string') add('entrega', 'general', `Falta el fichero ${fg}.`);
+  else {
+    let d;
+    try { d = cargarCodigo(ficheros[fg], ['datosgenerales']).datosgenerales; }
+    catch (e) { add('entrega', 'general', `${fg} tiene un error de JavaScript: ${e.message}`); d = null; }
+    if (d === undefined) add('entrega', 'general', `${fg} no define la variable "datosgenerales".`);
+    else if (d && typeof d === 'object') {
+      if (!d.Lider) add('entrega', 'general', 'datosgenerales no tiene la clave "Lider".');
+      for (const [k, v] of Object.entries(d)) {
+        if (k !== 'Lider' && !/^Participante\d+$/.test(k)) add('aviso', 'general', `datosgenerales: la clave "${k}" no es Lider ni ParticipanteN.`);
+        if (!Array.isArray(v) || v.length !== 3) { add('entrega', 'general', `datosgenerales.${k} debe ser [ApellidosNombre, Entrega, horasdedicadas].`); continue; }
+        const [nombre, entrega, horas] = v;
+        if (typeof nombre !== 'string' || !nombre.trim()) add('entrega', 'general', `datosgenerales.${k}: ApellidosNombre vacío.`);
+        if (typeof entrega !== 'string' || !/ET1/i.test(entrega)) add('aviso', 'general', `datosgenerales.${k}: Entrega = ${fmt(entrega)} (¿no debería ser "ET1"?).`);
+        if (typeof horas !== 'number' || !(horas > 0)) add('entrega', 'general', `datosgenerales.${k}: horasdedicadas debe ser un número mayor que 0 (es ${fmt(horas)}).`);
+      }
+    }
+  }
+
+  // ---------- Entidades ----------
+  for (const [entidad, conf] of Object.entries(ENTIDADES)) {
+    const st = stats[entidad] = { presente: false, defs: 0, pruebas: 0 };
+    const nf = `${entidad}_tests.js`;
+    if (typeof ficheros[nf] !== 'string') { add('entrega', entidad, `Falta el fichero ${nf}.`); continue; }
+    st.presente = true;
+    const vDef = `${entidad}_def_tests`, vPru = `${entidad}_pruebas`;
+    let vars;
+    try { vars = cargarCodigo(ficheros[nf], [vDef, vPru]); }
+    catch (e) { add('entrega', entidad, `${nf} tiene un error de JavaScript: ${e.message}`); continue; }
+    const defs = vars[vDef], pruebas = vars[vPru];
+    if (!Array.isArray(defs)) add('entrega', entidad, `${nf} no define el array "${vDef}".`);
+    if (!Array.isArray(pruebas)) add('entrega', entidad, `${nf} no define el array "${vPru}".`);
+    if (!Array.isArray(defs)) continue;
+    st.defs = defs.length;
+    st.pruebas = Array.isArray(pruebas) ? pruebas.length : 0;
+
+    // --- Definición de tests ---
+    const porNumero = new Map();
+    const vistos = new Set();
+    defs.forEach((fila, i) => {
+      const p = `Test fila ${i + 1}`;
+      if (!Array.isArray(fila) || fila.length !== 9) { add('def', entidad, `${p}: debe tener 9 elementos (tiene ${Array.isArray(fila) ? fila.length : typeof fila}).`); return; }
+      const [ent, campo, elem, num, desc, val, acc, res, msg] = fila;
+      if (ent !== entidad) add('def', entidad, `${p}: entidad "${ent}" en lugar de "${entidad}".`);
+      const cb = base(campo);
+      const spec = CAMPOS[cb];
+      if (!conf.campos.includes(cb)) add('def', entidad, `${p}: el campo "${campo}" no pertenece a ${entidad}.`);
+      if (!ELEMENTOS.includes(elem)) add('def', entidad, `${p}: elemento de formulario "${elem}" no válido.`);
+      else if (spec && spec.file && elem !== 'file') add('def', entidad, `${p}: ${campo} es un fichero; el elemento debe ser 'file'.`);
+      else if (spec && !spec.file && elem === 'file') add('def', entidad, `${p}: ${campo} no es un fichero; no debe usar 'file'.`);
+      if (num !== i + 1) add('def', entidad, `${p}: número de test ${fmt(num)}, se esperaba ${i + 1} (secuencial desde 1).`);
+      if (typeof desc !== 'string' || !desc.trim()) add('def', entidad, `${p}: la descripción está vacía.`);
+      if (!VALIDACIONES_CONOCIDAS.includes(val)) add('aviso', entidad, `${p}: validación "${val}" no estándar.`);
+      if (!ACCIONES_PERMITIDAS.includes(acc)) add('def', entidad, `${p}: acción "${acc}" no válida.`);
+      if (val === 'valid') {
+        if (res !== true) add('def', entidad, `${p}: un test 'valid' debe esperar true (tiene ${fmt(res)}).`);
+      } else if (typeof res !== 'string' || !res.endsWith('_ko')) {
+        add('def', entidad, `${p}: el resultado esperado debe ser 'campo_validacion_ko' (tiene ${fmt(res)}).`);
+      } else if (res !== `${campo}_${val}_ko`) {
+        add('aviso', entidad, `${p}: resultado ${fmt(res)}; por convenio sería '${campo}_${val}_ko'.`);
+      }
+      if (typeof msg !== 'string' || !msg.trim()) add('def', entidad, `${p}: el mensaje al usuario está vacío.`);
+      const clave = `${cb}|${acc}|${val}`;
+      if (vistos.has(clave)) add('aviso', entidad, `${p}: test duplicado (${campo}, ${acc}, ${val}).`);
+      vistos.add(clave);
+      if (Number.isInteger(num)) porNumero.set(num, { campo, cb, val, acc, res, n: 0 });
+    });
+
+    // --- Cobertura ---
+    for (const cb of conf.campos) {
+      const spec = CAMPOS[cb];
+      for (const acc of ACC_OBL) {
+        if (acc === 'ADD' && conf.autoinc === cb) continue; // PK autoincremental: no se introduce al añadir
+        const req = acc === 'SEARCH' ? ['max_size', 'format'] : spec.requeridas;
+        for (const val of req) if (!vistos.has(`${cb}|${acc}|${val}`)) add('def', entidad, `Falta el test ${acc} '${val}' para ${cb}.`);
+        if (acc !== 'SEARCH') for (const val of spec.recomendadas || []) {
+          if (val === 'exist_file' && acc !== 'ADD') continue;
+          if (!vistos.has(`${cb}|${acc}|${val}`)) add('aviso', entidad, `Recomendado: test ${acc} '${val}' para ${cb}.`);
+        }
+      }
+    }
+
+    // --- Pruebas ---
+    if (!Array.isArray(pruebas)) continue;
+    pruebas.forEach((fila, i) => {
+      const p = `Prueba fila ${i + 1}`;
+      if (!Array.isArray(fila) || fila.length !== 7) { add('pruebas', entidad, `${p}: debe tener 7 elementos (tiene ${Array.isArray(fila) ? fila.length : typeof fila}).`); return; }
+      const [ent, campo, numDef, numPrueba, acc, valores, res] = fila;
+      if (ent !== entidad) add('pruebas', entidad, `${p}: entidad "${ent}" en lugar de "${entidad}".`);
+      if (numPrueba !== i + 1) add('pruebas', entidad, `${p}: número de prueba ${fmt(numPrueba)}, se esperaba ${i + 1} (secuencial desde 1).`);
+      const d = porNumero.get(numDef);
+      if (!d) { add('pruebas', entidad, `${p}: hace referencia al test ${fmt(numDef)}, que no existe.`); return; }
+      d.n++;
+      if (campo !== d.campo) add('pruebas', entidad, `${p}: campo "${campo}" distinto del campo del test ${numDef} ("${d.campo}").`);
+      if (acc !== d.acc) add('pruebas', entidad, `${p}: acción ${acc} distinta de la del test ${numDef} (${d.acc}).`);
+      if (res !== d.res) add('pruebas', entidad, `${p}: resultado ${fmt(res)} distinto del del test ${numDef} (${fmt(d.res)}).`);
+      if (!valores || typeof valores !== 'object' || Array.isArray(valores)) { add('pruebas', entidad, `${p}: los valores deben ser un objeto {atributo: valor}.`); return; }
+      if (!(campo in valores) && d.val !== 'exist_file') add('pruebas', entidad, `${p}: el objeto de valores no contiene el atributo "${campo}".`);
+
+      const spec = CAMPOS[d.cb];
+      if (!spec) return;
+      const f = fallos(spec, valores[campo]);
+      const v = fmt(valores[campo]);
+      if (d.val === 'valid') {
+        if (f.length) add('aviso', entidad, `${p}: el test ${numDef} espera éxito, pero ${v} falla en: ${f.join(', ')}.`);
+      } else if (VALIDACIONES_CONOCIDAS.includes(d.val)) {
+        if (!f.includes(d.val)) add('aviso', entidad, `${p}: el test ${numDef} espera fallo '${d.val}', pero ${v} no lo provoca${f.length ? ` (falla en: ${f.join(', ')})` : ' (es un valor válido)'}.`);
+        else if (f.length > 1) add('aviso', entidad, `${p}: ${v} falla en varias validaciones a la vez (${f.join(', ')}); mejor un valor que falle sólo en '${d.val}'.`);
+      }
+    });
+    for (const [num, d] of porNumero) {
+      if (d.n === 0) add('pruebas', entidad, `El test ${num} (${d.campo}, ${d.acc}, ${d.val}) no tiene ninguna prueba.`);
+    }
+  }
+
+  // ---------- Ficheros sobrantes ----------
+  const esperados = new Set([fg, ...Object.keys(ENTIDADES).map((e) => `${e}_tests.js`)]);
+  for (const f of Object.keys(ficheros)) if (!esperados.has(f)) add('aviso', 'general', `Fichero no esperado en la entrega: ${f}`);
+
+  return { nombreDir, items, stats, acciones: ACC_OBL };
+}
+// =============================== CORE-END ===============================
+
+// ============================== INTERFAZ ==============================
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let origen = null;        // { recargar: async () => lista } para "Volver a comprobar"
+let ultimoInforme = null;
+
+// Cada elemento de la lista: { path: 'Carpeta/sub/fichero.js', leer: () => Promise<string> }
+async function listaDesdeHandle(dirHandle) {
+  const out = [];
+  async function walk(h, pref, depth) {
+    for await (const [name, entry] of h.entries()) {
+      const p = `${pref}/${name}`;
+      if (entry.kind === 'file') out.push({ path: p, leer: async () => (await entry.getFile()).text() });
+      else if (depth < 3 && name !== 'node_modules' && !name.startsWith('.')) await walk(entry, p, depth + 1);
+    }
+  }
+  await walk(dirHandle, dirHandle.name, 1);
+  return out;
+}
+
+function listaDesdeInput(files) {
+  return [...files].map((f) => ({ path: f.webkitRelativePath || f.name, leer: () => f.text() }));
+}
+
+async function listaDesdeEntry(entry) {
+  const out = [];
+  const leerTodo = (reader) => new Promise((res, rej) => {
+    const acc = [];
+    const paso = () => reader.readEntries((lote) => { if (!lote.length) res(acc); else { acc.push(...lote); paso(); } }, rej);
+    paso();
+  });
+  async function walk(e, depth) {
+    if (e.isFile) {
+      const file = await new Promise((res, rej) => e.file(res, rej));
+      out.push({ path: e.fullPath.replace(/^\//, ''), leer: () => file.text() });
+    } else if (e.isDirectory && depth <= 3 && e.name !== 'node_modules' && !e.name.startsWith('.')) {
+      for (const hijo of await leerTodo(e.createReader())) await walk(hijo, depth + 1);
+    }
+  }
+  await walk(entry, 1);
+  return out;
+}
+
+async function procesar(lista) {
+  $('#fallo').style.display = 'none';
+  if (!lista.length) return mostrarFallo('La carpeta seleccionada está vacía.');
+  const dirs = new Set();
+  for (const f of lista) {
+    const partes = f.path.split('/');
+    for (let i = 1; i < partes.length; i++) dirs.add(partes.slice(0, i).join('/'));
+  }
+  const todos = [...dirs];
+  let objetivo = todos.find((d) => /^ET1_IU\d{6}$/.test(d.split('/').pop()))
+    || todos.find((d) => /^ET1_/i.test(d.split('/').pop()))
+    || lista[0].path.split('/')[0];
+  const directos = lista.filter((f) => f.path.slice(0, f.path.lastIndexOf('/')) === objetivo);
+  if (!directos.length) return mostrarFallo('No se han encontrado ficheros en la carpeta de la entrega.');
+  const ficheros = {};
+  for (const f of directos) {
+    const nombre = f.path.split('/').pop();
+    if (nombre.startsWith('.')) continue;
+    ficheros[nombre] = /\.js$/i.test(nombre) ? await f.leer() : null;
+  }
+  ultimoInforme = verificar(objetivo.split('/').pop(), ficheros, { search: $('#optSearch').checked });
+  pintar(ultimoInforme);
+}
+
+function mostrarFallo(msg) {
+  const el = $('#fallo');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function pintar(r) {
+  const cuenta = (cat, ent) => r.items.filter((x) => x.cat === cat && (ent === undefined || x.ent === ent)).length;
+  const nEntrega = cuenta('entrega'), nDef = cuenta('def'), nPru = cuenta('pruebas'), nAv = cuenta('aviso');
+  const descuento = ((nDef + nPru) * 0.1).toFixed(1).replace('.', ',');
+
+  $('#titulo').textContent = r.nombreDir;
+  const ver = $('#veredicto');
+  if (nEntrega) { ver.className = 'veredicto err'; ver.textContent = `✘ La entrega incumple ${nEntrega} requisito(s) obligatorio(s): con esto la nota sería 0.`; }
+  else if (nDef + nPru) { ver.className = 'veredicto warn'; ver.textContent = `La estructura de la entrega es correcta, pero hay ${nDef + nPru} error(es) en tests y pruebas (−${descuento}).`; }
+  else { ver.className = 'veredicto ok'; ver.textContent = `✔ Sin errores${nAv ? ` · revisa los ${nAv} aviso(s)` : ''}.`; }
+
+  const kpi = (n, l, tipo) => `<div class="kpi ${n ? tipo : 'ok'}"><div class="n">${n}</div><div class="l">${l}</div></div>`;
+  $('#resumen').innerHTML =
+    kpi(nEntrega, 'Errores de entrega (nota 0)', 'err') +
+    kpi(nDef, 'Errores en tests', 'err') +
+    kpi(nPru, 'Errores en pruebas', 'err') +
+    kpi(nAv, 'Avisos', 'warn') +
+    `<div class="kpi ${nDef + nPru ? 'err' : 'ok'}"><div class="n">−${descuento}</div><div class="l">Descuento estimado</div></div>`;
+
+  const etiquetas = { entrega: 'Entrega', def: 'Test', pruebas: 'Prueba', aviso: 'Aviso' };
+  const orden = { entrega: 0, def: 1, pruebas: 2, aviso: 3 };
+  const bloques = [['general', `ET1_${r.nombreDir.replace(/^ET1_/, '')}.js y carpeta`], ...Object.keys(ENTIDADES).map((e) => [e, `${e}_tests.js`])];
+  $('#detalle').innerHTML = bloques.map(([ent, nombre]) => {
+    const its = r.items.filter((x) => x.ent === ent).sort((a, b) => orden[a.cat] - orden[b.cat]);
+    const nErr = its.filter((x) => x.cat !== 'aviso').length, nW = its.length - nErr;
+    const st = r.stats[ent];
+    const meta = st ? (st.presente ? `${st.defs} tests · ${st.pruebas} pruebas` : 'no encontrado') : '';
+    const badges = (nErr ? `<span class="badge err">${nErr} error${nErr > 1 ? 'es' : ''}</span>` : '<span class="badge ok">OK</span>')
+      + (nW ? `<span class="badge warn">${nW} aviso${nW > 1 ? 's' : ''}</span>` : '');
+    const lis = its.length
+      ? its.map((x) => `<li class="${x.cat}"><span class="tag">${etiquetas[x.cat]}</span><span>${esc(x.msg)}</span></li>`).join('')
+      : '<li class="vacio">✔ Sin problemas.</li>';
+    return `<details class="ent"${nErr ? ' open' : ''}><summary><span class="nom">${esc(nombre)}</span><span class="meta">${meta}</span>${badges}</summary><ul class="items">${lis}</ul></details>`;
+  }).join('');
+  aplicarFiltroAvisos();
+  $('#resultado').style.display = 'block';
+  $('#resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function aplicarFiltroAvisos() {
+  $('#detalle').classList.toggle('oculto-avisos', !$('#optAvisos').checked);
+}
+
+function informeTexto(r) {
+  const lineas = [`Checker ET1 — ${r.nombreDir} (acciones exigidas: ${r.acciones.join(', ')})`];
+  const sec = (titulo, cat) => {
+    const its = r.items.filter((x) => x.cat === cat);
+    lineas.push('', `${titulo} (${its.length})`);
+    its.forEach((x) => lineas.push(`  - [${x.ent}] ${x.msg}`));
+  };
+  sec('ENTREGA (obligatorio)', 'entrega');
+  sec('DEFINICIÓN DE TESTS', 'def');
+  sec('PRUEBAS', 'pruebas');
+  sec('AVISOS', 'aviso');
+  return lineas.join('\n');
+}
+
+// --- Eventos ---
+$('#btnElegir').addEventListener('click', async () => {
+  if (window.showDirectoryPicker) {
+    try {
+      const h = await window.showDirectoryPicker({ mode: 'read' });
+      origen = { recargar: () => listaDesdeHandle(h) };
+      return procesar(await origen.recargar());
+    } catch (e) {
+      if (e.name === 'AbortError') return;   // el usuario canceló
+    }
+  }
+  $('#inputDir').click();                     // navegadores sin selector de carpetas moderno
+});
+
+$('#inputDir').addEventListener('change', async (ev) => {
+  origen = null;
+  await procesar(listaDesdeInput(ev.target.files));
+  ev.target.value = '';
+});
+
+const drop = $('#drop');
+['dragenter', 'dragover'].forEach((t) => drop.addEventListener(t, (e) => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach((t) => drop.addEventListener(t, () => drop.classList.remove('over')));
+drop.addEventListener('drop', async (e) => {
+  e.preventDefault();
+  const items = [...e.dataTransfer.items].filter((it) => it.kind === 'file');
+  // Hay que pedir handles y entries de forma síncrona, antes de cualquier await
+  const handles = items.map((it) => (it.getAsFileSystemHandle ? it.getAsFileSystemHandle() : null));
+  const entries = items.map((it) => (it.webkitGetAsEntry ? it.webkitGetAsEntry() : null));
+  try {
+    const h = handles[0] ? await handles[0] : null;
+    if (h && h.kind === 'directory') {
+      origen = { recargar: () => listaDesdeHandle(h) };
+      return procesar(await origen.recargar());
+    }
+  } catch (err) { /* sigue con el método clásico */ }
+  const entry = entries.find((x) => x && x.isDirectory);
+  if (!entry) return mostrarFallo('Arrastra la carpeta completa de la entrega, no ficheros sueltos.');
+  origen = null;
+  procesar(await listaDesdeEntry(entry));
+});
+
+$('#btnRecheck').addEventListener('click', async () => {
+  if (origen) {
+    try { return procesar(await origen.recargar()); }
+    catch (e) { /* sin permiso: se vuelve a pedir la carpeta */ }
+  }
+  $('#btnElegir').click();
+});
+
+$('#btnCopiar').addEventListener('click', async () => {
+  if (!ultimoInforme) return;
+  try {
+    await navigator.clipboard.writeText(informeTexto(ultimoInforme));
+    $('#btnCopiar').textContent = '✔ Copiado';
+  } catch (e) {
+    $('#btnCopiar').textContent = 'No se pudo copiar';
+  }
+  setTimeout(() => { $('#btnCopiar').textContent = 'Copiar informe'; }, 1600);
+});
+
+$('#optAvisos').addEventListener('change', aplicarFiltroAvisos);
+$('#optSearch').addEventListener('change', async () => {
+  if (origen) { try { procesar(await origen.recargar()); } catch (e) { /* nada */ } }
+});
+</script>
+</body>
+</html>
