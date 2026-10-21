@@ -8,7 +8,7 @@ class Unit_Test {
                 attributes : [  'dni',
                                 'nombre_persona',
                                 'apellidos_persona',
-                                'fechanacimiento_persona',
+                                'fechaNacimiento_persona',
                                 'direccion_persona',
                                 'telefono_persona',
                                 'email_persona',

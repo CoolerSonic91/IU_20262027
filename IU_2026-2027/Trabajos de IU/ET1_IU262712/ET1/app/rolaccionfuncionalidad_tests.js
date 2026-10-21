@@ -1,137 +1,149 @@
-// DEFINICION DE TESTS: rolaccionfuncionalidad_def_tests (formato estándar de 9 columnas)
+// ===============================================================
+// DEFINICION DE TESTS: rolaccionfuncionalidad_def_tests (9 columnas)
+// [entidad, campo, elemento, num_test, descripcion, validacion, accion, resultado, mensaje]
+//
+// Los tres campos son claves foraneas: se eligen en un desplegable (select).
+// Criterio comun:
+//  - ADD y EDIT: min_size, max_size, format y valid
+//  - SEARCH: max_size, format y valid (se permite vacio)
+// ===============================================================
 
-var rolaccionfuncionalidad_def_tests = [
+let rolaccionfuncionalidad_def_tests = Array(
 
-  // -------------------------------------------------------------
-  // ATRIBUTO: id_funcionalidad (select, max 11 digitos)
-  // -------------------------------------------------------------
-  // ---------ADD -----------------------------
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 1, 'Validar format numerico id_funcionalidad en ADD', 'format', 'ADD', 'id_funcionalidad_format_ko', 'El identificador de funcionalidad debe ser numerico'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 2, 'Validar max size id_funcionalidad en ADD (max 11 digitos)', 'max_size', 'ADD', 'id_funcionalidad_max_size_ko', 'El identificador de funcionalidad excede el tamano maximo'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 3, 'Validar id_funcionalidad correcto en ADD', 'valid', 'ADD', true, 'Identificador de funcionalidad correcto'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_funcionalidad (select, numerico, min 1 max 11 digitos)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 1, 'cumple tamaño minimo', 'min_size', 'ADD', 'id_funcionalidad_min_size_ko', 'Debe seleccionar una funcionalidad. El identificador debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 2, 'cumple tamaño maximo', 'max_size', 'ADD', 'id_funcionalidad_max_size_ko', 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 3, 'cumple formato', 'format', 'ADD', 'id_funcionalidad_format_ko', 'Formato inválido. El identificador de funcionalidad solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 4, 'es correcto', 'valid', 'ADD', true, 'Funcionalidad correcta'],
 
-  // ---------EDIT-----------------------------
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 4, 'Validar format numerico id_funcionalidad en EDIT', 'format', 'EDIT', 'id_funcionalidad_format_ko', 'El identificador de funcionalidad debe ser numerico en EDIT'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 5, 'Validar max size id_funcionalidad en EDIT (max 11 digitos)', 'max_size', 'EDIT', 'id_funcionalidad_max_size_ko', 'El identificador de funcionalidad excede el tamano maximo en EDIT'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 6, 'Validar id_funcionalidad correcto en EDIT', 'valid', 'EDIT', true, 'Identificador de funcionalidad correcto en EDIT'],
+    // ---------EDIT----------------------------
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 5, 'cumple tamaño minimo', 'min_size', 'EDIT', 'id_funcionalidad_min_size_ko', 'Debe seleccionar una funcionalidad. El identificador debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 6, 'cumple tamaño maximo', 'max_size', 'EDIT', 'id_funcionalidad_max_size_ko', 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 7, 'cumple formato', 'format', 'EDIT', 'id_funcionalidad_format_ko', 'Formato inválido. El identificador de funcionalidad solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 8, 'es correcto', 'valid', 'EDIT', true, 'Funcionalidad correcta'],
 
-  // ---------SEARCH --------------------------
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 7, 'Validar format numerico id_funcionalidad en SEARCH', 'format', 'SEARCH', 'id_funcionalidad_format_ko', 'El identificador de funcionalidad no es valido en SEARCH'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 8, 'Validar id_funcionalidad correcto en SEARCH', 'valid', 'SEARCH', true, 'Busqueda por identificador de funcionalidad correcta'],
+    // ---------SEARCH--------------------------
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 9, 'cumple tamaño maximo', 'max_size', 'SEARCH', 'id_funcionalidad_max_size_ko', 'Identificador de funcionalidad demasiado largo. Como máximo 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 10, 'cumple formato', 'format', 'SEARCH', 'id_funcionalidad_format_ko', 'Formato inválido. El identificador de funcionalidad solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 'select', 11, 'es correcto', 'valid', 'SEARCH', true, 'Funcionalidad correcta'],
 
-  // -------------------------------------------------------------
-  // ATRIBUTO: id_accion (select, max 11 digitos)
-  // -------------------------------------------------------------
-  // ---------ADD -----------------------------
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 9, 'Validar format numerico id_accion en ADD', 'format', 'ADD', 'id_accion_format_ko', 'El identificador de accion debe ser numerico'],
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 10, 'Validar max size id_accion en ADD (max 11 digitos)', 'max_size', 'ADD', 'id_accion_max_size_ko', 'El identificador de accion excede el tamano maximo'],
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 11, 'Validar id_accion correcto en ADD', 'valid', 'ADD', true, 'Identificador de accion correcto'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_accion (select, numerico, min 1 max 11 digitos)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 12, 'cumple tamaño minimo', 'min_size', 'ADD', 'id_accion_min_size_ko', 'Debe seleccionar una acción. El identificador debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 13, 'cumple tamaño maximo', 'max_size', 'ADD', 'id_accion_max_size_ko', 'Identificador de acción demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 14, 'cumple formato', 'format', 'ADD', 'id_accion_format_ko', 'Formato inválido. El identificador de acción solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 15, 'es correcto', 'valid', 'ADD', true, 'Acción correcta'],
 
-  // ---------EDIT-----------------------------
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 12, 'Validar format numerico id_accion en EDIT', 'format', 'EDIT', 'id_accion_format_ko', 'El identificador de accion debe ser numerico en EDIT'],
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 13, 'Validar max size id_accion en EDIT (max 11 digitos)', 'max_size', 'EDIT', 'id_accion_max_size_ko', 'El identificador de accion excede el tamano maximo en EDIT'],
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 14, 'Validar id_accion correcto en EDIT', 'valid', 'EDIT', true, 'Identificador de accion correcto en EDIT'],
+    // ---------EDIT----------------------------
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 16, 'cumple tamaño minimo', 'min_size', 'EDIT', 'id_accion_min_size_ko', 'Debe seleccionar una acción. El identificador debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 17, 'cumple tamaño maximo', 'max_size', 'EDIT', 'id_accion_max_size_ko', 'Identificador de acción demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 18, 'cumple formato', 'format', 'EDIT', 'id_accion_format_ko', 'Formato inválido. El identificador de acción solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 19, 'es correcto', 'valid', 'EDIT', true, 'Acción correcta'],
 
-  // ---------SEARCH --------------------------
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 15, 'Validar format numerico id_accion en SEARCH', 'format', 'SEARCH', 'id_accion_format_ko', 'El identificador de accion no es valido en SEARCH'],
-  ['rolaccionfuncionalidad', 'id_accion', 'select', 16, 'Validar id_accion correcto en SEARCH', 'valid', 'SEARCH', true, 'Busqueda por identificador de accion correcta'],
+    // ---------SEARCH--------------------------
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 20, 'cumple tamaño maximo', 'max_size', 'SEARCH', 'id_accion_max_size_ko', 'Identificador de acción demasiado largo. Como máximo 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 21, 'cumple formato', 'format', 'SEARCH', 'id_accion_format_ko', 'Formato inválido. El identificador de acción solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_accion', 'select', 22, 'es correcto', 'valid', 'SEARCH', true, 'Acción correcta'],
 
-  // -------------------------------------------------------------
-  // ATRIBUTO: id_rol (select, max 11 digitos)
-  // -------------------------------------------------------------
-  // ---------ADD -----------------------------
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 17, 'Validar format numerico id_rol en ADD', 'format', 'ADD', 'id_rol_format_ko', 'El identificador de rol debe ser numerico'],
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 18, 'Validar max size id_rol en ADD (max 11 digitos)', 'max_size', 'ADD', 'id_rol_max_size_ko', 'El identificador de rol excede el tamano maximo'],
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 19, 'Validar id_rol correcto en ADD', 'valid', 'ADD', true, 'Identificador de rol correcto'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_rol (select, numerico, min 1 max 11 digitos)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 23, 'cumple tamaño minimo', 'min_size', 'ADD', 'id_rol_min_size_ko', 'Debe seleccionar un rol. El identificador debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 24, 'cumple tamaño maximo', 'max_size', 'ADD', 'id_rol_max_size_ko', 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 25, 'cumple formato', 'format', 'ADD', 'id_rol_format_ko', 'Formato inválido. El identificador de rol solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 26, 'es correcto', 'valid', 'ADD', true, 'Rol correcto'],
 
-  // ---------EDIT-----------------------------
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 20, 'Validar format numerico id_rol en EDIT', 'format', 'EDIT', 'id_rol_format_ko', 'El identificador de rol debe ser numerico en EDIT'],
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 21, 'Validar max size id_rol en EDIT (max 11 digitos)', 'max_size', 'EDIT', 'id_rol_max_size_ko', 'El identificador de rol excede el tamano maximo en EDIT'],
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 22, 'Validar id_rol correcto en EDIT', 'valid', 'EDIT', true, 'Identificador de rol correcto en EDIT'],
+    // ---------EDIT----------------------------
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 27, 'cumple tamaño minimo', 'min_size', 'EDIT', 'id_rol_min_size_ko', 'Debe seleccionar un rol. El identificador debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 28, 'cumple tamaño maximo', 'max_size', 'EDIT', 'id_rol_max_size_ko', 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 29, 'cumple formato', 'format', 'EDIT', 'id_rol_format_ko', 'Formato inválido. El identificador de rol solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 30, 'es correcto', 'valid', 'EDIT', true, 'Rol correcto'],
 
-  // ---------SEARCH --------------------------
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 23, 'Validar format numerico id_rol en SEARCH', 'format', 'SEARCH', 'id_rol_format_ko', 'El identificador de rol no es valido en SEARCH'],
-  ['rolaccionfuncionalidad', 'id_rol', 'select', 24, 'Validar id_rol correcto en SEARCH', 'valid', 'SEARCH', true, 'Busqueda por identificador de rol correcta']
-];
+    // ---------SEARCH--------------------------
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 31, 'cumple tamaño maximo', 'max_size', 'SEARCH', 'id_rol_max_size_ko', 'Identificador de rol demasiado largo. Como máximo 11 dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 32, 'cumple formato', 'format', 'SEARCH', 'id_rol_format_ko', 'Formato inválido. El identificador de rol solo admite dígitos'],
+    ['rolaccionfuncionalidad', 'id_rol', 'select', 33, 'es correcto', 'valid', 'SEARCH', true, 'Rol correcto']
+);
 
 // ===============================================================
 // BATERIA DE PRUEBAS: rolaccionfuncionalidad_pruebas (7 columnas)
+// [entidad, campo, num_test, num_prueba, accion, valores, resultado_esperado]
 // ===============================================================
 
-var rolaccionfuncionalidad_pruebas = [
+let rolaccionfuncionalidad_pruebas = Array(
 
-  // -------------------------------------------------------------
-  // ATRIBUTO: id_funcionalidad (select, max 11 digitos)
-  // -------------------------------------------------------------
-  // ---------ADD-------------------------------------------
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 1, 1, 'ADD', { 'id_funcionalidad': 'abc' }, 'id_funcionalidad_format_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 1, 2, 'ADD', { 'id_funcionalidad': '12a' }, 'id_funcionalidad_format_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 1, 3, 'ADD', { 'id_funcionalidad': '' }, 'id_funcionalidad_format_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 1, 4, 'ADD', { 'id_funcionalidad': '1' }, true],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 2, 5, 'ADD', { 'id_funcionalidad': '123456789012' }, 'id_funcionalidad_max_size_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 2, 6, 'ADD', { 'id_funcionalidad': '12345678901' }, true],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 3, 7, 'ADD', { 'id_funcionalidad': '5' }, true],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_funcionalidad
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 1, 1, 'ADD', { id_funcionalidad: '' }, 'id_funcionalidad_min_size_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 2, 2, 'ADD', { id_funcionalidad: '123456789012' }, 'id_funcionalidad_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 3, 3, 'ADD', { id_funcionalidad: 'abc' }, 'id_funcionalidad_format_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 3, 4, 'ADD', { id_funcionalidad: '12a' }, 'id_funcionalidad_format_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 4, 5, 'ADD', { id_funcionalidad: '1' }, true],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 4, 6, 'ADD', { id_funcionalidad: '12345678901' }, true],
 
-  // ---------EDIT------------------------------------------
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 4, 8, 'EDIT', { 'id_funcionalidad': 'invalido' }, 'id_funcionalidad_format_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 4, 9, 'EDIT', { 'id_funcionalidad': '2' }, true],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 5, 10, 'EDIT', { 'id_funcionalidad': '123456789012' }, 'id_funcionalidad_max_size_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 5, 11, 'EDIT', { 'id_funcionalidad': '12345678901' }, true],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 6, 12, 'EDIT', { 'id_funcionalidad': '3' }, true],
+    // ---------EDIT----------------------------
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 5, 7, 'EDIT', { id_funcionalidad: '' }, 'id_funcionalidad_min_size_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 6, 8, 'EDIT', { id_funcionalidad: '123456789012' }, 'id_funcionalidad_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 7, 9, 'EDIT', { id_funcionalidad: 'invalido' }, 'id_funcionalidad_format_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 8, 10, 'EDIT', { id_funcionalidad: '2' }, true],
 
-  // ---------SEARCH----------------------------------------
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 7, 13, 'SEARCH', { 'id_funcionalidad': 'error' }, 'id_funcionalidad_format_ko'],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 7, 14, 'SEARCH', { 'id_funcionalidad': '1' }, true],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 8, 15, 'SEARCH', { 'id_funcionalidad': '' }, true],
-  ['rolaccionfuncionalidad', 'id_funcionalidad', 8, 16, 'SEARCH', { 'id_funcionalidad': '4' }, true],
+    // ---------SEARCH--------------------------
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 9, 11, 'SEARCH', { id_funcionalidad: '123456789012' }, 'id_funcionalidad_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 10, 12, 'SEARCH', { id_funcionalidad: 'error' }, 'id_funcionalidad_format_ko'],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 11, 13, 'SEARCH', { id_funcionalidad: '' }, true],
+    ['rolaccionfuncionalidad', 'id_funcionalidad', 11, 14, 'SEARCH', { id_funcionalidad: '4' }, true],
 
-  // -------------------------------------------------------------
-  // ATRIBUTO: id_accion (select, max 11 digitos)
-  // -------------------------------------------------------------
-  // ---------ADD-------------------------------------------
-  ['rolaccionfuncionalidad', 'id_accion', 9, 17, 'ADD', { 'id_accion': 'abc' }, 'id_accion_format_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 9, 18, 'ADD', { 'id_accion': '12a' }, 'id_accion_format_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 9, 19, 'ADD', { 'id_accion': '' }, 'id_accion_format_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 9, 20, 'ADD', { 'id_accion': '1' }, true],
-  ['rolaccionfuncionalidad', 'id_accion', 10, 21, 'ADD', { 'id_accion': '123456789012' }, 'id_accion_max_size_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 10, 22, 'ADD', { 'id_accion': '12345678901' }, true],
-  ['rolaccionfuncionalidad', 'id_accion', 11, 23, 'ADD', { 'id_accion': '5' }, true],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_accion
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['rolaccionfuncionalidad', 'id_accion', 12, 15, 'ADD', { id_accion: '' }, 'id_accion_min_size_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 13, 16, 'ADD', { id_accion: '123456789012' }, 'id_accion_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 14, 17, 'ADD', { id_accion: 'abc' }, 'id_accion_format_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 14, 18, 'ADD', { id_accion: '12a' }, 'id_accion_format_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 15, 19, 'ADD', { id_accion: '1' }, true],
+    ['rolaccionfuncionalidad', 'id_accion', 15, 20, 'ADD', { id_accion: '12345678901' }, true],
 
-  // ---------EDIT------------------------------------------
-  ['rolaccionfuncionalidad', 'id_accion', 12, 24, 'EDIT', { 'id_accion': 'invalido' }, 'id_accion_format_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 12, 25, 'EDIT', { 'id_accion': '2' }, true],
-  ['rolaccionfuncionalidad', 'id_accion', 13, 26, 'EDIT', { 'id_accion': '123456789012' }, 'id_accion_max_size_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 13, 27, 'EDIT', { 'id_accion': '12345678901' }, true],
-  ['rolaccionfuncionalidad', 'id_accion', 14, 28, 'EDIT', { 'id_accion': '3' }, true],
+    // ---------EDIT----------------------------
+    ['rolaccionfuncionalidad', 'id_accion', 16, 21, 'EDIT', { id_accion: '' }, 'id_accion_min_size_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 17, 22, 'EDIT', { id_accion: '123456789012' }, 'id_accion_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 18, 23, 'EDIT', { id_accion: 'invalido' }, 'id_accion_format_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 19, 24, 'EDIT', { id_accion: '2' }, true],
 
-  // ---------SEARCH----------------------------------------
-  ['rolaccionfuncionalidad', 'id_accion', 15, 29, 'SEARCH', { 'id_accion': 'error' }, 'id_accion_format_ko'],
-  ['rolaccionfuncionalidad', 'id_accion', 15, 30, 'SEARCH', { 'id_accion': '1' }, true],
-  ['rolaccionfuncionalidad', 'id_accion', 16, 31, 'SEARCH', { 'id_accion': '' }, true],
-  ['rolaccionfuncionalidad', 'id_accion', 16, 32, 'SEARCH', { 'id_accion': '4' }, true],
+    // ---------SEARCH--------------------------
+    ['rolaccionfuncionalidad', 'id_accion', 20, 25, 'SEARCH', { id_accion: '123456789012' }, 'id_accion_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 21, 26, 'SEARCH', { id_accion: 'error' }, 'id_accion_format_ko'],
+    ['rolaccionfuncionalidad', 'id_accion', 22, 27, 'SEARCH', { id_accion: '' }, true],
+    ['rolaccionfuncionalidad', 'id_accion', 22, 28, 'SEARCH', { id_accion: '4' }, true],
 
-  // -------------------------------------------------------------
-  // ATRIBUTO: id_rol (select, max 11 digitos)
-  // -------------------------------------------------------------
-  // ---------ADD-------------------------------------------
-  ['rolaccionfuncionalidad', 'id_rol', 17, 33, 'ADD', { 'id_rol': 'abc' }, 'id_rol_format_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 17, 34, 'ADD', { 'id_rol': '12a' }, 'id_rol_format_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 17, 35, 'ADD', { 'id_rol': '' }, 'id_rol_format_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 17, 36, 'ADD', { 'id_rol': '1' }, true],
-  ['rolaccionfuncionalidad', 'id_rol', 18, 37, 'ADD', { 'id_rol': '123456789012' }, 'id_rol_max_size_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 18, 38, 'ADD', { 'id_rol': '12345678901' }, true],
-  ['rolaccionfuncionalidad', 'id_rol', 19, 39, 'ADD', { 'id_rol': '5' }, true],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_rol
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['rolaccionfuncionalidad', 'id_rol', 23, 29, 'ADD', { id_rol: '' }, 'id_rol_min_size_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 24, 30, 'ADD', { id_rol: '123456789012' }, 'id_rol_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 25, 31, 'ADD', { id_rol: 'abc' }, 'id_rol_format_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 25, 32, 'ADD', { id_rol: '12a' }, 'id_rol_format_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 26, 33, 'ADD', { id_rol: '1' }, true],
+    ['rolaccionfuncionalidad', 'id_rol', 26, 34, 'ADD', { id_rol: '12345678901' }, true],
 
-  // ---------EDIT------------------------------------------
-  ['rolaccionfuncionalidad', 'id_rol', 20, 40, 'EDIT', { 'id_rol': 'invalido' }, 'id_rol_format_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 20, 41, 'EDIT', { 'id_rol': '2' }, true],
-  ['rolaccionfuncionalidad', 'id_rol', 21, 42, 'EDIT', { 'id_rol': '123456789012' }, 'id_rol_max_size_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 21, 43, 'EDIT', { 'id_rol': '12345678901' }, true],
-  ['rolaccionfuncionalidad', 'id_rol', 22, 44, 'EDIT', { 'id_rol': '3' }, true],
+    // ---------EDIT----------------------------
+    ['rolaccionfuncionalidad', 'id_rol', 27, 35, 'EDIT', { id_rol: '' }, 'id_rol_min_size_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 28, 36, 'EDIT', { id_rol: '123456789012' }, 'id_rol_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 29, 37, 'EDIT', { id_rol: 'invalido' }, 'id_rol_format_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 30, 38, 'EDIT', { id_rol: '2' }, true],
 
-  // ---------SEARCH----------------------------------------
-  ['rolaccionfuncionalidad', 'id_rol', 23, 45, 'SEARCH', { 'id_rol': 'error' }, 'id_rol_format_ko'],
-  ['rolaccionfuncionalidad', 'id_rol', 23, 46, 'SEARCH', { 'id_rol': '1' }, true],
-  ['rolaccionfuncionalidad', 'id_rol', 24, 47, 'SEARCH', { 'id_rol': '' }, true],
-  ['rolaccionfuncionalidad', 'id_rol', 24, 48, 'SEARCH', { 'id_rol': '4' }, true]
-];
+    // ---------SEARCH--------------------------
+    ['rolaccionfuncionalidad', 'id_rol', 31, 39, 'SEARCH', { id_rol: '123456789012' }, 'id_rol_max_size_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 32, 40, 'SEARCH', { id_rol: 'error' }, 'id_rol_format_ko'],
+    ['rolaccionfuncionalidad', 'id_rol', 33, 41, 'SEARCH', { id_rol: '' }, true],
+    ['rolaccionfuncionalidad', 'id_rol', 33, 42, 'SEARCH', { id_rol: '4' }, true]
+);

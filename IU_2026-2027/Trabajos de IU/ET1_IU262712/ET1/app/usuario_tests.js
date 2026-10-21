@@ -1,200 +1,191 @@
-// Definicion de tests: usuario_def_tests (9 columnas)
+// ===============================================================
+// DEFINICION DE TESTS: usuario_def_tests (9 columnas)
+// [entidad, campo, elemento, num_test, descripcion, validacion, accion, resultado, mensaje]
+//
+// Criterio comun:
+//  - ADD y EDIT: min_size, max_size, format, validaciones personalizadas y valid
+//  - SEARCH: max_size, format y valid (se permite vacio o valor parcial)
+//  - La contraseña no es un criterio de busqueda, por eso no tiene tests en SEARCH
+// ===============================================================
 
-var usuario_def_tests = [
+let usuario_def_tests = Array(
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: dni (input, 8 digitos y 1 letra)
-	// -------------------------------------------------------------
-	// ---------ADD-------------------------
-	['usuario', 'dni', 'input', 1, 'Validar formato dni en ADD', 'format', 'ADD', 'dni_format_ko', 'El Formato del DNI debe ser 8 numeros y una letra'],
-	['usuario', 'dni', 'input', 2, 'Validar letra dni en ADD (modulo 23)', 'personalized', 'ADD', 'dni_letra_ko', 'La letra del DNI no se corresponde con los numeros'],
-	['usuario', 'dni', 'input', 3, 'Validar dni correcto en ADD', 'valid', 'ADD', true, 'DNI correcto'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: dni (input, 8 digitos y 1 letra mayuscula, letra valida)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'dni', 'input', 1, 'cumple tamaño minimo', 'min_size', 'ADD', 'dni_min_size_ko', 'DNI demasiado corto. Debe tener 9 caracteres: 8 números y una letra'],
+    ['usuario', 'dni', 'input', 2, 'cumple tamaño maximo', 'max_size', 'ADD', 'dni_max_size_ko', 'DNI demasiado largo. Debe tener 9 caracteres: 8 números y una letra'],
+    ['usuario', 'dni', 'input', 3, 'cumple formato', 'format', 'ADD', 'dni_format_ko', 'Formato inválido. Debe tener 8 números seguidos de una letra mayúscula'],
+    ['usuario', 'dni', 'input', 4, 'la letra corresponde con el numero', 'personalized', 'ADD', 'dni_letra_ko', 'La letra del DNI no se corresponde con los números'],
+    ['usuario', 'dni', 'input', 5, 'es correcto', 'valid', 'ADD', true, 'DNI correcto'],
 
-	// ---------EDIT-------------------------
-	['usuario', 'dni', 'input', 4, 'Validar formato dni en EDIT', 'format', 'EDIT', 'dni_format_ko', 'El Formato del DNI debe ser 8 numeros y una letra'],
-	['usuario', 'dni', 'input', 5, 'Validar letra dni en EDIT (modulo 23)', 'personalized', 'EDIT', 'dni_letra_ko', 'La letra del DNI no se corresponde con los numeros'],
-	['usuario', 'dni', 'input', 6, 'Validar dni correcto en EDIT', 'valid', 'EDIT', true, 'DNI correcto en EDIT'],
+    // ---------EDIT----------------------------
+    ['usuario', 'dni', 'input', 6, 'cumple tamaño minimo', 'min_size', 'EDIT', 'dni_min_size_ko', 'DNI demasiado corto. Debe tener 9 caracteres: 8 números y una letra'],
+    ['usuario', 'dni', 'input', 7, 'cumple tamaño maximo', 'max_size', 'EDIT', 'dni_max_size_ko', 'DNI demasiado largo. Debe tener 9 caracteres: 8 números y una letra'],
+    ['usuario', 'dni', 'input', 8, 'cumple formato', 'format', 'EDIT', 'dni_format_ko', 'Formato inválido. Debe tener 8 números seguidos de una letra mayúscula'],
+    ['usuario', 'dni', 'input', 9, 'la letra corresponde con el numero', 'personalized', 'EDIT', 'dni_letra_ko', 'La letra del DNI no se corresponde con los números'],
+    ['usuario', 'dni', 'input', 10, 'es correcto', 'valid', 'EDIT', true, 'DNI correcto'],
 
-	// ---------SEARCH-------------------------
-	['usuario', 'dni', 'input', 7, 'Validar formato dni en SEARCH', 'format', 'SEARCH', 'dni_format_ko', 'Formato de DNI no valido en SEARCH'],
-	['usuario', 'dni', 'input', 8, 'Validar dni correcto en SEARCH', 'valid', 'SEARCH', true, 'Busqueda por DNI correcta'],
+    // ---------SEARCH--------------------------
+    ['usuario', 'dni', 'input', 11, 'cumple tamaño maximo', 'max_size', 'SEARCH', 'dni_max_size_ko', 'DNI demasiado largo. Como máximo 9 caracteres'],
+    ['usuario', 'dni', 'input', 12, 'cumple formato', 'format', 'SEARCH', 'dni_format_ko', 'Formato inválido. Solo números y, al final, una letra mayúscula'],
+    ['usuario', 'dni', 'input', 13, 'es correcto', 'valid', 'SEARCH', true, 'DNI correcto'],
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: usuario (input, min 5 max 45, alfabetico sin ñ ni acentos)
-	// -------------------------------------------------------------
-	// ---------ADD-------------------------
-	['usuario', 'usuario', 'input', 9, 'Validar min size usuario en ADD (min 5)', 'min_size', 'ADD', 'usuario_min_size_ko', 'El nombre de usuario es demasiado corto (minimo 5)'],
-	['usuario', 'usuario', 'input', 10, 'Validar max size usuario en ADD (max 45)', 'max_size', 'ADD', 'usuario_max_size_ko', 'El nombre de usuario es demasiado largo (maximo 45)'],
-	['usuario', 'usuario', 'input', 11, 'Validar format usuario en ADD (solo letras sin acentos ni ñ)', 'format', 'ADD', 'usuario_format_ko', 'El usuario solo permite caracteres alfabeticos sin acentos ni ñ'],
-	['usuario', 'usuario', 'input', 12, 'Validar usuario correcto en ADD', 'valid', 'ADD', true, 'Usuario correcto'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: usuario (input, min 5 max 45, solo letras sin ñ ni acentos)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'usuario', 'input', 14, 'cumple tamaño minimo', 'min_size', 'ADD', 'usuario_min_size_ko', 'Nombre de usuario demasiado corto. Debe tener entre 5 y 45 caracteres'],
+    ['usuario', 'usuario', 'input', 15, 'cumple tamaño maximo', 'max_size', 'ADD', 'usuario_max_size_ko', 'Nombre de usuario demasiado largo. Debe tener entre 5 y 45 caracteres'],
+    ['usuario', 'usuario', 'input', 16, 'cumple formato', 'format', 'ADD', 'usuario_format_ko', 'Formato inválido. Solo letras sin ñ, sin acentos y sin espacios'],
+    ['usuario', 'usuario', 'input', 17, 'es correcto', 'valid', 'ADD', true, 'Nombre de usuario correcto'],
 
-	// ---------EDIT-------------------------
-	['usuario', 'usuario', 'input', 13, 'Validar min size usuario en EDIT (min 5)', 'min_size', 'EDIT', 'usuario_min_size_ko', 'El nombre de usuario es demasiado corto en EDIT (minimo 5)'],
-	['usuario', 'usuario', 'input', 14, 'Validar max size usuario en EDIT (max 45)', 'max_size', 'EDIT', 'usuario_max_size_ko', 'El nombre de usuario es demasiado largo en EDIT (maximo 45)'],
-	['usuario', 'usuario', 'input', 15, 'Validar format usuario en EDIT', 'format', 'EDIT', 'usuario_format_ko', 'Caracteres no permitidos en usuario en EDIT'],
-	['usuario', 'usuario', 'input', 16, 'Validar usuario correcto en EDIT', 'valid', 'EDIT', true, 'Usuario correcto en EDIT'],
+    // ---------EDIT----------------------------
+    ['usuario', 'usuario', 'input', 18, 'cumple tamaño minimo', 'min_size', 'EDIT', 'usuario_min_size_ko', 'Nombre de usuario demasiado corto. Debe tener entre 5 y 45 caracteres'],
+    ['usuario', 'usuario', 'input', 19, 'cumple tamaño maximo', 'max_size', 'EDIT', 'usuario_max_size_ko', 'Nombre de usuario demasiado largo. Debe tener entre 5 y 45 caracteres'],
+    ['usuario', 'usuario', 'input', 20, 'cumple formato', 'format', 'EDIT', 'usuario_format_ko', 'Formato inválido. Solo letras sin ñ, sin acentos y sin espacios'],
+    ['usuario', 'usuario', 'input', 21, 'es correcto', 'valid', 'EDIT', true, 'Nombre de usuario correcto'],
 
-	// ---------SEARCH-------------------------
-	['usuario', 'usuario', 'input', 17, 'Validar max size usuario en SEARCH (max 45)', 'max_size', 'SEARCH', 'usuario_max_size_ko', 'El usuario excede el maximo permitido en SEARCH'],
-	['usuario', 'usuario', 'input', 18, 'Validar format usuario en SEARCH', 'format', 'SEARCH', 'usuario_format_ko', 'Caracteres no permitidos en SEARCH'],
-	['usuario', 'usuario', 'input', 19, 'Validar usuario correcto en SEARCH', 'valid', 'SEARCH', true, 'Busqueda de usuario correcta'],
+    // ---------SEARCH--------------------------
+    ['usuario', 'usuario', 'input', 22, 'cumple tamaño maximo', 'max_size', 'SEARCH', 'usuario_max_size_ko', 'Nombre de usuario demasiado largo. Como máximo 45 caracteres'],
+    ['usuario', 'usuario', 'input', 23, 'cumple formato', 'format', 'SEARCH', 'usuario_format_ko', 'Formato inválido. Solo letras sin ñ, sin acentos y sin espacios'],
+    ['usuario', 'usuario', 'input', 24, 'es correcto', 'valid', 'SEARCH', true, 'Nombre de usuario correcto'],
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: contrasena (input, min 8 max 45, alfabetico sin ñ ni acentos)
-	// -------------------------------------------------------------
-	// ---------ADD------------------------------------
-	['usuario', 'contrasena', 'input', 20, 'Validar min size contrasena en ADD (min 8)', 'min_size', 'ADD', 'contrasena_min_size_ko', 'La contrasena es demasiado corta (minimo 8)'],
-	['usuario', 'contrasena', 'input', 21, 'Validar max size contrasena en ADD (max 45)', 'max_size', 'ADD', 'contrasena_max_size_ko', 'La contrasena es demasiado larga (maximo 45)'],
-	['usuario', 'contrasena', 'input', 22, 'Validar format contrasena en ADD (solo letras sin acentos ni n)', 'format', 'ADD', 'contrasena_format_ko', 'La contrasena solo permite caracteres alfabeticos sin acentos ni n'],
-	['usuario', 'contrasena', 'input', 23, 'Validar contrasena correcta en ADD', 'valid', 'ADD', true, 'Contrasena correcta'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: contrasena (input, min 8 max 45, solo letras sin ñ ni acentos)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'contrasena', 'input', 25, 'cumple tamaño minimo', 'min_size', 'ADD', 'contrasena_min_size_ko', 'Contraseña demasiado corta. Debe tener entre 8 y 45 caracteres'],
+    ['usuario', 'contrasena', 'input', 26, 'cumple tamaño maximo', 'max_size', 'ADD', 'contrasena_max_size_ko', 'Contraseña demasiado larga. Debe tener entre 8 y 45 caracteres'],
+    ['usuario', 'contrasena', 'input', 27, 'cumple formato', 'format', 'ADD', 'contrasena_format_ko', 'Formato inválido. Solo letras sin ñ, sin acentos y sin espacios'],
+    ['usuario', 'contrasena', 'input', 28, 'es correcto', 'valid', 'ADD', true, 'Contraseña correcta'],
 
-	// ---------EDIT-----------------------------------
-	['usuario', 'contrasena', 'input', 24, 'Validar min size contrasena en EDIT (min 8)', 'min_size', 'EDIT', 'contrasena_min_size_ko', 'La contrasena es demasiado corta en EDIT (minimo 8)'],
-	['usuario', 'contrasena', 'input', 25, 'Validar max size contrasena en EDIT (max 45)', 'max_size', 'EDIT', 'contrasena_max_size_ko', 'La contrasena es demasiado larga en EDIT (maximo 45)'],
-	['usuario', 'contrasena', 'input', 26, 'Validar format contrasena en EDIT', 'format', 'EDIT', 'contrasena_format_ko', 'Caracteres no permitidos en la contrasena en EDIT'],
-	['usuario', 'contrasena', 'input', 27, 'Validar contrasena correcta en EDIT', 'valid', 'EDIT', true, 'Contrasena correcta en EDIT'],
+    // ---------EDIT----------------------------
+    ['usuario', 'contrasena', 'input', 29, 'cumple tamaño minimo', 'min_size', 'EDIT', 'contrasena_min_size_ko', 'Contraseña demasiado corta. Debe tener entre 8 y 45 caracteres'],
+    ['usuario', 'contrasena', 'input', 30, 'cumple tamaño maximo', 'max_size', 'EDIT', 'contrasena_max_size_ko', 'Contraseña demasiado larga. Debe tener entre 8 y 45 caracteres'],
+    ['usuario', 'contrasena', 'input', 31, 'cumple formato', 'format', 'EDIT', 'contrasena_format_ko', 'Formato inválido. Solo letras sin ñ, sin acentos y sin espacios'],
+    ['usuario', 'contrasena', 'input', 32, 'es correcto', 'valid', 'EDIT', true, 'Contraseña correcta'],
 
-	// ---------SEARCH---------------------------------
-	['usuario', 'contrasena', 'input', 28, 'Validar contrasena en SEARCH devuelve true', 'valid', 'SEARCH', true, 'Contrasena neutra en SEARCH correcta'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_rol (select, clave foranea, numerico, min 1 max 11 digitos)
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'id_rol', 'select', 33, 'cumple tamaño minimo', 'min_size', 'ADD', 'id_rol_min_size_ko', 'Debe seleccionar un rol. El identificador debe tener entre 1 y 11 dígitos'],
+    ['usuario', 'id_rol', 'select', 34, 'cumple tamaño maximo', 'max_size', 'ADD', 'id_rol_max_size_ko', 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['usuario', 'id_rol', 'select', 35, 'cumple formato', 'format', 'ADD', 'id_rol_format_ko', 'Formato inválido. El identificador de rol solo admite dígitos'],
+    ['usuario', 'id_rol', 'select', 36, 'es correcto', 'valid', 'ADD', true, 'Rol correcto'],
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: id_rol (select, max 11 digitos)
-	// -------------------------------------------------------------
-	// ---------ADD----------------------------------------
-	['usuario', 'id_rol', 'select', 29, 'Validar format numerico id_rol en ADD', 'format', 'ADD', 'id_rol_format_ko', 'El identificador de rol debe ser numerico'],
-	['usuario', 'id_rol', 'select', 30, 'Validar max size id_rol en ADD (max 11 digitos)', 'max_size', 'ADD', 'id_rol_max_size_ko', 'El identificador de rol no puede superar 11 digitos'],
-	['usuario', 'id_rol', 'select', 31, 'Validar id_rol correcto en ADD', 'valid', 'ADD', true, 'Rol correcto'],
+    // ---------EDIT----------------------------
+    ['usuario', 'id_rol', 'select', 37, 'cumple tamaño minimo', 'min_size', 'EDIT', 'id_rol_min_size_ko', 'Debe seleccionar un rol. El identificador debe tener entre 1 y 11 dígitos'],
+    ['usuario', 'id_rol', 'select', 38, 'cumple tamaño maximo', 'max_size', 'EDIT', 'id_rol_max_size_ko', 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 dígitos'],
+    ['usuario', 'id_rol', 'select', 39, 'cumple formato', 'format', 'EDIT', 'id_rol_format_ko', 'Formato inválido. El identificador de rol solo admite dígitos'],
+    ['usuario', 'id_rol', 'select', 40, 'es correcto', 'valid', 'EDIT', true, 'Rol correcto'],
 
-	// ---------EDIT---------------------------------------
-	['usuario', 'id_rol', 'select', 32, 'Validar format numerico id_rol en EDIT', 'format', 'EDIT', 'id_rol_format_ko', 'El rol seleccionado no es numerico en EDIT'],
-	['usuario', 'id_rol', 'select', 33, 'Validar max size id_rol en EDIT (max 11 digitos)', 'max_size', 'EDIT', 'id_rol_max_size_ko', 'El rol excede el tamano maximo en EDIT'],
-	['usuario', 'id_rol', 'select', 34, 'Validar id_rol correcto en EDIT', 'valid', 'EDIT', true, 'Rol correcto en EDIT'],
-
-	// ---------SEARCH-------------------------------------
-	['usuario', 'id_rol', 'select', 35, 'Validar format numerico id_rol en SEARCH', 'format', 'SEARCH', 'id_rol_format_ko', 'Rol invalido en SEARCH'],
-	['usuario', 'id_rol', 'select', 36, 'Validar id_rol correcto en SEARCH', 'valid', 'SEARCH', true, 'Busqueda por rol correcta']
-];
+    // ---------SEARCH--------------------------
+    ['usuario', 'id_rol', 'select', 41, 'cumple tamaño maximo', 'max_size', 'SEARCH', 'id_rol_max_size_ko', 'Identificador de rol demasiado largo. Como máximo 11 dígitos'],
+    ['usuario', 'id_rol', 'select', 42, 'cumple formato', 'format', 'SEARCH', 'id_rol_format_ko', 'Formato inválido. El identificador de rol solo admite dígitos'],
+    ['usuario', 'id_rol', 'select', 43, 'es correcto', 'valid', 'SEARCH', true, 'Rol correcto']
+);
 
 
 // ===============================================================
 // BATERIA DE PRUEBAS: usuario_pruebas (7 columnas)
+// [entidad, campo, num_test, num_prueba, accion, valores, resultado_esperado]
 // ===============================================================
 
-var usuario_pruebas = [
+let usuario_pruebas = Array(
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: dni (input, 8 digitos y 1 letra)
-	// -------------------------------------------------------------
-	// ---------ADD-------------------------------------------
-	['usuario', 'dni', 1, 1, 'ADD', { 'dni': '1234567' }, 'dni_format_ko'],
-	['usuario', 'dni', 1, 2, 'ADD', { 'dni': '1234567890' }, 'dni_format_ko'],
-	['usuario', 'dni', 1, 3, 'ADD', { 'dni': '12345678-A' }, 'dni_format_ko'],
-	['usuario', 'dni', 1, 4, 'ADD', { 'dni': '53912456L' }, true],
-	['usuario', 'dni', 2, 5, 'ADD', { 'dni': '53912456Z' }, 'dni_letra_ko'],
-	['usuario', 'dni', 2, 6, 'ADD', { 'dni': '53912456L' }, true],
-	['usuario', 'dni', 3, 7, 'ADD', { 'dni': '53912456L' }, true],
-	['usuario', 'dni', 3, 8, 'ADD', { 'dni': '' }, 'dni_format_ko'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: dni
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'dni', 1, 1, 'ADD', { dni: '' }, 'dni_min_size_ko'],
+    ['usuario', 'dni', 1, 2, 'ADD', { dni: '1234567L' }, 'dni_min_size_ko'],
+    ['usuario', 'dni', 2, 3, 'ADD', { dni: '1234567890' }, 'dni_max_size_ko'],
+    ['usuario', 'dni', 3, 4, 'ADD', { dni: '1234567-A' }, 'dni_format_ko'],
+    ['usuario', 'dni', 4, 5, 'ADD', { dni: '53912456Z' }, 'dni_letra_ko'],
+    ['usuario', 'dni', 5, 6, 'ADD', { dni: '53912456L' }, true],
 
-	// ---------EDIT------------------------------------------
-	['usuario', 'dni', 4, 9, 'EDIT', { 'dni': '1234' }, 'dni_format_ko'],
-	['usuario', 'dni', 4, 10, 'EDIT', { 'dni': '53912456L' }, true],
-	['usuario', 'dni', 5, 11, 'EDIT', { 'dni': '53912456Z' }, 'dni_letra_ko'],
-	['usuario', 'dni', 5, 12, 'EDIT', { 'dni': '53912456L' }, true],
-	['usuario', 'dni', 6, 13, 'EDIT', { 'dni': '53912456L' }, true],
+    // ---------EDIT----------------------------
+    ['usuario', 'dni', 6, 7, 'EDIT', { dni: '1234' }, 'dni_min_size_ko'],
+    ['usuario', 'dni', 7, 8, 'EDIT', { dni: '1234567890' }, 'dni_max_size_ko'],
+    ['usuario', 'dni', 8, 9, 'EDIT', { dni: '53912456l' }, 'dni_format_ko'],
+    ['usuario', 'dni', 9, 10, 'EDIT', { dni: '53912456Z' }, 'dni_letra_ko'],
+    ['usuario', 'dni', 10, 11, 'EDIT', { dni: '53912456L' }, true],
 
-	// ---------SEARCH----------------------------------------
-	['usuario', 'dni', 7, 14, 'SEARCH', { 'dni': '123456789A_LARGO' }, 'dni_format_ko'],
-	['usuario', 'dni', 7, 15, 'SEARCH', { 'dni': '53912456L' }, true],
-	['usuario', 'dni', 8, 16, 'SEARCH', { 'dni': '' }, true],
-	['usuario', 'dni', 8, 17, 'SEARCH', { 'dni': '53912456L' }, true],
+    // ---------SEARCH--------------------------
+    ['usuario', 'dni', 11, 12, 'SEARCH', { dni: '123456789A' }, 'dni_max_size_ko'],
+    ['usuario', 'dni', 12, 13, 'SEARCH', { dni: '5391_456' }, 'dni_format_ko'],
+    ['usuario', 'dni', 13, 14, 'SEARCH', { dni: '' }, true],
+    ['usuario', 'dni', 13, 15, 'SEARCH', { dni: '5391' }, true],
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: usuario (input, min 5 max 45, alfabetico sin ñ ni acentos)
-	// -------------------------------------------------------------
-	// ---------ADD---------------------------------------
-	['usuario', 'usuario', 9, 18, 'ADD', { 'usuario': 'a' }, 'usuario_min_size_ko'],
-	['usuario', 'usuario', 9, 19, 'ADD', { 'usuario': 'abcd' }, 'usuario_min_size_ko'],
-	['usuario', 'usuario', 9, 20, 'ADD', { 'usuario': 'abcde' }, true],
-	['usuario', 'usuario', 10, 21, 'ADD', { 'usuario': 'a'.repeat(46) }, 'usuario_max_size_ko'],
-	['usuario', 'usuario', 10, 22, 'ADD', { 'usuario': 'a'.repeat(45) }, true],
-	['usuario', 'usuario', 11, 23, 'ADD', { 'usuario': 'usuariño' }, 'usuario_format_ko'],
-	['usuario', 'usuario', 11, 24, 'ADD', { 'usuario': 'usuarió' }, 'usuario_format_ko'],
-	['usuario', 'usuario', 11, 25, 'ADD', { 'usuario': 'user123' }, 'usuario_format_ko'],
-	['usuario', 'usuario', 11, 26, 'ADD', { 'usuario': 'user space' }, 'usuario_format_ko'],
-	['usuario', 'usuario', 11, 27, 'ADD', { 'usuario': 'validuser' }, true],
-	['usuario', 'usuario', 12, 28, 'ADD', { 'usuario': 'gestorvalido' }, true],
-	['usuario', 'usuario', 12, 29, 'ADD', { 'usuario': '' }, 'usuario_min_size_ko'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: usuario
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'usuario', 14, 16, 'ADD', { usuario: 'abcd' }, 'usuario_min_size_ko'],
+    ['usuario', 'usuario', 15, 17, 'ADD', { usuario: 'a'.repeat(46) }, 'usuario_max_size_ko'],
+    ['usuario', 'usuario', 16, 18, 'ADD', { usuario: 'usuariño' }, 'usuario_format_ko'],
+    ['usuario', 'usuario', 16, 19, 'ADD', { usuario: 'usuarió' }, 'usuario_format_ko'],
+    ['usuario', 'usuario', 16, 20, 'ADD', { usuario: 'user123' }, 'usuario_format_ko'],
+    ['usuario', 'usuario', 16, 21, 'ADD', { usuario: 'user space' }, 'usuario_format_ko'],
+    ['usuario', 'usuario', 17, 22, 'ADD', { usuario: 'abcde' }, true],
+    ['usuario', 'usuario', 17, 23, 'ADD', { usuario: 'a'.repeat(45) }, true],
+    ['usuario', 'usuario', 17, 24, 'ADD', { usuario: 'GestorValido' }, true],
 
-	// ---------EDIT--------------------------------------
-	['usuario', 'usuario', 13, 30, 'EDIT', { 'usuario': 'test' }, 'usuario_min_size_ko'],
-	['usuario', 'usuario', 13, 31, 'EDIT', { 'usuario': 'abcde' }, true],
-	['usuario', 'usuario', 14, 32, 'EDIT', { 'usuario': 'a'.repeat(46) }, 'usuario_max_size_ko'],
-	['usuario', 'usuario', 14, 33, 'EDIT', { 'usuario': 'a'.repeat(45) }, true],
-	['usuario', 'usuario', 15, 34, 'EDIT', { 'usuario': 'user_edit!' }, 'usuario_format_ko'],
-	['usuario', 'usuario', 15, 35, 'EDIT', { 'usuario': 'usuariomod' }, true],
-	['usuario', 'usuario', 16, 36, 'EDIT', { 'usuario': 'usuarioeditadook' }, true],
+    // ---------EDIT----------------------------
+    ['usuario', 'usuario', 18, 25, 'EDIT', { usuario: 'test' }, 'usuario_min_size_ko'],
+    ['usuario', 'usuario', 19, 26, 'EDIT', { usuario: 'a'.repeat(46) }, 'usuario_max_size_ko'],
+    ['usuario', 'usuario', 20, 27, 'EDIT', { usuario: 'user_edit' }, 'usuario_format_ko'],
+    ['usuario', 'usuario', 21, 28, 'EDIT', { usuario: 'usuariomod' }, true],
 
-	// ---------SEARCH------------------------------------
-	['usuario', 'usuario', 17, 37, 'SEARCH', { 'usuario': 'a'.repeat(46) }, 'usuario_max_size_ko'],
-	['usuario', 'usuario', 17, 38, 'SEARCH', { 'usuario': 'a'.repeat(45) }, true],
-	['usuario', 'usuario', 18, 39, 'SEARCH', { 'usuario': 'user#1' }, 'usuario_format_ko'],
-	['usuario', 'usuario', 18, 40, 'SEARCH', { 'usuario': 'user' }, true],
-	['usuario', 'usuario', 19, 41, 'SEARCH', { 'usuario': '' }, true],
-	['usuario', 'usuario', 19, 42, 'SEARCH', { 'usuario': 'admin' }, true],
+    // ---------SEARCH--------------------------
+    ['usuario', 'usuario', 22, 29, 'SEARCH', { usuario: 'a'.repeat(46) }, 'usuario_max_size_ko'],
+    ['usuario', 'usuario', 23, 30, 'SEARCH', { usuario: 'user#' }, 'usuario_format_ko'],
+    ['usuario', 'usuario', 24, 31, 'SEARCH', { usuario: '' }, true],
+    ['usuario', 'usuario', 24, 32, 'SEARCH', { usuario: 'adm' }, true],
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: contrasena (input, min 8 max 45, alfabetico sin ñ ni acentos)
-	// -------------------------------------------------------------
-	// ---------ADD------------------------------------
-	['usuario', 'contrasena', 20, 43, 'ADD', { 'contrasena': 'corta' }, 'contrasena_min_size_ko'],
-	['usuario', 'contrasena', 20, 44, 'ADD', { 'contrasena': 'abcdefg' }, 'contrasena_min_size_ko'],
-	['usuario', 'contrasena', 20, 45, 'ADD', { 'contrasena': 'abcdefgh' }, true],
-	['usuario', 'contrasena', 21, 46, 'ADD', { 'contrasena': 'p'.repeat(46) }, 'contrasena_max_size_ko'],
-	['usuario', 'contrasena', 21, 47, 'ADD', { 'contrasena': 'p'.repeat(45) }, true],
-	['usuario', 'contrasena', 22, 48, 'ADD', { 'contrasena': 'usuariño' }, 'contrasena_format_ko'],
-	['usuario', 'contrasena', 22, 49, 'ADD', { 'contrasena': 'usuarió' }, 'contrasena_format_ko'],
-	['usuario', 'contrasena', 22, 50, 'ADD', { 'contrasena': 'pass1234' }, 'contrasena_format_ko'],
-	['usuario', 'contrasena', 22, 51, 'ADD', { 'contrasena': 'pass word' }, 'contrasena_format_ko'],
-	['usuario', 'contrasena', 22, 52, 'ADD', { 'contrasena': 'passwordsegura' }, true],
-	['usuario', 'contrasena', 23, 53, 'ADD', { 'contrasena': 'clavedificil' }, true],
-	['usuario', 'contrasena', 23, 54, 'ADD', { 'contrasena': '' }, 'contrasena_min_size_ko'],
+    // -------------------------------------------------------------
+    // ATRIBUTO: contrasena
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'contrasena', 25, 33, 'ADD', { contrasena: 'abcdefg' }, 'contrasena_min_size_ko'],
+    ['usuario', 'contrasena', 26, 34, 'ADD', { contrasena: 'p'.repeat(46) }, 'contrasena_max_size_ko'],
+    ['usuario', 'contrasena', 27, 35, 'ADD', { contrasena: 'contraseña' }, 'contrasena_format_ko'],
+    ['usuario', 'contrasena', 27, 36, 'ADD', { contrasena: 'clavesegurá' }, 'contrasena_format_ko'],
+    ['usuario', 'contrasena', 27, 37, 'ADD', { contrasena: 'pass1234' }, 'contrasena_format_ko'],
+    ['usuario', 'contrasena', 27, 38, 'ADD', { contrasena: 'pass word' }, 'contrasena_format_ko'],
+    ['usuario', 'contrasena', 28, 39, 'ADD', { contrasena: 'abcdefgh' }, true],
+    ['usuario', 'contrasena', 28, 40, 'ADD', { contrasena: 'p'.repeat(45) }, true],
+    ['usuario', 'contrasena', 28, 41, 'ADD', { contrasena: 'ClaveDificil' }, true],
 
-	// ---------EDIT-----------------------------------
-	['usuario', 'contrasena', 24, 55, 'EDIT', { 'contrasena': 'pass' }, 'contrasena_min_size_ko'],
-	['usuario', 'contrasena', 24, 56, 'EDIT', { 'contrasena': 'abcdefgh' }, true],
-	['usuario', 'contrasena', 25, 57, 'EDIT', { 'contrasena': 'p'.repeat(46) }, 'contrasena_max_size_ko'],
-	['usuario', 'contrasena', 25, 58, 'EDIT', { 'contrasena': 'p'.repeat(45) }, true],
-	['usuario', 'contrasena', 26, 59, 'EDIT', { 'contrasena': 'passw@rd' }, 'contrasena_format_ko'],
-	['usuario', 'contrasena', 26, 60, 'EDIT', { 'contrasena': 'nuevapassword' }, true],
-	['usuario', 'contrasena', 27, 61, 'EDIT', { 'contrasena': 'modificadacorrecta' }, true],
+    // ---------EDIT----------------------------
+    ['usuario', 'contrasena', 29, 42, 'EDIT', { contrasena: 'pass' }, 'contrasena_min_size_ko'],
+    ['usuario', 'contrasena', 30, 43, 'EDIT', { contrasena: 'p'.repeat(46) }, 'contrasena_max_size_ko'],
+    ['usuario', 'contrasena', 31, 44, 'EDIT', { contrasena: 'passw@rd' }, 'contrasena_format_ko'],
+    ['usuario', 'contrasena', 32, 45, 'EDIT', { contrasena: 'nuevapassword' }, true],
 
-	// ---------SEARCH---------------------------------
-	['usuario', 'contrasena', 28, 62, 'SEARCH', { 'contrasena': '' }, true],
-	['usuario', 'contrasena', 28, 63, 'SEARCH', { 'contrasena': 'password' }, true],
+    // -------------------------------------------------------------
+    // ATRIBUTO: id_rol
+    // -------------------------------------------------------------
+    // ---------ADD-----------------------------
+    ['usuario', 'id_rol', 33, 46, 'ADD', { id_rol: '' }, 'id_rol_min_size_ko'],
+    ['usuario', 'id_rol', 34, 47, 'ADD', { id_rol: '123456789012' }, 'id_rol_max_size_ko'],
+    ['usuario', 'id_rol', 35, 48, 'ADD', { id_rol: 'abc' }, 'id_rol_format_ko'],
+    ['usuario', 'id_rol', 35, 49, 'ADD', { id_rol: '12a' }, 'id_rol_format_ko'],
+    ['usuario', 'id_rol', 36, 50, 'ADD', { id_rol: '1' }, true],
+    ['usuario', 'id_rol', 36, 51, 'ADD', { id_rol: '12345678901' }, true],
 
-	// -------------------------------------------------------------
-	// ATRIBUTO: id_rol (select, max 11 digitos)
-	// -------------------------------------------------------------
-	// ---------ADD----------------------------------------
-	['usuario', 'id_rol', 29, 64, 'ADD', { 'id_rol': 'abc' }, 'id_rol_format_ko'],
-	['usuario', 'id_rol', 29, 65, 'ADD', { 'id_rol': '12a' }, 'id_rol_format_ko'],
-	['usuario', 'id_rol', 29, 66, 'ADD', { 'id_rol': '1' }, true],
-	['usuario', 'id_rol', 30, 67, 'ADD', { 'id_rol': '123456789012' }, 'id_rol_max_size_ko'],
-	['usuario', 'id_rol', 30, 68, 'ADD', { 'id_rol': '12345678901' }, true],
-	['usuario', 'id_rol', 30, 69, 'ADD', { 'id_rol': '1' }, true],
-	['usuario', 'id_rol', 31, 70, 'ADD', { 'id_rol': '2' }, true],
-	['usuario', 'id_rol', 31, 71, 'ADD', { 'id_rol': '' }, 'id_rol_format_ko'],
+    // ---------EDIT----------------------------
+    ['usuario', 'id_rol', 37, 52, 'EDIT', { id_rol: '' }, 'id_rol_min_size_ko'],
+    ['usuario', 'id_rol', 38, 53, 'EDIT', { id_rol: '123456789012' }, 'id_rol_max_size_ko'],
+    ['usuario', 'id_rol', 39, 54, 'EDIT', { id_rol: 'texto' }, 'id_rol_format_ko'],
+    ['usuario', 'id_rol', 40, 55, 'EDIT', { id_rol: '3' }, true],
 
-	// ---------EDIT---------------------------------------
-	['usuario', 'id_rol', 32, 72, 'EDIT', { 'id_rol': 'texto' }, 'id_rol_format_ko'],
-	['usuario', 'id_rol', 32, 73, 'EDIT', { 'id_rol': '3' }, true],
-	['usuario', 'id_rol', 33, 74, 'EDIT', { 'id_rol': '123456789012' }, 'id_rol_max_size_ko'],
-	['usuario', 'id_rol', 33, 75, 'EDIT', { 'id_rol': '12345678901' }, true],
-	['usuario', 'id_rol', 34, 76, 'EDIT', { 'id_rol': '1' }, true],
-
-	// ---------SEARCH-------------------------------------
-	['usuario', 'id_rol', 35, 77, 'SEARCH', { 'id_rol': 'rolErroneo' }, 'id_rol_format_ko'],
-	['usuario', 'id_rol', 35, 78, 'SEARCH', { 'id_rol': '1' }, true],
-	['usuario', 'id_rol', 36, 79, 'SEARCH', { 'id_rol': '' }, true],
-	['usuario', 'id_rol', 36, 80, 'SEARCH', { 'id_rol': '2' }, true]
-];
+    // ---------SEARCH--------------------------
+    ['usuario', 'id_rol', 41, 56, 'SEARCH', { id_rol: '123456789012' }, 'id_rol_max_size_ko'],
+    ['usuario', 'id_rol', 42, 57, 'SEARCH', { id_rol: 'rolErroneo' }, 'id_rol_format_ko'],
+    ['usuario', 'id_rol', 43, 58, 'SEARCH', { id_rol: '' }, true],
+    ['usuario', 'id_rol', 43, 59, 'SEARCH', { id_rol: '2' }, true]
+);
