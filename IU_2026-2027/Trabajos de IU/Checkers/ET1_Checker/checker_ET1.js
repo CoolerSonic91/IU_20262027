@@ -68,16 +68,17 @@ const DESCRIP = { min: 5, max: 200, re: new RegExp(`^[A-Za-zÑñ${PUNTUACION}]+$
 const NOMBRE_P = (min, max) => ({ min, max, re: new RegExp(`^[A-Za-zÑñ${ACENTOS}. \\-]+$`), requeridas: ['min_size', 'max_size', 'format', 'valid'] });
 
 const CAMPOS = {
-  dni: { min: 9, max: 9, re: /^\d{8}[A-Za-z]$/, pers: letraDni, requeridas: ['min_size', 'max_size', 'format', 'valid'], recomendadas: ['personalized'] },
+  dni: { min: 9, max: 9, re: /^\d{8}[A-Z]$/, parcial: /^\d{0,8}[A-Z]?$/, pers: letraDni, requeridas: ['min_size', 'max_size', 'format', 'valid'], recomendadas: ['personalized'] },
   nombre_persona: NOMBRE_P(2, 45),
   apellidos_persona: NOMBRE_P(3, 100),
-  fechaNacimiento_persona: { min: 10, max: 10, re: /^\d{2}\/\d{2}\/\d{4}$/, pers: fechaReal, requeridas: ['format', 'valid'], recomendadas: ['personalized'] },
+  fechaNacimiento_persona: { min: 10, max: 10, re: /^\d{2}\/\d{2}\/\d{4}$/, parcial: /^[\d\/]*$/, pers: fechaReal, requeridas: ['format', 'valid'], recomendadas: ['personalized'] },
   direccion_persona: { min: 10, max: 200, re: new RegExp(`^[A-Za-z0-9Ññ${ACENTOS}.;/ \\-]+$`), requeridas: ['min_size', 'max_size', 'format', 'valid'] },
-  telefono_persona: { min: 9, max: 9, re: /^[6789]\d{8}$/, requeridas: ['min_size', 'max_size', 'format', 'valid'] },
-  email_persona: { min: 6, max: 45, re: /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/, requeridas: ['max_size', 'format', 'valid'], recomendadas: ['min_size'] },
+  telefono_persona: { min: 9, max: 9, re: /^[6789]\d{8}$/, parcial: /^\d*$/, requeridas: ['min_size', 'max_size', 'format', 'valid'] },
+  email_persona: { max: 45, re: /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/, parcial: /^[A-Za-z0-9._%+\-@]*$/, requeridas: ['max_size', 'format', 'valid'] },
   foto_persona: {
     file: true, minNombre: 3, maxNombre: 15, maxBytes: 2 * 1024 * 1024,
     reNombre: /^[A-Za-z.]+\.(jpg|jpeg)$/i, tipos: ['image/jpeg', 'image/jpg'],
+    textoSearch: { max: 15, re: /^[A-Za-z.]+$/ },   // en SEARCH es un input con el nombre guardado
     requeridas: ['min_size_name_file', 'max_size_name_file', 'format_name_file', 'type_file', 'max_size_file'],
     recomendadas: ['exist_file', 'valid'],
   },
@@ -129,9 +130,19 @@ function cargar(fichero, nombres) {
 const base = (campo) => campo.replace(/^nuevo_/, '');
 
 // Devuelve las validaciones atómicas que FALLA un valor para un campo
-function fallos(spec, v) {
+function fallos(spec, v, acc) {
+  if (acc === 'SEARCH') {
+    // En búsqueda se admite vacío o valor parcial: sólo cuentan max_size y los caracteres permitidos
+    if (spec.file) spec = spec.textoSearch;
+    const s = v === undefined || v === null ? '' : String(v);
+    const f = [];
+    if (spec.max !== undefined && s.length > spec.max) f.push('max_size');
+    const rp = spec.parcial || new RegExp(spec.re.source.replace(/\+\$$/, '*$'), spec.re.flags);
+    if (!rp.test(s)) f.push('format');
+    return f;
+  }
   if (spec.file) {
-    if (v === undefined || v === null || v === '' || (typeof v === 'object' && Object.keys(v).length === 0)) return ['exist_file'];
+    if (v === undefined || v === null || v === '' || (typeof v === 'object' && Object.keys(v).length === 0)) return acc === 'EDIT' ? [] : ['exist_file'];
     if (typeof v !== 'object') return ['?'];
     const f = [];
     const nombre = v.format_name_file ?? v.name ?? v.nombre ?? v.min_size_name_file ?? v.max_size_name_file;
@@ -195,6 +206,7 @@ function comprobarEntidad(dir, entidad) {
   // ---- Definiciones de test ----
   const porNumero = new Map();
   const vistos = new Set();
+  const duplicados = new Set();
   defs.forEach((fila, i) => {
     const p = `${tag} def_tests fila ${i + 1}`;
     if (!Array.isArray(fila) || fila.length !== 9) return err('def', `${p}: debe tener 9 elementos (tiene ${Array.isArray(fila) ? fila.length : typeof fila})`);
@@ -204,7 +216,7 @@ function comprobarEntidad(dir, entidad) {
     const spec = CAMPOS[cb];
     if (!conf.campos.includes(cb)) err('def', `${p}: campo "${campo}" no pertenece a ${entidad}`);
     if (!ELEMENTOS.includes(elem)) err('def', `${p}: elemento de formulario "${elem}" no válido`);
-    else if (spec && spec.file && elem !== 'file') err('def', `${p}: el campo ${campo} es un fichero, el elemento debe ser 'file'`);
+    else if (spec && spec.file && elem !== 'file' && acc !== 'SEARCH') err('def', `${p}: el campo ${campo} es un fichero, el elemento debe ser 'file'`);
     else if (spec && !spec.file && elem === 'file') err('def', `${p}: el campo ${campo} no es un fichero, no debe usar 'file'`);
     if (num !== i + 1) err('def', `${p}: número de test ${fmt(num)}, se esperaba ${i + 1} (secuencial desde 1)`);
     if (typeof desc !== 'string' || !desc.trim()) err('def', `${p}: descripción vacía`);
@@ -214,13 +226,15 @@ function comprobarEntidad(dir, entidad) {
       if (res !== true) err('def', `${p}: un test 'valid' debe esperar true (tiene ${fmt(res)})`);
     } else if (typeof res !== 'string' || !res.endsWith('_ko')) {
       err('def', `${p}: resultado esperado debe ser 'campo_validacion_ko' (tiene ${fmt(res)})`);
-    } else if (res !== `${campo}_${val}_ko`) {
+    } else if (val === 'personalized' ? !res.startsWith(`${campo}_`) : res !== `${campo}_${val}_ko`) {
       aviso(`${p}: resultado ${fmt(res)}; por convenio sería '${campo}_${val}_ko'`);
     }
     if (typeof msg !== 'string' || !msg.trim()) err('def', `${p}: mensaje al usuario vacío`);
     const clave = `${cb}|${acc}|${val}`;
-    if (vistos.has(clave)) aviso(`${p}: test duplicado (${campo}, ${acc}, ${val})`);
+    const claveDup = val === 'personalized' ? `${clave}|${res}` : clave;
+    if (duplicados.has(claveDup)) aviso(`${p}: test duplicado (${campo}, ${acc}, ${val})`);
     vistos.add(clave);
+    duplicados.add(claveDup);
     if (Number.isInteger(num)) porNumero.set(num, { campo, cb, val, acc, res, pruebas: 0 });
   });
 
@@ -257,18 +271,20 @@ function comprobarEntidad(dir, entidad) {
     if (acc !== d.acc) err('pruebas', `${p}: acción ${acc} ≠ acción del test ${numDef} (${d.acc})`);
     if (res !== d.res) err('pruebas', `${p}: resultado ${fmt(res)} ≠ resultado del test ${numDef} (${fmt(d.res)})`);
     if (!valores || typeof valores !== 'object' || Array.isArray(valores)) return err('pruebas', `${p}: los valores deben ser un objeto {atributo: valor}`);
-    if (!(campo in valores) && d.val !== 'exist_file') err('pruebas', `${p}: el objeto de valores no contiene el atributo "${campo}"`);
+    if (!(campo in valores) && d.val !== 'exist_file' && !(CAMPOS[d.cb] && CAMPOS[d.cb].file && d.acc === 'EDIT')) err('pruebas', `${p}: el objeto de valores no contiene el atributo "${campo}"`);
 
     // ¿El valor provoca de verdad lo que dice el test?
     const spec = CAMPOS[d.cb];
     if (!spec) return;
-    const f = fallos(spec, valores[campo]);
+    const f = fallos(spec, valores[campo], d.acc);
+    // En campos de longitud fija (o nombres de fichero) fallar el tamaño implica fallar el formato
+    const inevitable = ((spec.min !== undefined && (spec.min === spec.max || spec.min === 1)) || spec.file) && f.every((x) => x === d.val || x === 'format' || x === 'format_name_file');
     const v = fmt(valores[campo]);
     if (d.val === 'valid') {
       if (f.length) aviso(`${p}: test ${numDef} espera éxito, pero ${v} falla en: ${f.join(', ')}`);
     } else if (VALIDACIONES_CONOCIDAS.includes(d.val)) {
       if (!f.includes(d.val)) aviso(`${p}: test ${numDef} espera fallo '${d.val}', pero ${v} no lo provoca${f.length ? ` (falla en: ${f.join(', ')})` : ' (es válido)'}`);
-      else if (f.length > 1) aviso(`${p}: ${v} falla en varias validaciones a la vez (${f.join(', ')}); mejor un valor que falle sólo en '${d.val}'`);
+      else if (f.length > 1 && !inevitable) aviso(`${p}: ${v} falla en varias validaciones a la vez (${f.join(', ')}); mejor un valor que falle sólo en '${d.val}'`);
     }
   });
   for (const [num, d] of porNumero) {
