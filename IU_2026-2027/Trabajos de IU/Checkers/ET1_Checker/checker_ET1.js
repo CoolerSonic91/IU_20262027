@@ -4,7 +4,7 @@
  *
  * Uso:
  *   node checker_ET1.js ./ET1_IU262712          (directorio ya descomprimido del .rar)
- *   node checker_ET1.js ./ET1_IU262712 --search (exige también tests SEARCH)
+ *   node checker_ET1.js ./ET1_IU262712 --sin-search (no exige tests SEARCH)
  *   node checker_ET1.js                          (busca un ET1_IUxxxxxx en el directorio actual)
  *
  * Qué comprueba:
@@ -12,7 +12,7 @@
  *      y que exista <entidad>_tests.js para cada tabla.
  *   2. Definición de tests (<entidad>_def_tests): estructura de 9 columnas, numeración
  *      secuencial, campos, elementos, acciones, resultado esperado y mensaje, y que cada
- *      campo tenga todas las validaciones que exige su formato en ADD y EDIT.
+ *      campo tenga todas las validaciones que exige su formato en ADD, EDIT y SEARCH.
  *   3. Pruebas (<entidad>_pruebas): estructura de 7 columnas, numeración, que apunten a un
  *      test existente del mismo campo y acción, que el resultado coincida con el del test,
  *      que todo test tenga al menos una prueba y que el valor probado provoque realmente
@@ -28,7 +28,7 @@ const vm = require('vm');
 
 // ============================ CONFIGURACIÓN ============================
 
-const REQUIERE_SEARCH = process.argv.includes('--search');
+const REQUIERE_SEARCH = !process.argv.includes('--sin-search');   // el corrector del profesor exige SEARCH
 const ACCIONES_OBLIGATORIAS = REQUIERE_SEARCH ? ['ADD', 'EDIT', 'SEARCH'] : ['ADD', 'EDIT'];
 const ACCIONES_PERMITIDAS = ['ADD', 'EDIT', 'SEARCH', 'DELETE', 'SHOWCURRENT'];
 const ELEMENTOS = ['input', 'file', 'select', 'checkbox', 'radio', 'textarea', 'hidden', 'date', 'email', 'password', 'tel', 'number'];
@@ -60,7 +60,6 @@ const fechaReal = (s) => {
  *   pers          función de validación personalizada (si la hay)
  *   requeridas    validaciones que deben tener test en cada acción
  *   recomendadas  validaciones cuya ausencia sólo genera aviso
- *   autoinc       PK autoincremental: en ADD de su propia tabla no se introduce
  */
 const ID = { min: 1, max: 11, re: /^\d+$/, requeridas: ['min_size', 'max_size', 'format', 'valid'] };
 const TEXTO_N = (min, max) => ({ min, max, re: new RegExp(`^[A-Za-zÑñ]+$`), requeridas: ['min_size', 'max_size', 'format', 'valid'] });
@@ -68,19 +67,19 @@ const DESCRIP = { min: 5, max: 200, re: new RegExp(`^[A-Za-zÑñ${PUNTUACION}]+$
 const NOMBRE_P = (min, max) => ({ min, max, re: new RegExp(`^[A-Za-zÑñ${ACENTOS}. \\-]+$`), requeridas: ['min_size', 'max_size', 'format', 'valid'] });
 
 const CAMPOS = {
-  dni: { min: 9, max: 9, re: /^\d{8}[A-Z]$/, parcial: /^\d{0,8}[A-Z]?$/, pers: letraDni, requeridas: ['min_size', 'max_size', 'format', 'valid'], recomendadas: ['personalized'] },
+  dni: { min: 9, max: 9, re: /^\d{8}[A-Z]$/, parcial: /^\d{0,8}[A-Z]?$/, pers: letraDni, requeridas: ['min_size', 'max_size', 'format', 'personalized', 'valid'] },
   nombre_persona: NOMBRE_P(2, 45),
   apellidos_persona: NOMBRE_P(3, 100),
-  fechaNacimiento_persona: { min: 10, max: 10, re: /^\d{2}\/\d{2}\/\d{4}$/, parcial: /^[\d\/]*$/, pers: fechaReal, requeridas: ['format', 'valid'], recomendadas: ['personalized'] },
+  fechaNacimiento_persona: { min: 10, max: 10, re: /^\d{2}\/\d{2}\/\d{4}$/, parcial: /^[\d\/]*$/, pers: fechaReal, requeridas: ['min_size', 'max_size', 'format', 'personalized', 'valid'], searchReq: ['max_size', 'format', 'personalized', 'valid'] },
   direccion_persona: { min: 10, max: 200, re: new RegExp(`^[A-Za-z0-9Ññ${ACENTOS}.;/ \\-]+$`), requeridas: ['min_size', 'max_size', 'format', 'valid'] },
-  telefono_persona: { min: 9, max: 9, re: /^[6789]\d{8}$/, parcial: /^\d*$/, requeridas: ['min_size', 'max_size', 'format', 'valid'] },
-  email_persona: { max: 45, re: /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/, parcial: /^[A-Za-z0-9._%+\-@]*$/, requeridas: ['max_size', 'format', 'valid'] },
+  telefono_persona: { min: 9, max: 9, re: /^\d{9}$/, parcial: /^\d*$/, pers: (s) => /^[6789]/.test(s), requeridas: ['min_size', 'max_size', 'format', 'personalized', 'valid'] },
+  email_persona: { min: 6, max: 45, minFormato: true, re: /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/, parcial: /^[A-Za-z0-9._%+\-@]*$/, requeridas: ['min_size', 'max_size', 'format', 'valid'] },
   foto_persona: {
     file: true, minNombre: 3, maxNombre: 15, maxBytes: 2 * 1024 * 1024,
     reNombre: /^[A-Za-z.]+\.(jpg|jpeg)$/i, tipos: ['image/jpeg', 'image/jpg'],
     textoSearch: { max: 15, re: /^[A-Za-z.]+$/ },   // en SEARCH es un input con el nombre guardado
-    requeridas: ['min_size_name_file', 'max_size_name_file', 'format_name_file', 'type_file', 'max_size_file'],
-    recomendadas: ['exist_file', 'valid'],
+    requeridas: ['exist_file', 'min_size_name_file', 'max_size_name_file', 'format_name_file', 'type_file', 'max_size_file', 'valid'],
+    searchReq: ['valid'],
   },
   id_accion: ID,
   nombre_accion: TEXTO_N(5, 48),
@@ -95,13 +94,13 @@ const CAMPOS = {
   contrasena: { min: 8, max: 45, re: /^[A-Za-z]+$/, requeridas: ['min_size', 'max_size', 'format', 'valid'] },
 };
 
-// Entidades (tablas) y sus campos; autoinc = PK autoincremental de esa tabla
+// Entidades (tablas) y sus campos
 const ENTIDADES = {
-  accion: { campos: ['id_accion', 'nombre_accion', 'descrip_accion'], autoinc: 'id_accion' },
-  funcionalidad: { campos: ['id_funcionalidad', 'nombre_funcionalidad', 'descrip_funcionalidad'], autoinc: 'id_funcionalidad' },
+  accion: { campos: ['id_accion', 'nombre_accion', 'descrip_accion'] },
+  funcionalidad: { campos: ['id_funcionalidad', 'nombre_funcionalidad', 'descrip_funcionalidad'] },
   funcionalidad_accion: { campos: ['id_funcionalidad', 'id_accion'] },
   persona: { campos: ['dni', 'nombre_persona', 'apellidos_persona', 'fechaNacimiento_persona', 'direccion_persona', 'telefono_persona', 'email_persona', 'foto_persona'] },
-  rol: { campos: ['id_rol', 'rol_name', 'rol_description'], autoinc: 'id_rol' },
+  rol: { campos: ['id_rol', 'rol_name', 'rol_description'] },
   rolaccionfuncionalidad: { campos: ['id_funcionalidad', 'id_accion', 'id_rol'] },
   usuario: { campos: ['dni', 'usuario', 'contrasena', 'id_rol'] },
 };
@@ -139,10 +138,11 @@ function fallos(spec, v, acc) {
     if (spec.max !== undefined && s.length > spec.max) f.push('max_size');
     const rp = spec.parcial || new RegExp(spec.re.source.replace(/\+\$$/, '*$'), spec.re.flags);
     if (!rp.test(s)) f.push('format');
+    if (spec.pers && spec.re && spec.re.test(s) && !spec.pers(s)) f.push('personalized');
     return f;
   }
   if (spec.file) {
-    if (v === undefined || v === null || v === '' || (typeof v === 'object' && Object.keys(v).length === 0)) return acc === 'EDIT' ? [] : ['exist_file'];
+    if (v === undefined || v === null || v === '' || (typeof v === 'object' && Object.keys(v).length === 0)) return ['exist_file'];
     if (typeof v !== 'object') return ['?'];
     const f = [];
     const nombre = v.format_name_file ?? v.name ?? v.nombre ?? v.min_size_name_file ?? v.max_size_name_file;
@@ -242,8 +242,7 @@ function comprobarEntidad(dir, entidad) {
   for (const cb of conf.campos) {
     const spec = CAMPOS[cb];
     for (const acc of ACCIONES_OBLIGATORIAS) {
-      if (acc === 'ADD' && conf.autoinc === cb) continue; // PK autoincremental: no se introduce al añadir
-      const req = acc === 'SEARCH' ? ['max_size', 'format'] : spec.requeridas;
+            const req = acc === 'SEARCH' ? (spec.searchReq || ['max_size', 'format', 'valid']) : spec.requeridas;
       for (const val of req) {
         if (!vistos.has(`${cb}|${acc}|${val}`)) err('def', `${tag} falta test ${acc} '${val}' para ${cb}`);
       }
@@ -271,14 +270,14 @@ function comprobarEntidad(dir, entidad) {
     if (acc !== d.acc) err('pruebas', `${p}: acción ${acc} ≠ acción del test ${numDef} (${d.acc})`);
     if (res !== d.res) err('pruebas', `${p}: resultado ${fmt(res)} ≠ resultado del test ${numDef} (${fmt(d.res)})`);
     if (!valores || typeof valores !== 'object' || Array.isArray(valores)) return err('pruebas', `${p}: los valores deben ser un objeto {atributo: valor}`);
-    if (!(campo in valores) && d.val !== 'exist_file' && !(CAMPOS[d.cb] && CAMPOS[d.cb].file && d.acc === 'EDIT')) err('pruebas', `${p}: el objeto de valores no contiene el atributo "${campo}"`);
+    if (!(campo in valores) && d.val !== 'exist_file') err('pruebas', `${p}: el objeto de valores no contiene el atributo "${campo}"`);
 
     // ¿El valor provoca de verdad lo que dice el test?
     const spec = CAMPOS[d.cb];
     if (!spec) return;
     const f = fallos(spec, valores[campo], d.acc);
     // En campos de longitud fija (o nombres de fichero) fallar el tamaño implica fallar el formato
-    const inevitable = ((spec.min !== undefined && (spec.min === spec.max || spec.min === 1)) || spec.file) && f.every((x) => x === d.val || x === 'format' || x === 'format_name_file');
+    const inevitable = ((spec.min !== undefined && (spec.min === spec.max || spec.min === 1 || spec.minFormato)) || spec.file) && f.every((x) => x === d.val || x === 'format' || x === 'format_name_file');
     const v = fmt(valores[campo]);
     if (d.val === 'valid') {
       if (f.length) aviso(`${p}: test ${numDef} espera éxito, pero ${v} falla en: ${f.join(', ')}`);
