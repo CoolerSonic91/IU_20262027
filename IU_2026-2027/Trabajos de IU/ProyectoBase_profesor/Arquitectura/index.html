@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="./Base/css/IU.css" media="screen" />
+	<!-- clases generales -->
+	<script type="text/javascript" src="./locale/idioma.js"></script>
+	<script type="text/javascript" src="./Core/ExternalAccess_class.js"></script>
+	<!-- clases base y core -->
+	<script type="text/javascript" src="./Core/Dom_table_Class.js"></script>
+	<script type="text/javascript" src="./Core/Dom_Class.js"></script>
+	<script type="text/javascript" src="./Core/Dom_form_Class.js"></script> 
+	<script type="text/javascript" src="./Base/AbstractEntidad_Class.js"></script>
+	<script type="text/javascript" src="./Core/Validations_Class.js"></script>
+	<script type="text/javascript" src="./Core/Dom_fields_Class.js"></script>
+	<script type="text/javascript" src="./Core/Data_Test_Class.js"></script>
+	
+	<!-- clases desarrollo -->
+	<script type="text/javascript" src="./app/persona/persona_Class.js"></script>
+	<script type="text/javascript" src="./app/persona/persona_tests.js"></script>
+	<script type="text/javascript" src="./app/usuario/usuario_Class.js"></script>
+	<script type="text/javascript" src="./app/usuario/usuario_tests.js"></script>
+	<script type="text/javascript" src="./app/rol/rol_Class.js"></script>
+	<script type="text/javascript" src="./app/rol/rol_tests.js"></script>
+	<script type="text/javascript" src="./app/accion/accion_Class.js"></script>
+	<script type="text/javascript" src="./app/accion/accion_tests.js"></script>
+	<script type="text/javascript" src="./app/funcionalidad/funcionalidad_Class.js"></script>
+	<script type="text/javascript" src="./app/funcionalidad/funcionalidad_tests.js"></script>
+	<script type="text/javascript" src="./app/funcionalidad_accion/funcionalidad_accion_Class.js"></script>
+	<script type="text/javascript" src="./app/funcionalidad_accion/funcionalidad_accion_tests.js"></script>
+	<script type="text/javascript" src="./app/rolaccionfuncionalidad/rolaccionfuncionalidad_Class.js"></script>
+	<script type="text/javascript" src="./app/rolaccionfuncionalidad/rolaccionfuncionalidad_tests.js"></script>
+	<script type="text/javascript" src="./app/Textos_ES.js"></script>
+	<script type="text/javascript" src="./app/Textos_EN.js"></script>
+	<script type="text/javascript" src="./app/Entity_Test_Data_Class.js"></script>
+	<script type="text/javascript" src="./app/Entity_Dom_fields_Class.js"></script>
+	<script type="text/javascript" src="./app/Entity_Validations_Class.js"></script>
+
+
+	<!-- este es el script que carga las librerias ajax que usamos para acceder al back -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+	<header id='header_page' class='bordeado'>
+		<span class='text_titulo_app'></span>
+		<img src="./iconos/Spain.png" onclick="setLang('ES');" />
+        <img src="./iconos/United-Kingdom.png" onclick="setLang('EN');" />
+	</header>
+	<nav class='bordeado'><span class='text_titulo_menu' onclick="menu_work();">Opciones de ménu</span>
+	</nav>
+	<aside id='div-menu'>
+		<ol>
+		    <ol>
+		    <li class="opcionmenu"><span class = 'text_menu_persona' onclick="entidad = new persona();"></span></li>
+			<li class="opcionmenu"><span class = 'text_menu_usuario' onclick="entidad = new usuario();"></span></li>
+			<li class="opcionmenu"><span class = 'text_menu_rol' onclick="entidad = new rol();"></span></li>
+			<li class="opcionmenu"><span class = 'text_menu_accion' onclick="entidad = new accion();"></span></li>
+			<li class="opcionmenu"><span class = 'text_menu_funcionalidad' onclick="entidad = new funcionalidad();"></span></li>
+			<li class="opcionmenu"><span class = 'text_menu_funcionalidad_accion' onclick="entidad = new funcionalidad_accion();"></span></li>
+			<li class="opcionmenu"><span class = 'text_menu_rolaccionfuncionalidad' onclick="entidad = new rolaccionfuncionalidad();"></span></li>
+		    <li class="opcionmenu"><span onclick="entidad = new entidad();">Gestionar otra entidad</span></li>
+	  		</ol>
+	  	</ol>
+	</aside>
+	<section id="IU_manage_entity">
+		<section id="IU_manage_head">
+			<div id='title_page' class='bordeado'><span id = "text_title_page">titulo de pagina de entidad  XXXX</span>
+			</div>
+			<div id="add_search_columns">
+        		<img id="botonADD" src="./iconos/ADD.png" onclick="entidad.createForm_ADD();" />
+        		<img id="botonSEARCH" src="./iconos/SEARCH.png" onclick="entidad.createForm_SEARCH();"/>
+				<img id="botonSEARCH" src="./iconos/TEST.png" onclick="test = new entity_Test_Data(eval(entidad.nombreentidad));"/>
+				<label id="label_seleccioncolumnas" class ="label_seleccioncolumnas">Columnas</label>
+				<select id="seleccioncolumnas" multiple>
+				</select>
+				
+        	</div>
+		</section>
+
+		<section id="IU_manage_table">
+
+		</section>
+
+	</section>
+	<section id="Div_IU_form" class='div_IU_form bordeado'>
+		<div class = "contenidoForm" id="contenidoForm">
+			<div class = "class_titulo_form">
+				<span id="class_contenido_titulo_form" class = "" >titulo para el formulario de este tamano</span>
+			</div>
+		<div id="contenedor_IU_form">
+			
+		</div>
+			<br>
+			<img src="./iconos/BACK.png" onclick="entidad.dom.hide_element('Div_IU_form');" />
+		</div>
+	</section>
+
+	<!-- Overlay para acompañar el modal -->
+	<div id="modal_action_overlay"></div>
+
+	<!-- Modal para mostrar los errores de accion -->
+	<div id="error_action_modal">
+		<span id="error_action_msg"></span>
+		<!--<img src="./iconos/BACK.png" onclick="cerrarModalError();" />-->
+		<button onclick="entidad.dom.cerrarModalError()">X</button>
+	</div>
+
+	<div id="IU_Test_result_nofile"></div>
+
+	
+
+	<footer class='bordeado'><span class='text_titulo_pie'>Pie de página</span></footer>
+	
+	<script type="text/javascript">
+		document.getElementById('div-menu').style.display = 'none';
+		document.getElementById('Div_IU_form').style.display = 'none';
+		document.getElementById('IU_manage_entity').style.display = 'none';
+
+		
+		function menu_work(){
+			if (document.getElementById('div-menu').style.display == 'none'){
+				document.getElementById('div-menu').style.display = 'block';
+			}
+			else{
+				document.getElementById('div-menu').style.display = 'none';
+			}
+		}
+
+		setLang();
+	</script>
+
+</body>
+
+
+</html>
