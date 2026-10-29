@@ -1,0 +1,208 @@
+var textos_ES = {
+
+	// textos titulos generales
+	'text_titulo_app': 'Interfaz ET2 IU',
+	'text_titulo_menu': 'Opciones Men\u00fa',
+	'text_titulo_pie': 'Pie de p\u00e1gina',
+	'label_seleccioncolumnas': 'Seleccionar columnas',
+
+	// columnas de acciones de la tabla
+	'EDIT': 'Modificar',
+	'DELETE': 'Eliminar',
+	'SHOWCURRENT': 'Detalle',
+
+	// resultado correcto de una validacion (columna traduccionError del test)
+	'true': 'Valor correcto',
+
+	// textos menu
+	'text_menu_persona': 'Gestionar personas',
+	'text_menu_usuario': 'Gestionar usuarios',
+	'text_menu_rol': 'Gestionar roles',
+	'text_menu_accion': 'Gestionar acciones',
+	'text_menu_funcionalidad': 'Gestionar funcionalidades',
+	'text_menu_funcionalidad_accion': 'Gestionar acciones de funcionalidad',
+	'text_menu_rolaccionfuncionalidad': 'Gestionar permisos de rol',
+
+	// titulos de pagina
+	'text_titulo_page_persona': 'Gesti\u00f3n de Datos Personales',
+	'text_titulo_page_usuario': 'Gesti\u00f3n de Usuarios',
+	'text_titulo_page_rol': 'Gesti\u00f3n de Roles',
+	'text_titulo_page_accion': 'Gesti\u00f3n de Acciones',
+	'text_titulo_page_funcionalidad': 'Gesti\u00f3n de Funcionalidades',
+	'text_titulo_page_funcionalidad_accion': 'Gesti\u00f3n de Acciones de Funcionalidad',
+	'text_titulo_page_rolaccionfuncionalidad': 'Gesti\u00f3n de Permisos de Rol',
+
+	// titulos de formularios
+	'text_contenido_titulo_form_persona_ADD': 'Alta de Persona',
+	'text_contenido_titulo_form_persona_EDIT': 'Modificaci\u00f3n de Persona',
+	'text_contenido_titulo_form_persona_DELETE': 'Eliminaci\u00f3n de Persona',
+	'text_contenido_titulo_form_persona_SHOWCURRENT': 'Detalle de Persona',
+	'text_contenido_titulo_form_persona_SEARCH': 'B\u00fasqueda de Personas',
+
+	'text_contenido_titulo_form_usuario_ADD': 'Alta de Usuario',
+	'text_contenido_titulo_form_usuario_EDIT': 'Modificaci\u00f3n de Usuario',
+	'text_contenido_titulo_form_usuario_DELETE': 'Eliminaci\u00f3n de Usuario',
+	'text_contenido_titulo_form_usuario_SHOWCURRENT': 'Detalle de Usuario',
+	'text_contenido_titulo_form_usuario_SEARCH': 'B\u00fasqueda de Usuarios',
+
+	'text_contenido_titulo_form_rol_ADD': 'Alta de Rol',
+	'text_contenido_titulo_form_rol_EDIT': 'Modificaci\u00f3n de Rol',
+	'text_contenido_titulo_form_rol_DELETE': 'Eliminaci\u00f3n de Rol',
+	'text_contenido_titulo_form_rol_SHOWCURRENT': 'Detalle de Rol',
+	'text_contenido_titulo_form_rol_SEARCH': 'B\u00fasqueda de Roles',
+
+	'text_contenido_titulo_form_accion_ADD': 'Alta de Acci\u00f3n',
+	'text_contenido_titulo_form_accion_EDIT': 'Modificaci\u00f3n de Acci\u00f3n',
+	'text_contenido_titulo_form_accion_DELETE': 'Eliminaci\u00f3n de Acci\u00f3n',
+	'text_contenido_titulo_form_accion_SHOWCURRENT': 'Detalle de Acci\u00f3n',
+	'text_contenido_titulo_form_accion_SEARCH': 'B\u00fasqueda de Acciones',
+
+	'text_contenido_titulo_form_funcionalidad_ADD': 'Alta de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_EDIT': 'Modificaci\u00f3n de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_DELETE': 'Eliminaci\u00f3n de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_SHOWCURRENT': 'Detalle de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_SEARCH': 'B\u00fasqueda de Funcionalidades',
+
+	'text_contenido_titulo_form_funcionalidad_accion_ADD': 'Alta de Acci\u00f3n de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_accion_EDIT': 'Modificaci\u00f3n de Acci\u00f3n de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_accion_DELETE': 'Eliminaci\u00f3n de Acci\u00f3n de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_accion_SHOWCURRENT': 'Detalle de Acci\u00f3n de Funcionalidad',
+	'text_contenido_titulo_form_funcionalidad_accion_SEARCH': 'B\u00fasqueda de Acciones de Funcionalidad',
+
+	'text_contenido_titulo_form_rolaccionfuncionalidad_ADD': 'Alta de Permiso de Rol',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_EDIT': 'Modificaci\u00f3n de Permiso de Rol',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_DELETE': 'Eliminaci\u00f3n de Permiso de Rol',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_SHOWCURRENT': 'Detalle de Permiso de Rol',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_SEARCH': 'B\u00fasqueda de Permisos de Rol',
+
+	// atributos (cabeceras de tabla y selector de columnas)
+	'dni': 'DNI',
+	'nombre_persona': 'Nombre',
+	'apellidos_persona': 'Apellidos',
+	'fechaNacimiento_persona': 'Fecha Nacimiento',
+	'direccion_persona': 'Direcci\u00f3n',
+	'telefono_persona': 'Tel\u00e9fono',
+	'email_persona': 'Correo Electr\u00f3nico',
+	'foto_persona': 'Foto',
+	'titulacion_persona': 'Titulaci\u00f3n',
+	'menu_persona': 'Men\u00fa',
+	'genero_persona': 'G\u00e9nero',
+	'usuario': 'Usuario',
+	'contrasena': 'Contrase\u00f1a',
+	'id_rol': 'Rol',
+	'rol_name': 'Nombre de Rol',
+	'rol_description': 'Descripci\u00f3n de Rol',
+	'id_accion': 'Acci\u00f3n',
+	'nombre_accion': 'Nombre de Acci\u00f3n',
+	'descrip_accion': 'Descripci\u00f3n de Acci\u00f3n',
+	'id_funcionalidad': 'Funcionalidad',
+	'nombre_funcionalidad': 'Nombre de Funcionalidad',
+	'descrip_funcionalidad': 'Descripci\u00f3n de Funcionalidad',
+
+	// labels
+	'label_dni': 'DNI',
+	'label_nombre_persona': 'Nombre',
+	'label_apellidos_persona': 'Apellidos',
+	'label_fechaNacimiento_persona': 'Fecha Nacimiento (dd/mm/aaaa)',
+	'label_direccion_persona': 'Direcci\u00f3n',
+	'label_telefono_persona': 'Tel\u00e9fono',
+	'label_email_persona': 'Correo Electr\u00f3nico',
+	'label_foto_persona': 'Foto',
+	'label_nuevo_foto_persona': 'Nueva Foto (jpg/jpeg)',
+	'label_usuario': 'Usuario',
+	'label_contrasena': 'Contrase\u00f1a',
+	'label_id_rol': 'Rol',
+	'label_rol_name': 'Nombre de Rol',
+	'label_rol_description': 'Descripci\u00f3n de Rol',
+	'label_id_accion': 'Acci\u00f3n',
+	'label_nombre_accion': 'Nombre de Acci\u00f3n',
+	'label_descrip_accion': 'Descripci\u00f3n de Acci\u00f3n',
+	'label_id_funcionalidad': 'Funcionalidad',
+	'label_nombre_funcionalidad': 'Nombre de Funcionalidad',
+	'label_descrip_funcionalidad': 'Descripci\u00f3n de Funcionalidad',
+
+	// errores validaciones formulario
+	// dni (persona y usuario)
+	'dni_min_size_ko': 'DNI demasiado corto. Debe tener 9 caracteres: 8 n\u00fameros y una letra',
+	'dni_max_size_ko': 'DNI demasiado largo. Debe tener 9 caracteres: 8 n\u00fameros y una letra',
+	'dni_format_ko': 'Formato inv\u00e1lido. Debe tener 8 n\u00fameros seguidos de una letra may\u00fascula',
+	'dni_letra_ko': 'La letra del DNI no se corresponde con los n\u00fameros',
+
+	// persona
+	'nombre_persona_min_size_ko': 'Nombre demasiado corto. Debe tener entre 2 y 45 caracteres',
+	'nombre_persona_max_size_ko': 'Nombre demasiado largo. Debe tener entre 2 y 45 caracteres',
+	'nombre_persona_format_ko': 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios',
+	'apellidos_persona_min_size_ko': 'Apellidos demasiado cortos. Deben tener entre 3 y 100 caracteres',
+	'apellidos_persona_max_size_ko': 'Apellidos demasiado largos. Deben tener entre 3 y 100 caracteres',
+	'apellidos_persona_format_ko': 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios',
+	'fechaNacimiento_persona_min_size_ko': 'Fecha demasiado corta. Debe tener 10 caracteres con el formato dd/mm/aaaa',
+	'fechaNacimiento_persona_max_size_ko': 'Fecha demasiado larga. Debe tener 10 caracteres con el formato dd/mm/aaaa',
+	'fechaNacimiento_persona_format_ko': 'Formato inv\u00e1lido. Debe seguir el formato dd/mm/aaaa',
+	'fechaNacimiento_persona_fecha_valida_ko': 'La fecha no existe. Revise el d\u00eda y el mes',
+	'fechaNacimiento_persona_fecha_anterior_actual_ko': 'La fecha de nacimiento debe ser anterior a la fecha actual',
+	'direccion_persona_min_size_ko': 'Direcci\u00f3n demasiado corta. Debe tener entre 10 y 200 caracteres',
+	'direccion_persona_max_size_ko': 'Direcci\u00f3n demasiado larga. Debe tener entre 10 y 200 caracteres',
+	'direccion_persona_format_ko': 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /',
+	'telefono_persona_min_size_ko': 'Tel\u00e9fono demasiado corto. Debe tener 9 d\u00edgitos',
+	'telefono_persona_max_size_ko': 'Tel\u00e9fono demasiado largo. Debe tener 9 d\u00edgitos',
+	'telefono_persona_format_ko': 'Formato inv\u00e1lido. Solo d\u00edgitos, sin espacios ni otros caracteres',
+	'telefono_persona_prefijo_ko': 'Tel\u00e9fono no v\u00e1lido en Espa\u00f1a. Debe empezar por 6, 7, 8 o 9',
+	'email_persona_min_size_ko': 'Email demasiado corto. Debe tener entre 6 y 45 caracteres',
+	'email_persona_max_size_ko': 'Email demasiado largo. Como m\u00e1ximo 45 caracteres',
+	'email_persona_format_ko': 'Formato inv\u00e1lido. Debe ser del tipo usuario@dominio.com',
+	'nuevo_foto_persona_exist_file_ko': 'No se ha subido ninguna foto. Debe subir una foto en jpg o jpeg',
+	'nuevo_foto_persona_type_file_ko': 'Tipo de fichero no permitido. Solo jpg o jpeg',
+	'nuevo_foto_persona_max_size_file_ko': 'Fichero demasiado grande. Como m\u00e1ximo 2 MB',
+	'nuevo_foto_persona_min_size_name_file_ko': 'Nombre de fichero demasiado corto. Debe tener entre 3 y 15 caracteres',
+	'nuevo_foto_persona_max_size_name_file_ko': 'Nombre de fichero demasiado largo. Debe tener entre 3 y 15 caracteres',
+	'nuevo_foto_persona_format_name_file_ko': 'Nombre de fichero inv\u00e1lido. Solo letras sin acentos y puntos, terminado en .jpg o .jpeg',
+	'foto_persona_max_size_ko': 'Nombre de foto demasiado largo. Como m\u00e1ximo 15 caracteres',
+	'foto_persona_format_ko': 'Formato inv\u00e1lido. Solo letras sin acentos y puntos',
+
+	// usuario
+	'usuario_min_size_ko': 'Nombre de usuario demasiado corto. Debe tener entre 5 y 45 caracteres',
+	'usuario_max_size_ko': 'Nombre de usuario demasiado largo. Debe tener entre 5 y 45 caracteres',
+	'usuario_format_ko': 'Formato inv\u00e1lido. Solo letras sin \u00f1, sin acentos y sin espacios',
+	'contrasena_min_size_ko': 'Contrase\u00f1a demasiado corta. Debe tener entre 8 y 45 caracteres',
+	'contrasena_max_size_ko': 'Contrase\u00f1a demasiado larga. Debe tener entre 8 y 45 caracteres',
+	'contrasena_format_ko': 'Formato inv\u00e1lido. Solo letras sin \u00f1, sin acentos y sin espacios',
+
+	// rol
+	'id_rol_min_size_ko': 'Debe indicar un rol. El identificador debe tener entre 1 y 11 d\u00edgitos',
+	'id_rol_max_size_ko': 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 d\u00edgitos',
+	'id_rol_format_ko': 'Formato inv\u00e1lido. El identificador de rol solo admite d\u00edgitos',
+	'rol_name_min_size_ko': 'Nombre de rol demasiado corto. Debe tener entre 5 y 48 caracteres',
+	'rol_name_max_size_ko': 'Nombre de rol demasiado largo. Debe tener entre 5 y 48 caracteres',
+	'rol_name_format_ko': 'Formato inv\u00e1lido. Solo letras sin \u00f1, sin acentos y sin espacios',
+	'rol_description_min_size_ko': 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres',
+	'rol_description_max_size_ko': 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres',
+	'rol_description_format_ko': 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n',
+
+	// accion
+	'id_accion_min_size_ko': 'Debe indicar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos',
+	'id_accion_max_size_ko': 'Identificador de acci\u00f3n demasiado largo. Debe tener entre 1 y 11 d\u00edgitos',
+	'id_accion_format_ko': 'Formato inv\u00e1lido. El identificador de acci\u00f3n solo admite d\u00edgitos',
+	'nombre_accion_min_size_ko': 'Nombre de acci\u00f3n demasiado corto. Debe tener entre 5 y 48 caracteres',
+	'nombre_accion_max_size_ko': 'Nombre de acci\u00f3n demasiado largo. Debe tener entre 5 y 48 caracteres',
+	'nombre_accion_format_ko': 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1), sin acentos ni espacios',
+	'descrip_accion_min_size_ko': 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres',
+	'descrip_accion_max_size_ko': 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres',
+	'descrip_accion_format_ko': 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n',
+
+	// funcionalidad
+	'id_funcionalidad_min_size_ko': 'Debe indicar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos',
+	'id_funcionalidad_max_size_ko': 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 d\u00edgitos',
+	'id_funcionalidad_format_ko': 'Formato inv\u00e1lido. El identificador de funcionalidad solo admite d\u00edgitos',
+	'nombre_funcionalidad_min_size_ko': 'Nombre de funcionalidad demasiado corto. Debe tener entre 5 y 48 caracteres',
+	'nombre_funcionalidad_max_size_ko': 'Nombre de funcionalidad demasiado largo. Debe tener entre 5 y 48 caracteres',
+	'nombre_funcionalidad_format_ko': 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1), sin acentos ni espacios',
+	'descrip_funcionalidad_min_size_ko': 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres',
+	'descrip_funcionalidad_max_size_ko': 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres',
+	'descrip_funcionalidad_format_ko': 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n',
+
+	// errores acciones (back)
+	'RECORDSET_VACIO': 'No hay coincidencias para la b\u00fasqueda',
+	'dni_es_nulo_ko': 'El DNI no puede ser vac\u00edo',
+	'admin_no_se_puede_modificar_ko': 'El admin no se puede modificar',
+
+}

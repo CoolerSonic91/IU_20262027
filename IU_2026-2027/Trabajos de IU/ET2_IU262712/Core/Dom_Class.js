@@ -4,13 +4,34 @@ class dom extends dom_table {
 		super()
 	}
 
-	/**
+		/**
 	 * pone visible block el elemento con el id proporcionado
 	 * @name show_element
 	 * @param {string} id id de un elemento html
 	 */
 	show_element(id){
 		document.getElementById(id).style.display = 'block';
+	}
+
+	/**
+	 * pone la propiedad style.display del elemento id a none
+	 * @param {String} id 
+	 */
+	hide_element(id){
+		document.getElementById(id).style.display = 'none';
+	}
+	
+	/**
+	 * 
+	 * Oculta el id y el label_id elementos de un formulario relacionado con un atributo
+	 * 
+	 * 
+	 * @param {String} id 
+	 * 
+	 */
+	hide_element_form(id){
+		this.hide_element('label_'+id);
+		this.hide_element(id);
 	}
 
 	/**
@@ -24,7 +45,9 @@ class dom extends dom_table {
 		document.getElementById('span_error_'+id).style.display = 'inline';
 		document.getElementById('error_'+id).innerHTML = codigoerror;
 		document.getElementById(id).style.borderBlockColor = 'red';
+		document.getElementById('error_'+id).classList.add(codigoerror);
 		document.getElementById('submit_button').focus();
+		setLang();
 	}
 	/**
 	 	Modifica el aspecto del campo en función de si no tiene un error. Borde verde si correcto
@@ -59,123 +82,40 @@ class dom extends dom_table {
 	}
 
 	/**
-	 * crea un elemento del DOM y lo devuelve
+	 * se indica el id de un elemento, se pasa un atributo a modificar y el 
+	 * valor que quiere que tenga
 	 * 
-	 * @param {string} tag html a crear
-	 * @param {string} tipo del tag si corresponde 
-	 * @param {string} nombrecampo name e id del tag html a crear
-	 * @param {object} valores objeto con los valores a colocar en el tad
-	 * @returns el objeto dom creado
+	 * @param {String} id 
+	 * @param {String} propiedad 
+	 * @param {String} valor 
 	 */
-	crearElementoHtml(tag, tipo, nombrecampo, valores){
-
-		switch (tag){
-			case 'input':
-				//si tiene mas de un valor, creo y relleno todos los campos con sus valores y devuelvo el primero
-				//let counter = 0;
-				for (var clave in valores){
-					
-					var nombrecampo = clave;
-					var valorcampo = valores[nombrecampo];
-					var element = this.createInput(nombrecampo, tipo);
-					this.fillElementValue(element, valorcampo);
-					this.colocarelemento(element, 'form');
-					/*if (counter == 0){
-						var elementToReturn = element;
-					}
-					counter++;*/
-
-				}
-				
-				//return elementToReturn;
-				break;
-			case 'file':
-				element = this.createInput(nombrecampo, tipo);
-				this.fillElementFile(element, valores);
-				//return element;
-				this.colocarelemento(element, 'form');
-				break;
-			default: // este lo uso para crear los span y los a de los errores sin valor
-				element = document.createElement(tag);
-				element.type = tipo;
-				element.id = nombrecampo;
-				this.fillElementValue(element, '');
-				this.colocarelemento(element, 'form');
-				return element;
-				break;	
-		}
-
+	assign_property_value(id, propiedad, valor){
+		document.getElementById(id).setAttribute(propiedad, valor);
 	}
 
 	/**
-	 * 
-	 * crea un elemento input proporcionandole su nombre y su tipo
-	 * @name createInput
-	 * @param {string} nombre nombre el elemento input, se usa tambien como id 
-	 * @param {string} tipo del input
-	 * @returns elemento input creado
+	 * abrir el modal de error de accion indicando el codigo de error
+	 * @param {*} errorMsg 
 	 */
+	abrirModalError(errorMsg) {
+        document.getElementById('error_action_modal').style.display = 'block';
+        document.getElementById('modal_action_overlay').style.display = 'block';
+		//mientras no tenemos multiidioma, el mensaje de error es el codigo de error, en el futuro se traducira
+		//document.getElementById('error_action_msg').innerHTML = errorMsg;
+		//cuando ya tengamos el multiidioma, se pondra la clase del mensaje de error para que se traduzca
+        document.getElementById('error_action_msg').classList.add = errorMsg;
+        setLang();
+    }
 
-	createInput(nombre, tipo){
-		var newElement = document.createElement('input');
-		newElement.type = tipo;
-		newElement.id = nombre;
-		newElement.name = nombre;
-		return newElement;
-	}
-
+		
 	/**
-	 * rellena el valor de un objeto simple del DOM
-	 * @name fillElementValue
-	 * @param {object} elemento se le pasa el objeto del DOM 
-	 * @param {string} valor valor a colocar en el objeto DOM
+	 * cerrar el modal de error de accion
 	 */
-
-	fillElementValue(elemento, valor){
-		elemento.setAttribute('value', valor);
-	}
-
-	/**
-	 * Rellena el valor de un objeto file para ponerselo a un elemento DOM input file
-	 * @name fillElementFile
-	 * @param {*} elemento elemento input file DOM
-	 * @param {*} valores del fichero que se incluye en el elemento.
-	 */
-	fillElementFile(elemento, valores){
-	
-		// creo objeto html sino tengo cargado el formulario (para crear cada elemento dinamicamente dentro del form)
-        // construyo objeto file y relleno valor para prueba
-        if (Object.values(valores).length > 0){
-                              
-			var fichero = Object.keys(valores)[0];			
-			
-			var nombrefichero = valores[fichero].format_name_file;
-			var tipomime = valores[fichero].type_file;
-			var maxsize = valores[fichero].max_size_file;   
-
-			var file = new File([new ArrayBuffer(maxsize)], nombrefichero ,{type:tipomime, webkitRelativePath:"C:\\fakepath\\"+nombrefichero});
-					
-			// Create a data transfer object. Similar to what you get from a `drop` event as `event.dataTransfer`
-			const dataTransfer = new DataTransfer();
-
-			// Add your file to the file list of the object
-			dataTransfer.items.add(file);
-
-			// Save the file list to a new variable
-			const fileList = dataTransfer.files;
-
-			// Set your input `files` to the file list
-			elemento.files = fileList;
-
-        }
-		else{
-			const dataTransfer = new DataTransfer();
-			const fileList = dataTransfer.files;
-			elemento.files = fileList;
-		}
-	
-	}
-
+    cerrarModalError(){
+        document.getElementById('error_action_modal').style.display = 'none';
+        document.getElementById('modal_action_overlay').style.display = 'none';
+        document.getElementById('error_action_msg').removeAttribute('class');
+    }
 	/**
 	 * vacia el contenido de un div
 	 * @name vaciarDiv
@@ -195,17 +135,69 @@ class dom extends dom_table {
 		document.getElementById(divdestino).append(elemento);
 	}
 
+	/**
+	 * Redibuja el select en funcion del contenido de columnasamostrar
+	 * 
+	 * @param {*} columnasamostrar 
+	 * @param {*} atributos 
+	 */
+	crearSeleccionablecolumnas(columnasamostrar,atributos){
+
+		document.getElementById("seleccioncolumnas").innerHTML = '';
+		
+		for (let atributo of atributos){
+
+			var optionselect = document.createElement('option');
+			optionselect.className = atributo;
+			optionselect.innerHTML = atributo;
+			var textofuncion = "entidad.modificarcolumnasamostrar('"+atributo+"');";
+			optionselect.setAttribute("onclick",textofuncion);
+			if (columnasamostrar.includes(atributo)){
+				optionselect.selected = true;
+			}
+			document.getElementById("seleccioncolumnas").append(optionselect);
+		}
+		setLang();
+
+	}
+
+	/**
+	 * muestra o no las columnas de la tabla segun indique columnasamostrar
+	 */
+	mostrarocultarcolumnas(columnasamostrar, atributos){
+
+		var estadodisplay = '';
+		// recorro todos los atributos de la tabla
+		for (let columna of atributos){
+			// si el atributo esta en columnas a mostrar 
+			// lo dejo como esta
+			if (columnasamostrar.includes(columna)){
+				estadodisplay = '';
+			}
+			// si el atributo no esta en columnas a mostrar lo oculto
+			else{
+				estadodisplay = 'none';
+			}
+			document.querySelector("th[class~='tabla-th-"+columna+"']").style.display = estadodisplay;
+			let arraytds = document.querySelectorAll("td[class='tabla-td-"+columna+"']");
+			for (let i=0;i<arraytds.length;i++){
+				arraytds[i].style.display = estadodisplay;
+			}
+		}
+
+
+	}
 }
 
 	/**
-	 * if id and mode switch the state of display of html element(id) to 'none' or 'block'/'inline'
-	 * if 'on'/'off' force html element (id) to show or hide
-	 * 
-	 * 
-	 * @param {string} id  id of html element to show/hide
-	 * @param {string} mode 'block'/'inline'
-	 * @param {string} ponerestado 'on'/'off'
-	 */
+ * if id and mode switch the state of display of html element(id) to 'none' or 'block'/'inline'
+ * if 'on'/'off' force html element (id) to show or hide
+ * 
+ * 
+ * @param {string} id  id of html element to show/hide
+ * @param {string} mode 'block'/'inline'
+ * @param {string} ponerestado 'on'/'off'
+ */
 
 	function switch_display_mode(id,mode, ponerestado=null){
 
@@ -226,5 +218,3 @@ class dom extends dom_table {
 		}
 	}
 }
-
-

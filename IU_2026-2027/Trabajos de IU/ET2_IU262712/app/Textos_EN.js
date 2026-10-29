@@ -1,0 +1,208 @@
+var textos_EN = {
+
+	// textos titulos generales
+	'text_titulo_app': 'IU ET2 Interface',
+	'text_titulo_menu': 'Menu Options',
+	'text_titulo_pie': 'Footer',
+	'label_seleccioncolumnas': 'Select columns',
+
+	// columnas de acciones de la tabla
+	'EDIT': 'Edit',
+	'DELETE': 'Delete',
+	'SHOWCURRENT': 'Details',
+
+	// resultado correcto de una validacion (columna traduccionError del test)
+	'true': 'Correct value',
+
+	// textos menu
+	'text_menu_persona': 'Manage people',
+	'text_menu_usuario': 'Manage users',
+	'text_menu_rol': 'Manage roles',
+	'text_menu_accion': 'Manage actions',
+	'text_menu_funcionalidad': 'Manage functionalities',
+	'text_menu_funcionalidad_accion': 'Manage functionality actions',
+	'text_menu_rolaccionfuncionalidad': 'Manage role permissions',
+
+	// titulos de pagina
+	'text_titulo_page_persona': 'Personal Data Management',
+	'text_titulo_page_usuario': 'User Management',
+	'text_titulo_page_rol': 'Role Management',
+	'text_titulo_page_accion': 'Action Management',
+	'text_titulo_page_funcionalidad': 'Functionality Management',
+	'text_titulo_page_funcionalidad_accion': 'Functionality Action Management',
+	'text_titulo_page_rolaccionfuncionalidad': 'Role Permission Management',
+
+	// titulos de formularios
+	'text_contenido_titulo_form_persona_ADD': 'Add Person',
+	'text_contenido_titulo_form_persona_EDIT': 'Edit Person',
+	'text_contenido_titulo_form_persona_DELETE': 'Delete Person',
+	'text_contenido_titulo_form_persona_SHOWCURRENT': 'Person Details',
+	'text_contenido_titulo_form_persona_SEARCH': 'Search People',
+
+	'text_contenido_titulo_form_usuario_ADD': 'Add User',
+	'text_contenido_titulo_form_usuario_EDIT': 'Edit User',
+	'text_contenido_titulo_form_usuario_DELETE': 'Delete User',
+	'text_contenido_titulo_form_usuario_SHOWCURRENT': 'User Details',
+	'text_contenido_titulo_form_usuario_SEARCH': 'Search Users',
+
+	'text_contenido_titulo_form_rol_ADD': 'Add Role',
+	'text_contenido_titulo_form_rol_EDIT': 'Edit Role',
+	'text_contenido_titulo_form_rol_DELETE': 'Delete Role',
+	'text_contenido_titulo_form_rol_SHOWCURRENT': 'Role Details',
+	'text_contenido_titulo_form_rol_SEARCH': 'Search Roles',
+
+	'text_contenido_titulo_form_accion_ADD': 'Add Action',
+	'text_contenido_titulo_form_accion_EDIT': 'Edit Action',
+	'text_contenido_titulo_form_accion_DELETE': 'Delete Action',
+	'text_contenido_titulo_form_accion_SHOWCURRENT': 'Action Details',
+	'text_contenido_titulo_form_accion_SEARCH': 'Search Actions',
+
+	'text_contenido_titulo_form_funcionalidad_ADD': 'Add Functionality',
+	'text_contenido_titulo_form_funcionalidad_EDIT': 'Edit Functionality',
+	'text_contenido_titulo_form_funcionalidad_DELETE': 'Delete Functionality',
+	'text_contenido_titulo_form_funcionalidad_SHOWCURRENT': 'Functionality Details',
+	'text_contenido_titulo_form_funcionalidad_SEARCH': 'Search Functionalities',
+
+	'text_contenido_titulo_form_funcionalidad_accion_ADD': 'Add Functionality Action',
+	'text_contenido_titulo_form_funcionalidad_accion_EDIT': 'Edit Functionality Action',
+	'text_contenido_titulo_form_funcionalidad_accion_DELETE': 'Delete Functionality Action',
+	'text_contenido_titulo_form_funcionalidad_accion_SHOWCURRENT': 'Functionality Action Details',
+	'text_contenido_titulo_form_funcionalidad_accion_SEARCH': 'Search Functionality Actions',
+
+	'text_contenido_titulo_form_rolaccionfuncionalidad_ADD': 'Add Role Permission',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_EDIT': 'Edit Role Permission',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_DELETE': 'Delete Role Permission',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_SHOWCURRENT': 'Role Permission Details',
+	'text_contenido_titulo_form_rolaccionfuncionalidad_SEARCH': 'Search Role Permissions',
+
+	// atributos (cabeceras de tabla y selector de columnas)
+	'dni': 'ID number',
+	'nombre_persona': 'First Name',
+	'apellidos_persona': 'Last Name',
+	'fechaNacimiento_persona': 'Date of Birth',
+	'direccion_persona': 'Address',
+	'telefono_persona': 'Phone',
+	'email_persona': 'Email',
+	'foto_persona': 'Photo',
+	'titulacion_persona': 'Degree',
+	'menu_persona': 'Menu',
+	'genero_persona': 'Gender',
+	'usuario': 'User',
+	'contrasena': 'Password',
+	'id_rol': 'Role',
+	'rol_name': 'Role Name',
+	'rol_description': 'Role Description',
+	'id_accion': 'Action',
+	'nombre_accion': 'Action Name',
+	'descrip_accion': 'Action Description',
+	'id_funcionalidad': 'Functionality',
+	'nombre_funcionalidad': 'Functionality Name',
+	'descrip_funcionalidad': 'Functionality Description',
+
+	// labels
+	'label_dni': 'ID number',
+	'label_nombre_persona': 'First Name',
+	'label_apellidos_persona': 'Last Name',
+	'label_fechaNacimiento_persona': 'Date of Birth (dd/mm/yyyy)',
+	'label_direccion_persona': 'Address',
+	'label_telefono_persona': 'Phone',
+	'label_email_persona': 'Email',
+	'label_foto_persona': 'Photo',
+	'label_nuevo_foto_persona': 'New Photo (jpg/jpeg)',
+	'label_usuario': 'User',
+	'label_contrasena': 'Password',
+	'label_id_rol': 'Role',
+	'label_rol_name': 'Role Name',
+	'label_rol_description': 'Role Description',
+	'label_id_accion': 'Action',
+	'label_nombre_accion': 'Action Name',
+	'label_descrip_accion': 'Action Description',
+	'label_id_funcionalidad': 'Functionality',
+	'label_nombre_funcionalidad': 'Functionality Name',
+	'label_descrip_funcionalidad': 'Functionality Description',
+
+	// errores validaciones formulario
+	// dni (persona y usuario)
+	'dni_min_size_ko': 'ID number too short. It must have 9 characters: 8 digits and a letter',
+	'dni_max_size_ko': 'ID number too long. It must have 9 characters: 8 digits and a letter',
+	'dni_format_ko': 'Invalid format. It must have 8 digits followed by an uppercase letter',
+	'dni_letra_ko': 'The ID number letter does not match the digits',
+
+	// persona
+	'nombre_persona_min_size_ko': 'First name too short. It must have between 2 and 45 characters',
+	'nombre_persona_max_size_ko': 'First name too long. It must have between 2 and 45 characters',
+	'nombre_persona_format_ko': 'Invalid format. Only letters (with \u00f1 and accents), dots, hyphens and spaces',
+	'apellidos_persona_min_size_ko': 'Last name too short. It must have between 3 and 100 characters',
+	'apellidos_persona_max_size_ko': 'Last name too long. It must have between 3 and 100 characters',
+	'apellidos_persona_format_ko': 'Invalid format. Only letters (with \u00f1 and accents), dots, hyphens and spaces',
+	'fechaNacimiento_persona_min_size_ko': 'Date too short. It must have 10 characters with the format dd/mm/yyyy',
+	'fechaNacimiento_persona_max_size_ko': 'Date too long. It must have 10 characters with the format dd/mm/yyyy',
+	'fechaNacimiento_persona_format_ko': 'Invalid format. It must follow the format dd/mm/yyyy',
+	'fechaNacimiento_persona_fecha_valida_ko': 'The date does not exist. Check the day and the month',
+	'fechaNacimiento_persona_fecha_anterior_actual_ko': 'The date of birth must be earlier than today',
+	'direccion_persona_min_size_ko': 'Address too short. It must have between 10 and 200 characters',
+	'direccion_persona_max_size_ko': 'Address too long. It must have between 10 and 200 characters',
+	'direccion_persona_format_ko': 'Invalid format. Only letters (with \u00f1 and accents), digits, dots, hyphens, semicolons, spaces and /',
+	'telefono_persona_min_size_ko': 'Phone too short. It must have 9 digits',
+	'telefono_persona_max_size_ko': 'Phone too long. It must have 9 digits',
+	'telefono_persona_format_ko': 'Invalid format. Only digits, without spaces or other characters',
+	'telefono_persona_prefijo_ko': 'Phone not valid in Spain. It must start with 6, 7, 8 or 9',
+	'email_persona_min_size_ko': 'Email too short. It must have between 6 and 45 characters',
+	'email_persona_max_size_ko': 'Email too long. 45 characters at most',
+	'email_persona_format_ko': 'Invalid format. It must be like user@domain.com',
+	'nuevo_foto_persona_exist_file_ko': 'No photo has been uploaded. You must upload a jpg or jpeg photo',
+	'nuevo_foto_persona_type_file_ko': 'File type not allowed. Only jpg or jpeg',
+	'nuevo_foto_persona_max_size_file_ko': 'File too big. 2 MB at most',
+	'nuevo_foto_persona_min_size_name_file_ko': 'File name too short. It must have between 3 and 15 characters',
+	'nuevo_foto_persona_max_size_name_file_ko': 'File name too long. It must have between 3 and 15 characters',
+	'nuevo_foto_persona_format_name_file_ko': 'Invalid file name. Only letters without accents and dots, ending in .jpg or .jpeg',
+	'foto_persona_max_size_ko': 'Photo name too long. 15 characters at most',
+	'foto_persona_format_ko': 'Invalid format. Only letters without accents and dots',
+
+	// usuario
+	'usuario_min_size_ko': 'User name too short. It must have between 5 and 45 characters',
+	'usuario_max_size_ko': 'User name too long. It must have between 5 and 45 characters',
+	'usuario_format_ko': 'Invalid format. Only letters without \u00f1, accents or spaces',
+	'contrasena_min_size_ko': 'Password too short. It must have between 8 and 45 characters',
+	'contrasena_max_size_ko': 'Password too long. It must have between 8 and 45 characters',
+	'contrasena_format_ko': 'Invalid format. Only letters without \u00f1, accents or spaces',
+
+	// rol
+	'id_rol_min_size_ko': 'A role is required. The identifier must have between 1 and 11 digits',
+	'id_rol_max_size_ko': 'Role identifier too long. It must have between 1 and 11 digits',
+	'id_rol_format_ko': 'Invalid format. The role identifier only allows digits',
+	'rol_name_min_size_ko': 'Role name too short. It must have between 5 and 48 characters',
+	'rol_name_max_size_ko': 'Role name too long. It must have between 5 and 48 characters',
+	'rol_name_format_ko': 'Invalid format. Only letters without \u00f1, accents or spaces',
+	'rol_description_min_size_ko': 'Description too short. It must have between 5 and 200 characters',
+	'rol_description_max_size_ko': 'Description too long. It must have between 5 and 200 characters',
+	'rol_description_format_ko': 'Invalid format. Only letters (\u00f1 included, no accents), spaces and punctuation marks',
+
+	// accion
+	'id_accion_min_size_ko': 'An action is required. The identifier must have between 1 and 11 digits',
+	'id_accion_max_size_ko': 'Action identifier too long. It must have between 1 and 11 digits',
+	'id_accion_format_ko': 'Invalid format. The action identifier only allows digits',
+	'nombre_accion_min_size_ko': 'Action name too short. It must have between 5 and 48 characters',
+	'nombre_accion_max_size_ko': 'Action name too long. It must have between 5 and 48 characters',
+	'nombre_accion_format_ko': 'Invalid format. Only letters (\u00f1 included), without accents or spaces',
+	'descrip_accion_min_size_ko': 'Description too short. It must have between 5 and 200 characters',
+	'descrip_accion_max_size_ko': 'Description too long. It must have between 5 and 200 characters',
+	'descrip_accion_format_ko': 'Invalid format. Only letters (\u00f1 included, no accents), spaces and punctuation marks',
+
+	// funcionalidad
+	'id_funcionalidad_min_size_ko': 'A functionality is required. The identifier must have between 1 and 11 digits',
+	'id_funcionalidad_max_size_ko': 'Functionality identifier too long. It must have between 1 and 11 digits',
+	'id_funcionalidad_format_ko': 'Invalid format. The functionality identifier only allows digits',
+	'nombre_funcionalidad_min_size_ko': 'Functionality name too short. It must have between 5 and 48 characters',
+	'nombre_funcionalidad_max_size_ko': 'Functionality name too long. It must have between 5 and 48 characters',
+	'nombre_funcionalidad_format_ko': 'Invalid format. Only letters (\u00f1 included), without accents or spaces',
+	'descrip_funcionalidad_min_size_ko': 'Description too short. It must have between 5 and 200 characters',
+	'descrip_funcionalidad_max_size_ko': 'Description too long. It must have between 5 and 200 characters',
+	'descrip_funcionalidad_format_ko': 'Invalid format. Only letters (\u00f1 included, no accents), spaces and punctuation marks',
+
+	// errores acciones (back)
+	'RECORDSET_VACIO': 'There are no results for your search',
+	'dni_es_nulo_ko': 'The ID number can not be empty',
+	'admin_no_se_puede_modificar_ko': 'The admin can not be modified',
+
+}

@@ -1,7 +1,7 @@
 class dom_table {
 
 	constructor(){
-		
+
 	}
 
 	/**
@@ -34,6 +34,7 @@ class dom_table {
 	showData(idcomponente, test_result, marked=null){
 		
 		switch_display_mode(idcomponente,'block','on');
+		document.getElementById(idcomponente).innerHTML = '';
 
 		var mitabla = document.createElement('table');
 		mitabla.id = 'tablaresultadostest';
@@ -55,13 +56,22 @@ class dom_table {
 		 */
 		const filadatos = (datosfila,tag, marked) => {
 
+
 			var trelement = document.createElement('tr');
 			
 			
 
 			for (let clave in datosfila) {
 				var colelement = document.createElement(tag);
-				colelement.innerHTML = datosfila[clave];
+				colelement.name = 'columna_'+clave;
+				colelement.classList.add('tabla-'+tag+'-'+clave);
+				if (tag == 'td'){
+					colelement.innerHTML = datosfila[clave];
+				}
+				else{
+					colelement.innerHTML = clave;
+					colelement.classList.add(clave);
+				}
 				if (!(marked === null)){
 					var marcados = Object.keys(marked);
 					if (marcados.includes(clave)){
@@ -80,12 +90,8 @@ class dom_table {
 
 		const misdatos = (datos) => {
 		
-			// obtengo los titulos
-			var datostitulo = datos[0];
-			var titulos = Object.keys(datostitulo);
-
 			// incluyo fila cabecera
-			micabeceratabla.append(filadatos(titulos, 'th', {}));
+			micabeceratabla.append(filadatos(datos[0], 'th', {}));
 			
 			// incluyo filas datos
 			for (var i=0;i<datos.length;i++){
@@ -95,7 +101,7 @@ class dom_table {
 		}
 
 		misdatos(test_result);
-
+		setLang();
 
 	}
 

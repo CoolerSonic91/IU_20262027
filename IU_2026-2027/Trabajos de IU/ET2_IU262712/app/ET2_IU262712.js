@@ -1,24 +1,24 @@
 datosgenerales =
 {
 	Lider:
-		["Ian Paul Pérez Tablante",
-			"ET1",
-			1],
+		["Pérez Tablante Ian Paul",
+			"ET2",
+			0],
 
 	Participante1:
-		["Pablo Alejandro Puente Prieto",
-			"ET1",
-			1],
+		["Puente Prieto Pablo Alejandro",
+			"ET2",
+			0],
 
 	Participante2:
-		["Andrea Señoráns Ferreiro",
-			"ET1",
-			1],
+		["Señoráns Ferreiro Andrea",
+			"ET2",
+			0],
 
 	Participante3:
-		["Sebastián Quero Prieto",
-			"ET1",
-			1]
+		["Quero Prieto Sebastián",
+			"ET2",
+			0]
 
 
 }
