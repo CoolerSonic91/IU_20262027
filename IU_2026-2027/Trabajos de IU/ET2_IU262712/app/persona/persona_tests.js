@@ -52,24 +52,24 @@ let persona_def_tests = Array(
     ['persona', 'nombre_persona', 'input', 24, 'es correcto', 'valid', 'SEARCH', true, 'Nombre correcto'],
 
     // -------------------------------------------------------------
-    // ATRIBUTO: apellidos_persona (input, min 3 max 100, letras con ñ, acentos, puntos, guiones y espacio)
+    // ATRIBUTO: apellidos_persona (textarea, min 3 max 100, letras con ñ, acentos, puntos, guiones y espacio)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['persona', 'apellidos_persona', 'input', 25, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'apellidos_persona_min_size_ko', 'Apellidos demasiado cortos. Deben tener entre 3 y 100 caracteres'],
-    ['persona', 'apellidos_persona', 'input', 26, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'apellidos_persona_max_size_ko', 'Apellidos demasiado largos. Deben tener entre 3 y 100 caracteres'],
-    ['persona', 'apellidos_persona', 'input', 27, 'cumple formato', 'format', 'ADD', 'apellidos_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios'],
-    ['persona', 'apellidos_persona', 'input', 28, 'es correcto', 'valid', 'ADD', true, 'Apellidos correctos'],
+    ['persona', 'apellidos_persona', 'textarea', 25, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'apellidos_persona_min_size_ko', 'Apellidos demasiado cortos. Deben tener entre 3 y 100 caracteres'],
+    ['persona', 'apellidos_persona', 'textarea', 26, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'apellidos_persona_max_size_ko', 'Apellidos demasiado largos. Deben tener entre 3 y 100 caracteres'],
+    ['persona', 'apellidos_persona', 'textarea', 27, 'cumple formato', 'format', 'ADD', 'apellidos_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios'],
+    ['persona', 'apellidos_persona', 'textarea', 28, 'es correcto', 'valid', 'ADD', true, 'Apellidos correctos'],
 
     // ---------EDIT----------------------------
-    ['persona', 'apellidos_persona', 'input', 29, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'apellidos_persona_min_size_ko', 'Apellidos demasiado cortos. Deben tener entre 3 y 100 caracteres'],
-    ['persona', 'apellidos_persona', 'input', 30, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'apellidos_persona_max_size_ko', 'Apellidos demasiado largos. Deben tener entre 3 y 100 caracteres'],
-    ['persona', 'apellidos_persona', 'input', 31, 'cumple formato', 'format', 'EDIT', 'apellidos_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios'],
-    ['persona', 'apellidos_persona', 'input', 32, 'es correcto', 'valid', 'EDIT', true, 'Apellidos correctos'],
+    ['persona', 'apellidos_persona', 'textarea', 29, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'apellidos_persona_min_size_ko', 'Apellidos demasiado cortos. Deben tener entre 3 y 100 caracteres'],
+    ['persona', 'apellidos_persona', 'textarea', 30, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'apellidos_persona_max_size_ko', 'Apellidos demasiado largos. Deben tener entre 3 y 100 caracteres'],
+    ['persona', 'apellidos_persona', 'textarea', 31, 'cumple formato', 'format', 'EDIT', 'apellidos_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios'],
+    ['persona', 'apellidos_persona', 'textarea', 32, 'es correcto', 'valid', 'EDIT', true, 'Apellidos correctos'],
 
     // ---------SEARCH--------------------------
-    ['persona', 'apellidos_persona', 'input', 33, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'apellidos_persona_max_size_ko', 'Apellidos demasiado largos. Como m\u00e1ximo 100 caracteres'],
-    ['persona', 'apellidos_persona', 'input', 34, 'cumple formato', 'format', 'SEARCH', 'apellidos_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios'],
-    ['persona', 'apellidos_persona', 'input', 35, 'es correcto', 'valid', 'SEARCH', true, 'Apellidos correctos'],
+    ['persona', 'apellidos_persona', 'textarea', 33, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'apellidos_persona_max_size_ko', 'Apellidos demasiado largos. Como m\u00e1ximo 100 caracteres'],
+    ['persona', 'apellidos_persona', 'textarea', 34, 'cumple formato', 'format', 'SEARCH', 'apellidos_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), puntos, guiones y espacios'],
+    ['persona', 'apellidos_persona', 'textarea', 35, 'es correcto', 'valid', 'SEARCH', true, 'Apellidos correctos'],
 
     // -------------------------------------------------------------
     // ATRIBUTO: fechaNacimiento_persona (input, dd/mm/aaaa, fecha existente y anterior a hoy)
@@ -97,24 +97,24 @@ let persona_def_tests = Array(
     ['persona', 'fechaNacimiento_persona', 'input', 51, 'es correcto', 'valid', 'SEARCH', true, 'Fecha de nacimiento correcta'],
 
     // -------------------------------------------------------------
-    // ATRIBUTO: direccion_persona (input, min 10 max 200, letras con ñ y acentos, numeros, puntos, guiones, punto y coma, espacio y /)
+    // ATRIBUTO: direccion_persona (textarea, min 10 max 200, letras con ñ y acentos, numeros, puntos, guiones, punto y coma, espacio y /)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['persona', 'direccion_persona', 'input', 52, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'direccion_persona_min_size_ko', 'Direcci\u00f3n demasiado corta. Debe tener entre 10 y 200 caracteres'],
-    ['persona', 'direccion_persona', 'input', 53, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'direccion_persona_max_size_ko', 'Direcci\u00f3n demasiado larga. Debe tener entre 10 y 200 caracteres'],
-    ['persona', 'direccion_persona', 'input', 54, 'cumple formato', 'format', 'ADD', 'direccion_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /'],
-    ['persona', 'direccion_persona', 'input', 55, 'es correcto', 'valid', 'ADD', true, 'Direcci\u00f3n correcta'],
+    ['persona', 'direccion_persona', 'textarea', 52, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'direccion_persona_min_size_ko', 'Direcci\u00f3n demasiado corta. Debe tener entre 10 y 200 caracteres'],
+    ['persona', 'direccion_persona', 'textarea', 53, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'direccion_persona_max_size_ko', 'Direcci\u00f3n demasiado larga. Debe tener entre 10 y 200 caracteres'],
+    ['persona', 'direccion_persona', 'textarea', 54, 'cumple formato', 'format', 'ADD', 'direccion_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /'],
+    ['persona', 'direccion_persona', 'textarea', 55, 'es correcto', 'valid', 'ADD', true, 'Direcci\u00f3n correcta'],
 
     // ---------EDIT----------------------------
-    ['persona', 'direccion_persona', 'input', 56, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'direccion_persona_min_size_ko', 'Direcci\u00f3n demasiado corta. Debe tener entre 10 y 200 caracteres'],
-    ['persona', 'direccion_persona', 'input', 57, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'direccion_persona_max_size_ko', 'Direcci\u00f3n demasiado larga. Debe tener entre 10 y 200 caracteres'],
-    ['persona', 'direccion_persona', 'input', 58, 'cumple formato', 'format', 'EDIT', 'direccion_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /'],
-    ['persona', 'direccion_persona', 'input', 59, 'es correcto', 'valid', 'EDIT', true, 'Direcci\u00f3n correcta'],
+    ['persona', 'direccion_persona', 'textarea', 56, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'direccion_persona_min_size_ko', 'Direcci\u00f3n demasiado corta. Debe tener entre 10 y 200 caracteres'],
+    ['persona', 'direccion_persona', 'textarea', 57, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'direccion_persona_max_size_ko', 'Direcci\u00f3n demasiado larga. Debe tener entre 10 y 200 caracteres'],
+    ['persona', 'direccion_persona', 'textarea', 58, 'cumple formato', 'format', 'EDIT', 'direccion_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /'],
+    ['persona', 'direccion_persona', 'textarea', 59, 'es correcto', 'valid', 'EDIT', true, 'Direcci\u00f3n correcta'],
 
     // ---------SEARCH--------------------------
-    ['persona', 'direccion_persona', 'input', 60, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'direccion_persona_max_size_ko', 'Direcci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
-    ['persona', 'direccion_persona', 'input', 61, 'cumple formato', 'format', 'SEARCH', 'direccion_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /'],
-    ['persona', 'direccion_persona', 'input', 62, 'es correcto', 'valid', 'SEARCH', true, 'Direcci\u00f3n correcta'],
+    ['persona', 'direccion_persona', 'textarea', 60, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'direccion_persona_max_size_ko', 'Direcci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
+    ['persona', 'direccion_persona', 'textarea', 61, 'cumple formato', 'format', 'SEARCH', 'direccion_persona_format_ko', 'Formato inv\u00e1lido. Solo letras (con \u00f1 y acentos), n\u00fameros, puntos, guiones, punto y coma, espacios y /'],
+    ['persona', 'direccion_persona', 'textarea', 62, 'es correcto', 'valid', 'SEARCH', true, 'Direcci\u00f3n correcta'],
 
     // -------------------------------------------------------------
     // ATRIBUTO: telefono_persona (input, 9 digitos; personalized: empieza por 6, 7, 8 o 9)

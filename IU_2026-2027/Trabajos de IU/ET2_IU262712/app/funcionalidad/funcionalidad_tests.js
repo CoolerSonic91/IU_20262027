@@ -50,24 +50,24 @@ let funcionalidad_def_tests = Array(
     ['funcionalidad', 'nombre_funcionalidad', 'input', 22, 'es correcto', 'valid', 'SEARCH', true, 'Nombre de funcionalidad correcto'],
 
     // -------------------------------------------------------------
-    // ATRIBUTO: descrip_funcionalidad (input, min 5 max 200, letras con ñ, espacios y signos de puntuacion)
+    // ATRIBUTO: descrip_funcionalidad (textarea, min 5 max 200, letras con ñ, espacios y signos de puntuacion)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 23, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'descrip_funcionalidad_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 24, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'descrip_funcionalidad_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 25, 'cumple formato', 'format', 'ADD', 'descrip_funcionalidad_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 26, 'es correcto', 'valid', 'ADD', true, 'Descripci\u00f3n de funcionalidad correcta'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 23, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'descrip_funcionalidad_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 24, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'descrip_funcionalidad_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 25, 'cumple formato', 'format', 'ADD', 'descrip_funcionalidad_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 26, 'es correcto', 'valid', 'ADD', true, 'Descripci\u00f3n de funcionalidad correcta'],
 
     // ---------EDIT----------------------------
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 27, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'descrip_funcionalidad_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 28, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'descrip_funcionalidad_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 29, 'cumple formato', 'format', 'EDIT', 'descrip_funcionalidad_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 30, 'es correcto', 'valid', 'EDIT', true, 'Descripci\u00f3n de funcionalidad correcta'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 27, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'descrip_funcionalidad_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 28, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'descrip_funcionalidad_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 29, 'cumple formato', 'format', 'EDIT', 'descrip_funcionalidad_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 30, 'es correcto', 'valid', 'EDIT', true, 'Descripci\u00f3n de funcionalidad correcta'],
 
     // ---------SEARCH--------------------------
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 31, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'descrip_funcionalidad_max_size_ko', 'Descripci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 32, 'cumple formato', 'format', 'SEARCH', 'descrip_funcionalidad_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['funcionalidad', 'descrip_funcionalidad', 'input', 33, 'es correcto', 'valid', 'SEARCH', true, 'Descripci\u00f3n de funcionalidad correcta']
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 31, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'descrip_funcionalidad_max_size_ko', 'Descripci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 32, 'cumple formato', 'format', 'SEARCH', 'descrip_funcionalidad_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['funcionalidad', 'descrip_funcionalidad', 'textarea', 33, 'es correcto', 'valid', 'SEARCH', true, 'Descripci\u00f3n de funcionalidad correcta']
 );
 
 

@@ -30,6 +30,14 @@ class entity_dom_fields extends dom_fields{
 			element.append(opcion);
 			this.colocarelemento(element, contenedor);
 		}
+		else if (tag == 'textarea'){
+			// en Dom_fields el textarea cae en el default y se crea vacio: aqui se crea con su valor de prueba
+			let element = document.createElement('textarea');
+			element.id = nombrecampo;
+			element.name = nombrecampo;
+			element.value = (valores[nombrecampo] === undefined) ? '' : valores[nombrecampo];
+			this.colocarelemento(element, contenedor);
+		}
 		else{
 			super.crearElementoHtml(contenedor, tag, nombrecampo, valores, extra);
 		}

@@ -50,24 +50,24 @@ let rol_def_tests = Array(
     ['rol', 'rol_name', 'input', 22, 'es correcto', 'valid', 'SEARCH', true, 'Nombre de rol correcto'],
 
     // -------------------------------------------------------------
-    // ATRIBUTO: rol_description (input, min 5 max 200, letras con ñ, espacios y signos de puntuacion)
+    // ATRIBUTO: rol_description (textarea, min 5 max 200, letras con ñ, espacios y signos de puntuacion)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['rol', 'rol_description', 'input', 23, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'rol_description_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
-    ['rol', 'rol_description', 'input', 24, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'rol_description_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
-    ['rol', 'rol_description', 'input', 25, 'cumple formato', 'format', 'ADD', 'rol_description_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['rol', 'rol_description', 'input', 26, 'es correcto', 'valid', 'ADD', true, 'Descripci\u00f3n de rol correcta'],
+    ['rol', 'rol_description', 'textarea', 23, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'rol_description_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
+    ['rol', 'rol_description', 'textarea', 24, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'rol_description_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
+    ['rol', 'rol_description', 'textarea', 25, 'cumple formato', 'format', 'ADD', 'rol_description_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['rol', 'rol_description', 'textarea', 26, 'es correcto', 'valid', 'ADD', true, 'Descripci\u00f3n de rol correcta'],
 
     // ---------EDIT----------------------------
-    ['rol', 'rol_description', 'input', 27, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'rol_description_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
-    ['rol', 'rol_description', 'input', 28, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'rol_description_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
-    ['rol', 'rol_description', 'input', 29, 'cumple formato', 'format', 'EDIT', 'rol_description_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['rol', 'rol_description', 'input', 30, 'es correcto', 'valid', 'EDIT', true, 'Descripci\u00f3n de rol correcta'],
+    ['rol', 'rol_description', 'textarea', 27, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'rol_description_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
+    ['rol', 'rol_description', 'textarea', 28, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'rol_description_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
+    ['rol', 'rol_description', 'textarea', 29, 'cumple formato', 'format', 'EDIT', 'rol_description_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['rol', 'rol_description', 'textarea', 30, 'es correcto', 'valid', 'EDIT', true, 'Descripci\u00f3n de rol correcta'],
 
     // ---------SEARCH--------------------------
-    ['rol', 'rol_description', 'input', 31, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'rol_description_max_size_ko', 'Descripci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
-    ['rol', 'rol_description', 'input', 32, 'cumple formato', 'format', 'SEARCH', 'rol_description_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['rol', 'rol_description', 'input', 33, 'es correcto', 'valid', 'SEARCH', true, 'Descripci\u00f3n de rol correcta']
+    ['rol', 'rol_description', 'textarea', 31, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'rol_description_max_size_ko', 'Descripci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
+    ['rol', 'rol_description', 'textarea', 32, 'cumple formato', 'format', 'SEARCH', 'rol_description_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['rol', 'rol_description', 'textarea', 33, 'es correcto', 'valid', 'SEARCH', true, 'Descripci\u00f3n de rol correcta']
 );
 
 // ===============================================================

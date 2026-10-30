@@ -50,7 +50,7 @@ class persona extends AbstractEntidad{
 				<br>
 
 				<label id="label_apellidos_persona" class="label_apellidos_persona">apellidos_persona</label>
-				<input type='text' id='apellidos_persona' name='apellidos_persona'></input>
+				<textarea rows="2" cols="50" id='apellidos_persona' name='apellidos_persona'></textarea>
 				<span id="span_error_apellidos_persona"><a id="error_apellidos_persona"></a></span>
 				<br>
 

@@ -50,24 +50,24 @@ let accion_def_tests = Array(
     ['accion', 'nombre_accion', 'input', 22, 'es correcto', 'valid', 'SEARCH', true, 'Nombre de acci\u00f3n correcto'],
 
     // -------------------------------------------------------------
-    // ATRIBUTO: descrip_accion (input, min 5 max 200, letras con ñ, espacios y signos de puntuacion)
+    // ATRIBUTO: descrip_accion (textarea, min 5 max 200, letras con ñ, espacios y signos de puntuacion)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['accion', 'descrip_accion', 'input', 23, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'descrip_accion_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
-    ['accion', 'descrip_accion', 'input', 24, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'descrip_accion_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
-    ['accion', 'descrip_accion', 'input', 25, 'cumple formato', 'format', 'ADD', 'descrip_accion_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['accion', 'descrip_accion', 'input', 26, 'es correcto', 'valid', 'ADD', true, 'Descripci\u00f3n de acci\u00f3n correcta'],
+    ['accion', 'descrip_accion', 'textarea', 23, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'descrip_accion_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
+    ['accion', 'descrip_accion', 'textarea', 24, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'descrip_accion_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
+    ['accion', 'descrip_accion', 'textarea', 25, 'cumple formato', 'format', 'ADD', 'descrip_accion_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['accion', 'descrip_accion', 'textarea', 26, 'es correcto', 'valid', 'ADD', true, 'Descripci\u00f3n de acci\u00f3n correcta'],
 
     // ---------EDIT----------------------------
-    ['accion', 'descrip_accion', 'input', 27, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'descrip_accion_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
-    ['accion', 'descrip_accion', 'input', 28, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'descrip_accion_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
-    ['accion', 'descrip_accion', 'input', 29, 'cumple formato', 'format', 'EDIT', 'descrip_accion_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['accion', 'descrip_accion', 'input', 30, 'es correcto', 'valid', 'EDIT', true, 'Descripci\u00f3n de acci\u00f3n correcta'],
+    ['accion', 'descrip_accion', 'textarea', 27, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'descrip_accion_min_size_ko', 'Descripci\u00f3n demasiado corta. Debe tener entre 5 y 200 caracteres'],
+    ['accion', 'descrip_accion', 'textarea', 28, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'descrip_accion_max_size_ko', 'Descripci\u00f3n demasiado larga. Debe tener entre 5 y 200 caracteres'],
+    ['accion', 'descrip_accion', 'textarea', 29, 'cumple formato', 'format', 'EDIT', 'descrip_accion_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['accion', 'descrip_accion', 'textarea', 30, 'es correcto', 'valid', 'EDIT', true, 'Descripci\u00f3n de acci\u00f3n correcta'],
 
     // ---------SEARCH--------------------------
-    ['accion', 'descrip_accion', 'input', 31, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'descrip_accion_max_size_ko', 'Descripci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
-    ['accion', 'descrip_accion', 'input', 32, 'cumple formato', 'format', 'SEARCH', 'descrip_accion_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
-    ['accion', 'descrip_accion', 'input', 33, 'es correcto', 'valid', 'SEARCH', true, 'Descripci\u00f3n de acci\u00f3n correcta']
+    ['accion', 'descrip_accion', 'textarea', 31, 'cumple tama\u00f1o maximo', 'max_size', 'SEARCH', 'descrip_accion_max_size_ko', 'Descripci\u00f3n demasiado larga. Como m\u00e1ximo 200 caracteres'],
+    ['accion', 'descrip_accion', 'textarea', 32, 'cumple formato', 'format', 'SEARCH', 'descrip_accion_format_ko', 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n'],
+    ['accion', 'descrip_accion', 'textarea', 33, 'es correcto', 'valid', 'SEARCH', true, 'Descripci\u00f3n de acci\u00f3n correcta']
 );
 
 // ===============================================================
