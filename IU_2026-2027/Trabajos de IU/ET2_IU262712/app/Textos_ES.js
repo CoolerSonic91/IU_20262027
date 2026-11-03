@@ -202,6 +202,7 @@ var textos_ES = {
 
 	// errores acciones (back)
 	'RECORDSET_VACIO': 'No hay coincidencias para la b\u00fasqueda',
+	'dni_EXISTE_en_persona_KO': 'Ya existe una persona con ese DNI',
 	'dni_es_nulo_ko': 'El DNI no puede ser vac\u00edo',
 	'admin_no_se_puede_modificar_ko': 'El admin no se puede modificar',
 
