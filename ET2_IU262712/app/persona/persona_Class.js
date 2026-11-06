@@ -15,17 +15,17 @@ class persona extends AbstractEntidad{
 		this.validations = new entity_validations();
 		this.access_functions = new ExternalAccess();
 
-		//init
+		// init
 		if (esTest == 'test'){}
 		else{
-			//visualizar seccion tabla y botones
+			// visualizar seccion tabla y botones
 			document.getElementById('IU_manage_entity').style.display = 'block';
 			document.getElementById('text_title_page').className = 'text_titulo_page_'+this.nombreentidad;
 
-			//crear el formulario vacio
+			// crear el formulario vacio
 			document.getElementById('contenedor_IU_form').innerHTML = this.manual_form_creation();
 
-			//invocar busqueda en back con el formulario vacio
+			// invocar busqueda en back con el formulario vacio
 			this.SEARCH();
 		}
 
@@ -107,6 +107,9 @@ class persona extends AbstractEntidad{
 		createForm
 	***********************************************************************************************/
 
+	/**
+	 * prepara y muestra el formulario de alta (ADD)
+	 */
 	createForm_ADD(){
 		// poner titulo al formulario
 		this.dom.assign_property_value('class_contenido_titulo_form','class','text_contenido_titulo_form_persona_ADD');
@@ -133,6 +136,9 @@ class persona extends AbstractEntidad{
 		setLang();
 	}
 
+	/**
+	 * prepara y muestra el formulario de busqueda (SEARCH)
+	 */
 	createForm_SEARCH(){
 		// poner titulo al formulario
 		this.dom.assign_property_value('class_contenido_titulo_form','class','text_contenido_titulo_form_persona_SEARCH');
@@ -158,6 +164,7 @@ class persona extends AbstractEntidad{
 	}
 
 	/**
+	 * prepara y muestra el formulario de modificacion (EDIT) con los datos de la tupla
 	 * @param {Object} fila objeto con los datos de la tupla a modificar
 	 */
 	createForm_EDIT(fila){
@@ -192,6 +199,7 @@ class persona extends AbstractEntidad{
 	}
 
 	/**
+	 * prepara y muestra el formulario de eliminacion (DELETE) con los datos de la tupla
 	 * @param {Object} fila objeto con los datos de la tupla a eliminar
 	 */
 	createForm_DELETE(fila){
@@ -220,6 +228,7 @@ class persona extends AbstractEntidad{
 	}
 
 	/**
+	 * prepara y muestra el detalle (SHOWCURRENT) de la tupla
 	 * @param {Object} fila objeto con los datos de la tupla a mostrar
 	 */
 	createForm_SHOWCURRENT(fila){
@@ -243,8 +252,8 @@ class persona extends AbstractEntidad{
 
 	/**********************************************************************************************
 		validaciones de campo ADD
-		@return {string} codigo de error del campo (campo_validacion_KO) o
-		@return {bool} true si el valor del campo es correcto
+		@returns {string} codigo de error del campo (campo_validacion_KO) o
+		@returns {bool} true si el valor del campo es correcto
 	***********************************************************************************************/
 
 	ADD_dni_validation(){
@@ -428,6 +437,10 @@ class persona extends AbstractEntidad{
 		return true;
 	}
 
+	/**
+	 * comprueba todos los campos del formulario de ADD antes de enviarlo al back
+	 * @returns {bool|object} true si todos los campos son correctos o el objeto con el resultado de cada campo
+	 */
 	ADD_submit_persona(){
 
 		var set_result = {};
@@ -559,6 +572,10 @@ class persona extends AbstractEntidad{
 		return this.ADD_nuevo_foto_persona_validation();
 	}
 
+	/**
+	 * comprueba todos los campos del formulario de EDIT antes de enviarlo al back
+	 * @returns {bool|object} true si todos los campos son correctos o el objeto con el resultado de cada campo
+	 */
 	EDIT_submit_persona(){
 
 		var set_result = {};
@@ -715,6 +732,10 @@ class persona extends AbstractEntidad{
 		return true;
 	}
 
+	/**
+	 * comprueba todos los campos del formulario de SEARCH antes de enviarlo al back
+	 * @returns {bool|object} true si todos los campos son correctos o el objeto con el resultado de cada campo
+	 */
 	SEARCH_submit_persona(){
 
 		var set_result = {};

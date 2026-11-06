@@ -1,13 +1,13 @@
 /**
- * clase para refactorizar los metodos de dom_fields que se consideren necesarios sin modificar su definición y para inclusión de nuevos métodos
+ * clase para refactorizar los metodos de dom_fields que se consideren necesarios sin modificar su definicion y para inclusion de nuevos metodos
  */
 class entity_dom_fields extends dom_fields{
-    constructor(){
-        super();
-    }
+	constructor(){
+		super();
+	}
 
 	/**
-	 * Refactorizado: ademas de los tags que trata dom_fields se crean los select
+	 * refactorizado: ademas de los tags que trata dom_fields se crean los select
 	 * (claves foraneas) con una opcion que tiene el valor de la prueba seleccionada.
 	 *
 	 * @param {string} contenedor componente donde debe colocarse el elemento
@@ -45,7 +45,7 @@ class entity_dom_fields extends dom_fields{
 	}
 
 	/**
-	 * Refactorizado: muestra el error del campo sustituyendo el codigo de error anterior
+	 * refactorizado: muestra el error del campo sustituyendo el codigo de error anterior
 	 * (si se añaden varias class el texto traducido puede ser el de un error anterior)
 	 * y marca todo el borde del campo en rojo.
 	 *
@@ -61,7 +61,7 @@ class entity_dom_fields extends dom_fields{
 	}
 
 	/**
-	 * Refactorizado: oculta el error del campo, borra su codigo de error y marca el borde en verde.
+	 * refactorizado: oculta el error del campo, borra su codigo de error y marca el borde en verde.
 	 *
 	 * @param {string} id id del campo del formulario
 	 */
@@ -73,7 +73,7 @@ class entity_dom_fields extends dom_fields{
 	}
 
 	/**
-	 * Refactorizado: en dom se usaba classList.add = errorMsg (no añade la class) y el modal
+	 * refactorizado: en dom se usaba classList.add = errorMsg (no añade la class) y el modal
 	 * aparecia vacio. Se coloca el codigo de error como class para que setLang lo traduzca
 	 * (si no hay traduccion se ve el codigo de error devuelto por el back).
 	 *
@@ -88,7 +88,7 @@ class entity_dom_fields extends dom_fields{
 	}
 
 	/**
-	 * Nuevo: rellena un select con las filas recibidas (por ejemplo las de una entidad
+	 * nuevo: rellena un select con las filas recibidas (por ejemplo las de una entidad
 	 * referenciada por una clave foranea) y deja seleccionada la opcion indicada.
 	 *
 	 * @param {string} idselect id del select

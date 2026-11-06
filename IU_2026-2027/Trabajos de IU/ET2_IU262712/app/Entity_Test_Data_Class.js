@@ -1,5 +1,5 @@
 /**
- * clase para poder refactorizar los metodos que se considere adecuados manteniendo la definición de los mismos y para inclusión de nuevos métodos
+ * clase para poder refactorizar los metodos que se considere adecuados manteniendo la definicion de los mismos y para inclusion de nuevos metodos
  */
 
 class entity_Test_Data extends Data_Test{
@@ -8,14 +8,14 @@ class entity_Test_Data extends Data_Test{
     }
 
     /**
-     * Refactorizado: ejecuta las pruebas definidas para la entidad y muestra el resultado
+     * refactorizado: ejecuta las pruebas definidas para la entidad y muestra el resultado
      * en una ventana nueva (en Data_Test se mostraba en el div IU_Test_result_nofile).
      *
      * - usa entity_dom_fields para poder crear los select de las claves foraneas en las pruebas
      * - vacia el contenedor del formulario antes de las pruebas (si no, los campos del formulario
      *   oculto tienen los mismos id que los elementos de prueba) y lo vuelve a crear al terminar
      *
-     * @return {bool} true
+     * @returns {bool} true
      */
     data_test_class(){
 
@@ -43,7 +43,7 @@ class entity_Test_Data extends Data_Test{
     }
 
     /**
-     * Nuevo: abre una ventana nueva con el resumen y la tabla de resultado de las pruebas
+     * nuevo: abre una ventana nueva con el resumen y la tabla de resultado de las pruebas
      *
      * @param {Array} salidapruebas resultado de cada prueba
      * @param {string} tablaresultados html de la tabla de resultados

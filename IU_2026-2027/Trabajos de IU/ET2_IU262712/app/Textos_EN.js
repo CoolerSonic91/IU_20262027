@@ -201,27 +201,24 @@ var textos_EN = {
 	'descrip_funcionalidad_format_KO': 'Invalid format. Only letters (\u00f1 included, no accents), spaces and punctuation marks',
 
 	// errores acciones (back)
+	// codigos comprobados con el back
 	'RECORDSET_VACIO': 'There are no results for your search',
+	'SQL_KO': 'Database error. The action could not be completed',
 	'dni_EXISTE_en_persona_KO': 'A person with that ID number already exists',
-	'dni_es_nulo_KO': 'The ID number can not be empty',
-	'admin_no_se_puede_modificar_KO': 'The admin can not be modified',
-
-	// the record does not exist (EDIT / DELETE)
 	'dni_NO_EXISTE_en_persona_KO': 'There is no person with that ID number',
-	'dni_NO_EXISTE_en_usuario_KO': 'There is no user with that ID number',
 	'id_rol_NO_EXISTE_en_rol_KO': 'There is no role with that identifier',
 	'id_accion_NO_EXISTE_en_accion_KO': 'There is no action with that identifier',
 	'id_funcionalidad_NO_EXISTE_en_funcionalidad_KO': 'There is no functionality with that identifier',
-
-	// the record already exists (ADD)
-	'dni_EXISTE_en_usuario_KO': 'A user with that ID number already exists',
-	'usuario_EXISTE_en_usuario_KO': 'A user with that username already exists',
-
-	// real codes returned by the back (checked)
-	'SQL_KO': 'Database error. The action could not be completed',
+	'id_funcionalidad_accion_NO_EXISTE_en_funcionalidad_accion_KO': 'That action is not associated with the functionality',
 	'permiso_EXISTE_en_rolaccionfuncionalidad_KO': 'That permission already exists for the role',
 	'permiso_NO_EXISTE_en_rolaccionfuncionalidad_KO': 'That permission does not exist for the role',
-	'id_funcionalidad_accion_NO_EXISTE_en_funcionalidad_accion_KO': 'That action is not associated with the functionality',
 	'prohibido_edit_rolaccionfuncionalidad': 'Role permissions can not be modified. Delete the permission and create a new one',
+
+	// codigos no comprobados con el back (del profesor o deducidos por el patron de los anteriores)
+	'dni_es_nulo_KO': 'The ID number can not be empty',
+	'admin_no_se_puede_modificar_KO': 'The admin can not be modified',
+	'dni_EXISTE_en_usuario_KO': 'A user with that ID number already exists',
+	'dni_NO_EXISTE_en_usuario_KO': 'There is no user with that ID number',
+	'usuario_EXISTE_en_usuario_KO': 'A user with that username already exists',
 
 }

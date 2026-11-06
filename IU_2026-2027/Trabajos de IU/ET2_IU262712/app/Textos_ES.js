@@ -201,27 +201,24 @@ var textos_ES = {
 	'descrip_funcionalidad_format_KO': 'Formato inv\u00e1lido. Solo letras (incluida la \u00f1, sin acentos), espacios y signos de puntuaci\u00f3n',
 
 	// errores acciones (back)
+	// codigos comprobados con el back
 	'RECORDSET_VACIO': 'No hay coincidencias para la b\u00fasqueda',
+	'SQL_KO': 'Error en la base de datos. No se ha podido realizar la acci\u00f3n',
 	'dni_EXISTE_en_persona_KO': 'Ya existe una persona con ese DNI',
-	'dni_es_nulo_KO': 'El DNI no puede ser vac\u00edo',
-	'admin_no_se_puede_modificar_KO': 'El admin no se puede modificar',
-
-	// el registro no existe (EDIT / DELETE)
 	'dni_NO_EXISTE_en_persona_KO': 'No existe ninguna persona con ese DNI',
-	'dni_NO_EXISTE_en_usuario_KO': 'No existe ning\u00fan usuario con ese DNI',
 	'id_rol_NO_EXISTE_en_rol_KO': 'No existe ning\u00fan rol con ese identificador',
 	'id_accion_NO_EXISTE_en_accion_KO': 'No existe ninguna acci\u00f3n con ese identificador',
 	'id_funcionalidad_NO_EXISTE_en_funcionalidad_KO': 'No existe ninguna funcionalidad con ese identificador',
-
-	// el registro ya existe (ADD)
-	'dni_EXISTE_en_usuario_KO': 'Ya existe un usuario con ese DNI',
-	'usuario_EXISTE_en_usuario_KO': 'Ya existe un usuario con ese nombre de usuario',
-
-	// codigos reales devueltos por el back (comprobados)
-	'SQL_KO': 'Error en la base de datos. No se ha podido realizar la acci\u00f3n',
+	'id_funcionalidad_accion_NO_EXISTE_en_funcionalidad_accion_KO': 'No existe esa acci\u00f3n asociada a la funcionalidad',
 	'permiso_EXISTE_en_rolaccionfuncionalidad_KO': 'Ya existe ese permiso para el rol',
 	'permiso_NO_EXISTE_en_rolaccionfuncionalidad_KO': 'No existe ese permiso para el rol',
-	'id_funcionalidad_accion_NO_EXISTE_en_funcionalidad_accion_KO': 'No existe esa acci\u00f3n asociada a la funcionalidad',
 	'prohibido_edit_rolaccionfuncionalidad': 'Los permisos de rol no se pueden modificar. Elimine el permiso y cree uno nuevo',
+
+	// codigos no comprobados con el back (del profesor o deducidos por el patron de los anteriores)
+	'dni_es_nulo_KO': 'El DNI no puede ser vac\u00edo',
+	'admin_no_se_puede_modificar_KO': 'El admin no se puede modificar',
+	'dni_EXISTE_en_usuario_KO': 'Ya existe un usuario con ese DNI',
+	'dni_NO_EXISTE_en_usuario_KO': 'No existe ning\u00fan usuario con ese DNI',
+	'usuario_EXISTE_en_usuario_KO': 'Ya existe un usuario con ese nombre de usuario',
 
 }
