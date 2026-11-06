@@ -4,7 +4,7 @@
 //
 // Criterio comun:
 //  - ADD y EDIT: min_size, max_size, format, validaciones personalizadas y valid
-//  - SEARCH: max_size, format y valid (se permite vacio o valor parcial)
+//  - SEARCH: max_size, format y valid (se permite vacio o valor parcial); la fecha ademas tiene validacion personalizada
 // ===============================================================
 
 let persona_def_tests = Array(

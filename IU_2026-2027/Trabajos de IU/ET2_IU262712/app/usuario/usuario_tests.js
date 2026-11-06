@@ -5,7 +5,6 @@
 // Criterio comun:
 //  - ADD y EDIT: min_size, max_size, format, validaciones personalizadas y valid
 //  - SEARCH: max_size, format y valid (se permite vacio o valor parcial)
-//  - La contraseña no es un criterio de busqueda, por eso no tiene tests en SEARCH
 // ===============================================================
 
 let usuario_def_tests = Array(
