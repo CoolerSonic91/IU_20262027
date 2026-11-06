@@ -203,7 +203,7 @@ var textos_EN = {
 	// errores acciones (back)
 	'RECORDSET_VACIO': 'There are no results for your search',
 	'dni_EXISTE_en_persona_KO': 'A person with that ID number already exists',
-	'dni_es_nulo_ko': 'The ID number can not be empty',
-	'admin_no_se_puede_modificar_ko': 'The admin can not be modified',
+	'dni_es_nulo_KO': 'The ID number can not be empty',
+	'admin_no_se_puede_modificar_KO': 'The admin can not be modified',
 
 }
