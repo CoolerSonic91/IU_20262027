@@ -87,7 +87,7 @@ var textos_EN = {
 	'titulacion_persona': 'Degree',
 	'menu_persona': 'Menu',
 	'genero_persona': 'Gender',
-	'usuario': 'User',
+	'usuario': 'Username',
 	'contrasena': 'Password',
 	'id_rol': 'Role',
 	'rol_name': 'Role Name',
@@ -109,7 +109,7 @@ var textos_EN = {
 	'label_email_persona': 'Email',
 	'label_foto_persona': 'Photo',
 	'label_nuevo_foto_persona': 'New Photo (jpg/jpeg)',
-	'label_usuario': 'User',
+	'label_usuario': 'Username',
 	'label_contrasena': 'Password',
 	'label_id_rol': 'Role',
 	'label_rol_name': 'Role Name',
@@ -160,8 +160,8 @@ var textos_EN = {
 	'foto_persona_format_KO': 'Invalid format. Only letters without accents and dots',
 
 	// usuario
-	'usuario_min_size_KO': 'User name too short. It must have between 5 and 45 characters',
-	'usuario_max_size_KO': 'User name too long. It must have between 5 and 45 characters',
+	'usuario_min_size_KO': 'Username too short. It must have between 5 and 45 characters',
+	'usuario_max_size_KO': 'Username too long. It must have between 5 and 45 characters',
 	'usuario_format_KO': 'Invalid format. Only letters without \u00f1, accents or spaces',
 	'contrasena_min_size_KO': 'Password too short. It must have between 8 and 45 characters',
 	'contrasena_max_size_KO': 'Password too long. It must have between 8 and 45 characters',
@@ -212,11 +212,11 @@ var textos_EN = {
 	'id_funcionalidad_accion_NO_EXISTE_en_funcionalidad_accion_KO': 'That action is not associated with the functionality',
 	'permiso_EXISTE_en_rolaccionfuncionalidad_KO': 'That permission already exists for the role',
 	'permiso_NO_EXISTE_en_rolaccionfuncionalidad_KO': 'That permission does not exist for the role',
-	'prohibido_edit_rolaccionfuncionalidad': 'Role permissions can not be modified. Delete the permission and create a new one',
+	'prohibido_edit_rolaccionfuncionalidad': 'Role permissions cannot be modified. Delete the permission and create a new one',
 
 	// codigos no comprobados con el back (del profesor o deducidos por el patron de los anteriores)
-	'dni_es_nulo_KO': 'The ID number can not be empty',
-	'admin_no_se_puede_modificar_KO': 'The admin can not be modified',
+	'dni_es_nulo_KO': 'The ID number cannot be empty',
+	'admin_no_se_puede_modificar_KO': 'The admin cannot be modified',
 	'dni_EXISTE_en_usuario_KO': 'A user with that ID number already exists',
 	'dni_NO_EXISTE_en_usuario_KO': 'There is no user with that ID number',
 	'usuario_EXISTE_en_usuario_KO': 'A user with that username already exists',
