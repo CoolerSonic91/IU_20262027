@@ -178,22 +178,22 @@ class accion extends AbstractEntidad{
 
 	/**********************************************************************************************
 		validaciones de campo ADD
-		@return {string} codigo de error del campo (campo_validacion_ko) o
+		@return {string} codigo de error del campo (campo_validacion_KO) o
 		@return {bool} true si el valor del campo es correcto
 	***********************************************************************************************/
 
 	ADD_id_accion_validation(){
 		if (!(this.validations.min_size('id_accion',1))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_min_size_ko');
-			return "id_accion_min_size_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_min_size_KO');
+			return "id_accion_min_size_KO";
 		}
 		if (!(this.validations.max_size('id_accion',11))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_ko');
-			return "id_accion_max_size_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_KO');
+			return "id_accion_max_size_KO";
 		}
 		if (!(this.validations.format('id_accion','^[0-9]+$'))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_format_ko');
-			return "id_accion_format_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_format_KO');
+			return "id_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_accion');
 		return true;
@@ -201,17 +201,17 @@ class accion extends AbstractEntidad{
 
 	ADD_nombre_accion_validation(){
 		if (!(this.validations.min_size('nombre_accion',5))){
-			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_min_size_ko');
-			return "nombre_accion_min_size_ko";
+			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_min_size_KO');
+			return "nombre_accion_min_size_KO";
 		}
 		if (!(this.validations.max_size('nombre_accion',48))){
-			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_max_size_ko');
-			return "nombre_accion_max_size_ko";
+			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_max_size_KO');
+			return "nombre_accion_max_size_KO";
 		}
 		// solo letras (incluida la ñ), sin acentos y sin espacios
 		if (!(this.validations.format('nombre_accion','^[a-zA-Z\u00f1\u00d1]+$'))){
-			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_format_ko');
-			return "nombre_accion_format_ko";
+			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_format_KO');
+			return "nombre_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('nombre_accion');
 		return true;
@@ -219,17 +219,17 @@ class accion extends AbstractEntidad{
 
 	ADD_descrip_accion_validation(){
 		if (!(this.validations.min_size('descrip_accion',5))){
-			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_min_size_ko');
-			return "descrip_accion_min_size_ko";
+			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_min_size_KO');
+			return "descrip_accion_min_size_KO";
 		}
 		if (!(this.validations.max_size('descrip_accion',200))){
-			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_max_size_ko');
-			return "descrip_accion_max_size_ko";
+			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_max_size_KO');
+			return "descrip_accion_max_size_KO";
 		}
 		// letras con ñ (sin acentos), espacios y signos de puntuacion
 		if (!(this.validations.format('descrip_accion','^[a-zA-Z\u00f1\u00d1 .,;:\u00bf?\u00a1!()-]+$'))){
-			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_format_ko');
-			return "descrip_accion_format_ko";
+			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_format_KO');
+			return "descrip_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('descrip_accion');
 		return true;
@@ -301,12 +301,12 @@ class accion extends AbstractEntidad{
 
 	SEARCH_id_accion_validation(){
 		if (!(this.validations.max_size('id_accion',11))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_ko');
-			return "id_accion_max_size_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_KO');
+			return "id_accion_max_size_KO";
 		}
 		if (!(this.validations.format('id_accion','^[0-9]*$'))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_format_ko');
-			return "id_accion_format_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_format_KO');
+			return "id_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_accion');
 		return true;
@@ -314,12 +314,12 @@ class accion extends AbstractEntidad{
 
 	SEARCH_nombre_accion_validation(){
 		if (!(this.validations.max_size('nombre_accion',48))){
-			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_max_size_ko');
-			return "nombre_accion_max_size_ko";
+			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_max_size_KO');
+			return "nombre_accion_max_size_KO";
 		}
 		if (!(this.validations.format('nombre_accion','^[a-zA-Z\u00f1\u00d1]*$'))){
-			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_format_ko');
-			return "nombre_accion_format_ko";
+			this.dom.mostrar_error_campo('nombre_accion','nombre_accion_format_KO');
+			return "nombre_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('nombre_accion');
 		return true;
@@ -327,12 +327,12 @@ class accion extends AbstractEntidad{
 
 	SEARCH_descrip_accion_validation(){
 		if (!(this.validations.max_size('descrip_accion',200))){
-			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_max_size_ko');
-			return "descrip_accion_max_size_ko";
+			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_max_size_KO');
+			return "descrip_accion_max_size_KO";
 		}
 		if (!(this.validations.format('descrip_accion','^[a-zA-Z\u00f1\u00d1 .,;:\u00bf?\u00a1!()-]*$'))){
-			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_format_ko');
-			return "descrip_accion_format_ko";
+			this.dom.mostrar_error_campo('descrip_accion','descrip_accion_format_KO');
+			return "descrip_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('descrip_accion');
 		return true;

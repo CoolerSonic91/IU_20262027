@@ -178,22 +178,22 @@ class funcionalidad extends AbstractEntidad{
 
 	/**********************************************************************************************
 		validaciones de campo ADD
-		@return {string} codigo de error del campo (campo_validacion_ko) o
+		@return {string} codigo de error del campo (campo_validacion_KO) o
 		@return {bool} true si el valor del campo es correcto
 	***********************************************************************************************/
 
 	ADD_id_funcionalidad_validation(){
 		if (!(this.validations.min_size('id_funcionalidad',1))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_min_size_ko');
-			return "id_funcionalidad_min_size_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_min_size_KO');
+			return "id_funcionalidad_min_size_KO";
 		}
 		if (!(this.validations.max_size('id_funcionalidad',11))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_ko');
-			return "id_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_KO');
+			return "id_funcionalidad_max_size_KO";
 		}
 		if (!(this.validations.format('id_funcionalidad','^[0-9]+$'))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_ko');
-			return "id_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_KO');
+			return "id_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_funcionalidad');
 		return true;
@@ -201,17 +201,17 @@ class funcionalidad extends AbstractEntidad{
 
 	ADD_nombre_funcionalidad_validation(){
 		if (!(this.validations.min_size('nombre_funcionalidad',5))){
-			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_min_size_ko');
-			return "nombre_funcionalidad_min_size_ko";
+			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_min_size_KO');
+			return "nombre_funcionalidad_min_size_KO";
 		}
 		if (!(this.validations.max_size('nombre_funcionalidad',48))){
-			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_max_size_ko');
-			return "nombre_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_max_size_KO');
+			return "nombre_funcionalidad_max_size_KO";
 		}
 		// solo letras (incluida la ñ), sin acentos y sin espacios
 		if (!(this.validations.format('nombre_funcionalidad','^[a-zA-Z\u00f1\u00d1]+$'))){
-			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_format_ko');
-			return "nombre_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_format_KO');
+			return "nombre_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('nombre_funcionalidad');
 		return true;
@@ -219,17 +219,17 @@ class funcionalidad extends AbstractEntidad{
 
 	ADD_descrip_funcionalidad_validation(){
 		if (!(this.validations.min_size('descrip_funcionalidad',5))){
-			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_min_size_ko');
-			return "descrip_funcionalidad_min_size_ko";
+			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_min_size_KO');
+			return "descrip_funcionalidad_min_size_KO";
 		}
 		if (!(this.validations.max_size('descrip_funcionalidad',200))){
-			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_max_size_ko');
-			return "descrip_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_max_size_KO');
+			return "descrip_funcionalidad_max_size_KO";
 		}
 		// letras con ñ (sin acentos), espacios y signos de puntuacion
 		if (!(this.validations.format('descrip_funcionalidad','^[a-zA-Z\u00f1\u00d1 .,;:\u00bf?\u00a1!()-]+$'))){
-			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_format_ko');
-			return "descrip_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_format_KO');
+			return "descrip_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('descrip_funcionalidad');
 		return true;
@@ -301,12 +301,12 @@ class funcionalidad extends AbstractEntidad{
 
 	SEARCH_id_funcionalidad_validation(){
 		if (!(this.validations.max_size('id_funcionalidad',11))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_ko');
-			return "id_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_KO');
+			return "id_funcionalidad_max_size_KO";
 		}
 		if (!(this.validations.format('id_funcionalidad','^[0-9]*$'))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_ko');
-			return "id_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_KO');
+			return "id_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_funcionalidad');
 		return true;
@@ -314,12 +314,12 @@ class funcionalidad extends AbstractEntidad{
 
 	SEARCH_nombre_funcionalidad_validation(){
 		if (!(this.validations.max_size('nombre_funcionalidad',48))){
-			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_max_size_ko');
-			return "nombre_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_max_size_KO');
+			return "nombre_funcionalidad_max_size_KO";
 		}
 		if (!(this.validations.format('nombre_funcionalidad','^[a-zA-Z\u00f1\u00d1]*$'))){
-			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_format_ko');
-			return "nombre_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('nombre_funcionalidad','nombre_funcionalidad_format_KO');
+			return "nombre_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('nombre_funcionalidad');
 		return true;
@@ -327,12 +327,12 @@ class funcionalidad extends AbstractEntidad{
 
 	SEARCH_descrip_funcionalidad_validation(){
 		if (!(this.validations.max_size('descrip_funcionalidad',200))){
-			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_max_size_ko');
-			return "descrip_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_max_size_KO');
+			return "descrip_funcionalidad_max_size_KO";
 		}
 		if (!(this.validations.format('descrip_funcionalidad','^[a-zA-Z\u00f1\u00d1 .,;:\u00bf?\u00a1!()-]*$'))){
-			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_format_ko');
-			return "descrip_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('descrip_funcionalidad','descrip_funcionalidad_format_KO');
+			return "descrip_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('descrip_funcionalidad');
 		return true;

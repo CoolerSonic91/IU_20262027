@@ -240,22 +240,22 @@ class rolaccionfuncionalidad extends AbstractEntidad{
 
 	/**********************************************************************************************
 		validaciones de campo ADD
-		@return {string} codigo de error del campo (campo_validacion_ko) o
+		@return {string} codigo de error del campo (campo_validacion_KO) o
 		@return {bool} true si el valor del campo es correcto
 	***********************************************************************************************/
 
 	ADD_id_funcionalidad_validation(){
 		if (!(this.validations.min_size('id_funcionalidad',1))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_min_size_ko');
-			return "id_funcionalidad_min_size_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_min_size_KO');
+			return "id_funcionalidad_min_size_KO";
 		}
 		if (!(this.validations.max_size('id_funcionalidad',11))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_ko');
-			return "id_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_KO');
+			return "id_funcionalidad_max_size_KO";
 		}
 		if (!(this.validations.format('id_funcionalidad','^[0-9]+$'))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_ko');
-			return "id_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_KO');
+			return "id_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_funcionalidad');
 		return true;
@@ -263,16 +263,16 @@ class rolaccionfuncionalidad extends AbstractEntidad{
 
 	ADD_id_accion_validation(){
 		if (!(this.validations.min_size('id_accion',1))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_min_size_ko');
-			return "id_accion_min_size_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_min_size_KO');
+			return "id_accion_min_size_KO";
 		}
 		if (!(this.validations.max_size('id_accion',11))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_ko');
-			return "id_accion_max_size_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_KO');
+			return "id_accion_max_size_KO";
 		}
 		if (!(this.validations.format('id_accion','^[0-9]+$'))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_format_ko');
-			return "id_accion_format_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_format_KO');
+			return "id_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_accion');
 		return true;
@@ -280,16 +280,16 @@ class rolaccionfuncionalidad extends AbstractEntidad{
 
 	ADD_id_rol_validation(){
 		if (!(this.validations.min_size('id_rol',1))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_min_size_ko');
-			return "id_rol_min_size_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_min_size_KO');
+			return "id_rol_min_size_KO";
 		}
 		if (!(this.validations.max_size('id_rol',11))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_ko');
-			return "id_rol_max_size_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_KO');
+			return "id_rol_max_size_KO";
 		}
 		if (!(this.validations.format('id_rol','^[0-9]+$'))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_format_ko');
-			return "id_rol_format_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_format_KO');
+			return "id_rol_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_rol');
 		return true;
@@ -359,12 +359,12 @@ class rolaccionfuncionalidad extends AbstractEntidad{
 
 	SEARCH_id_funcionalidad_validation(){
 		if (!(this.validations.max_size('id_funcionalidad',11))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_ko');
-			return "id_funcionalidad_max_size_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_max_size_KO');
+			return "id_funcionalidad_max_size_KO";
 		}
 		if (!(this.validations.format('id_funcionalidad','^[0-9]*$'))){
-			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_ko');
-			return "id_funcionalidad_format_ko";
+			this.dom.mostrar_error_campo('id_funcionalidad','id_funcionalidad_format_KO');
+			return "id_funcionalidad_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_funcionalidad');
 		return true;
@@ -372,12 +372,12 @@ class rolaccionfuncionalidad extends AbstractEntidad{
 
 	SEARCH_id_accion_validation(){
 		if (!(this.validations.max_size('id_accion',11))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_ko');
-			return "id_accion_max_size_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_max_size_KO');
+			return "id_accion_max_size_KO";
 		}
 		if (!(this.validations.format('id_accion','^[0-9]*$'))){
-			this.dom.mostrar_error_campo('id_accion','id_accion_format_ko');
-			return "id_accion_format_ko";
+			this.dom.mostrar_error_campo('id_accion','id_accion_format_KO');
+			return "id_accion_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_accion');
 		return true;
@@ -385,12 +385,12 @@ class rolaccionfuncionalidad extends AbstractEntidad{
 
 	SEARCH_id_rol_validation(){
 		if (!(this.validations.max_size('id_rol',11))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_ko');
-			return "id_rol_max_size_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_KO');
+			return "id_rol_max_size_KO";
 		}
 		if (!(this.validations.format('id_rol','^[0-9]*$'))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_format_ko');
-			return "id_rol_format_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_format_KO');
+			return "id_rol_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_rol');
 		return true;

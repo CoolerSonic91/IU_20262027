@@ -178,22 +178,22 @@ class rol extends AbstractEntidad{
 
 	/**********************************************************************************************
 		validaciones de campo ADD
-		@return {string} codigo de error del campo (campo_validacion_ko) o
+		@return {string} codigo de error del campo (campo_validacion_KO) o
 		@return {bool} true si el valor del campo es correcto
 	***********************************************************************************************/
 
 	ADD_id_rol_validation(){
 		if (!(this.validations.min_size('id_rol',1))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_min_size_ko');
-			return "id_rol_min_size_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_min_size_KO');
+			return "id_rol_min_size_KO";
 		}
 		if (!(this.validations.max_size('id_rol',11))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_ko');
-			return "id_rol_max_size_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_KO');
+			return "id_rol_max_size_KO";
 		}
 		if (!(this.validations.format('id_rol','^[0-9]+$'))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_format_ko');
-			return "id_rol_format_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_format_KO');
+			return "id_rol_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_rol');
 		return true;
@@ -201,17 +201,17 @@ class rol extends AbstractEntidad{
 
 	ADD_rol_name_validation(){
 		if (!(this.validations.min_size('rol_name',5))){
-			this.dom.mostrar_error_campo('rol_name','rol_name_min_size_ko');
-			return "rol_name_min_size_ko";
+			this.dom.mostrar_error_campo('rol_name','rol_name_min_size_KO');
+			return "rol_name_min_size_KO";
 		}
 		if (!(this.validations.max_size('rol_name',48))){
-			this.dom.mostrar_error_campo('rol_name','rol_name_max_size_ko');
-			return "rol_name_max_size_ko";
+			this.dom.mostrar_error_campo('rol_name','rol_name_max_size_KO');
+			return "rol_name_max_size_KO";
 		}
 		// solo letras sin ñ, sin acentos y sin espacios
 		if (!(this.validations.format('rol_name','^[a-zA-Z]+$'))){
-			this.dom.mostrar_error_campo('rol_name','rol_name_format_ko');
-			return "rol_name_format_ko";
+			this.dom.mostrar_error_campo('rol_name','rol_name_format_KO');
+			return "rol_name_format_KO";
 		}
 		this.dom.mostrar_exito_campo('rol_name');
 		return true;
@@ -219,17 +219,17 @@ class rol extends AbstractEntidad{
 
 	ADD_rol_description_validation(){
 		if (!(this.validations.min_size('rol_description',5))){
-			this.dom.mostrar_error_campo('rol_description','rol_description_min_size_ko');
-			return "rol_description_min_size_ko";
+			this.dom.mostrar_error_campo('rol_description','rol_description_min_size_KO');
+			return "rol_description_min_size_KO";
 		}
 		if (!(this.validations.max_size('rol_description',200))){
-			this.dom.mostrar_error_campo('rol_description','rol_description_max_size_ko');
-			return "rol_description_max_size_ko";
+			this.dom.mostrar_error_campo('rol_description','rol_description_max_size_KO');
+			return "rol_description_max_size_KO";
 		}
 		// letras con ñ (sin acentos), espacios y signos de puntuacion
 		if (!(this.validations.format('rol_description','^[a-zA-Z\u00f1\u00d1 .,;:\u00bf?\u00a1!()-]+$'))){
-			this.dom.mostrar_error_campo('rol_description','rol_description_format_ko');
-			return "rol_description_format_ko";
+			this.dom.mostrar_error_campo('rol_description','rol_description_format_KO');
+			return "rol_description_format_KO";
 		}
 		this.dom.mostrar_exito_campo('rol_description');
 		return true;
@@ -301,12 +301,12 @@ class rol extends AbstractEntidad{
 
 	SEARCH_id_rol_validation(){
 		if (!(this.validations.max_size('id_rol',11))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_ko');
-			return "id_rol_max_size_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_max_size_KO');
+			return "id_rol_max_size_KO";
 		}
 		if (!(this.validations.format('id_rol','^[0-9]*$'))){
-			this.dom.mostrar_error_campo('id_rol','id_rol_format_ko');
-			return "id_rol_format_ko";
+			this.dom.mostrar_error_campo('id_rol','id_rol_format_KO');
+			return "id_rol_format_KO";
 		}
 		this.dom.mostrar_exito_campo('id_rol');
 		return true;
@@ -314,12 +314,12 @@ class rol extends AbstractEntidad{
 
 	SEARCH_rol_name_validation(){
 		if (!(this.validations.max_size('rol_name',48))){
-			this.dom.mostrar_error_campo('rol_name','rol_name_max_size_ko');
-			return "rol_name_max_size_ko";
+			this.dom.mostrar_error_campo('rol_name','rol_name_max_size_KO');
+			return "rol_name_max_size_KO";
 		}
 		if (!(this.validations.format('rol_name','^[a-zA-Z]*$'))){
-			this.dom.mostrar_error_campo('rol_name','rol_name_format_ko');
-			return "rol_name_format_ko";
+			this.dom.mostrar_error_campo('rol_name','rol_name_format_KO');
+			return "rol_name_format_KO";
 		}
 		this.dom.mostrar_exito_campo('rol_name');
 		return true;
@@ -327,12 +327,12 @@ class rol extends AbstractEntidad{
 
 	SEARCH_rol_description_validation(){
 		if (!(this.validations.max_size('rol_description',200))){
-			this.dom.mostrar_error_campo('rol_description','rol_description_max_size_ko');
-			return "rol_description_max_size_ko";
+			this.dom.mostrar_error_campo('rol_description','rol_description_max_size_KO');
+			return "rol_description_max_size_KO";
 		}
 		if (!(this.validations.format('rol_description','^[a-zA-Z\u00f1\u00d1 .,;:\u00bf?\u00a1!()-]*$'))){
-			this.dom.mostrar_error_campo('rol_description','rol_description_format_ko');
-			return "rol_description_format_ko";
+			this.dom.mostrar_error_campo('rol_description','rol_description_format_KO');
+			return "rol_description_format_KO";
 		}
 		this.dom.mostrar_exito_campo('rol_description');
 		return true;
