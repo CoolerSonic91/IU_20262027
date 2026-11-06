@@ -206,4 +206,15 @@ var textos_EN = {
 	'dni_es_nulo_KO': 'The ID number can not be empty',
 	'admin_no_se_puede_modificar_KO': 'The admin can not be modified',
 
+	// the record does not exist (EDIT / DELETE)
+	'dni_NO_EXISTE_en_persona_KO': 'There is no person with that ID number',
+	'dni_NO_EXISTE_en_usuario_KO': 'There is no user with that ID number',
+	'id_rol_NO_EXISTE_en_rol_KO': 'There is no role with that identifier',
+	'id_accion_NO_EXISTE_en_accion_KO': 'There is no action with that identifier',
+	'id_funcionalidad_NO_EXISTE_en_funcionalidad_KO': 'There is no functionality with that identifier',
+
+	// the record already exists (ADD)
+	'dni_EXISTE_en_usuario_KO': 'A user with that ID number already exists',
+	'usuario_EXISTE_en_usuario_KO': 'A user with that username already exists',
+
 }

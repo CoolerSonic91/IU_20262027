@@ -206,4 +206,15 @@ var textos_ES = {
 	'dni_es_nulo_KO': 'El DNI no puede ser vac\u00edo',
 	'admin_no_se_puede_modificar_KO': 'El admin no se puede modificar',
 
+	// el registro no existe (EDIT / DELETE)
+	'dni_NO_EXISTE_en_persona_KO': 'No existe ninguna persona con ese DNI',
+	'dni_NO_EXISTE_en_usuario_KO': 'No existe ning\u00fan usuario con ese DNI',
+	'id_rol_NO_EXISTE_en_rol_KO': 'No existe ning\u00fan rol con ese identificador',
+	'id_accion_NO_EXISTE_en_accion_KO': 'No existe ninguna acci\u00f3n con ese identificador',
+	'id_funcionalidad_NO_EXISTE_en_funcionalidad_KO': 'No existe ninguna funcionalidad con ese identificador',
+
+	// el registro ya existe (ADD)
+	'dni_EXISTE_en_usuario_KO': 'Ya existe un usuario con ese DNI',
+	'usuario_EXISTE_en_usuario_KO': 'Ya existe un usuario con ese nombre de usuario',
+
 }
