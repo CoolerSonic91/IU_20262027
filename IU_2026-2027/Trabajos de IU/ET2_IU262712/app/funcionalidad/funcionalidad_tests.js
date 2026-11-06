@@ -13,13 +13,13 @@ let funcionalidad_def_tests = Array(
     // ATRIBUTO: id_funcionalidad (input, numerico, min 1 max 11 digitos)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['funcionalidad', 'id_funcionalidad', 'input', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_funcionalidad_min_size_KO', 'Identificador de funcionalidad vac\u00edo. Debe tener entre 1 y 11 d\u00edgitos'],
+    ['funcionalidad', 'id_funcionalidad', 'input', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_funcionalidad_min_size_KO', 'Debe indicar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad', 'id_funcionalidad', 'input', 2, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'id_funcionalidad_max_size_KO', 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad', 'id_funcionalidad', 'input', 3, 'cumple formato', 'format', 'ADD', 'id_funcionalidad_format_KO', 'Formato inv\u00e1lido. El identificador de funcionalidad solo admite d\u00edgitos'],
     ['funcionalidad', 'id_funcionalidad', 'input', 4, 'es correcto', 'valid', 'ADD', true, 'Identificador de funcionalidad correcto'],
 
     // ---------EDIT----------------------------
-    ['funcionalidad', 'id_funcionalidad', 'input', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_funcionalidad_min_size_KO', 'Identificador de funcionalidad vac\u00edo. Debe tener entre 1 y 11 d\u00edgitos'],
+    ['funcionalidad', 'id_funcionalidad', 'input', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_funcionalidad_min_size_KO', 'Debe indicar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad', 'id_funcionalidad', 'input', 6, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'id_funcionalidad_max_size_KO', 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad', 'id_funcionalidad', 'input', 7, 'cumple formato', 'format', 'EDIT', 'id_funcionalidad_format_KO', 'Formato inv\u00e1lido. El identificador de funcionalidad solo admite d\u00edgitos'],
     ['funcionalidad', 'id_funcionalidad', 'input', 8, 'es correcto', 'valid', 'EDIT', true, 'Identificador de funcionalidad correcto'],

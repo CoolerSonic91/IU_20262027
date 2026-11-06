@@ -13,13 +13,13 @@ let accion_def_tests = Array(
     // ATRIBUTO: id_accion (input, numerico, min 1 max 11 digitos)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['accion', 'id_accion', 'input', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_accion_min_size_KO', 'Identificador de acci\u00f3n vac\u00edo. Debe tener entre 1 y 11 d\u00edgitos'],
+    ['accion', 'id_accion', 'input', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_accion_min_size_KO', 'Debe indicar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['accion', 'id_accion', 'input', 2, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'id_accion_max_size_KO', 'Identificador de acci\u00f3n demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['accion', 'id_accion', 'input', 3, 'cumple formato', 'format', 'ADD', 'id_accion_format_KO', 'Formato inv\u00e1lido. El identificador de acci\u00f3n solo admite d\u00edgitos'],
     ['accion', 'id_accion', 'input', 4, 'es correcto', 'valid', 'ADD', true, 'Identificador de acci\u00f3n correcto'],
 
     // ---------EDIT----------------------------
-    ['accion', 'id_accion', 'input', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_accion_min_size_KO', 'Identificador de acci\u00f3n vac\u00edo. Debe tener entre 1 y 11 d\u00edgitos'],
+    ['accion', 'id_accion', 'input', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_accion_min_size_KO', 'Debe indicar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['accion', 'id_accion', 'input', 6, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'id_accion_max_size_KO', 'Identificador de acci\u00f3n demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['accion', 'id_accion', 'input', 7, 'cumple formato', 'format', 'EDIT', 'id_accion_format_KO', 'Formato inv\u00e1lido. El identificador de acci\u00f3n solo admite d\u00edgitos'],
     ['accion', 'id_accion', 'input', 8, 'es correcto', 'valid', 'EDIT', true, 'Identificador de acci\u00f3n correcto'],

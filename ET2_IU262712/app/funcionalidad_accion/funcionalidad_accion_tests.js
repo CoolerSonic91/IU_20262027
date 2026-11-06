@@ -14,13 +14,13 @@ let funcionalidad_accion_def_tests = Array(
     // ATRIBUTO: id_funcionalidad (select, numerico, min 1 max 11 digitos)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['funcionalidad_accion', 'id_funcionalidad', 'select', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_funcionalidad_min_size_KO', 'Debe seleccionar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos'],
+    ['funcionalidad_accion', 'id_funcionalidad', 'select', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_funcionalidad_min_size_KO', 'Debe indicar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_funcionalidad', 'select', 2, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'id_funcionalidad_max_size_KO', 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_funcionalidad', 'select', 3, 'cumple formato', 'format', 'ADD', 'id_funcionalidad_format_KO', 'Formato inv\u00e1lido. El identificador de funcionalidad solo admite d\u00edgitos'],
     ['funcionalidad_accion', 'id_funcionalidad', 'select', 4, 'es correcto', 'valid', 'ADD', true, 'Funcionalidad correcta'],
 
     // ---------EDIT----------------------------
-    ['funcionalidad_accion', 'id_funcionalidad', 'select', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_funcionalidad_min_size_KO', 'Debe seleccionar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos'],
+    ['funcionalidad_accion', 'id_funcionalidad', 'select', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_funcionalidad_min_size_KO', 'Debe indicar una funcionalidad. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_funcionalidad', 'select', 6, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'id_funcionalidad_max_size_KO', 'Identificador de funcionalidad demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_funcionalidad', 'select', 7, 'cumple formato', 'format', 'EDIT', 'id_funcionalidad_format_KO', 'Formato inv\u00e1lido. El identificador de funcionalidad solo admite d\u00edgitos'],
     ['funcionalidad_accion', 'id_funcionalidad', 'select', 8, 'es correcto', 'valid', 'EDIT', true, 'Funcionalidad correcta'],
@@ -34,13 +34,13 @@ let funcionalidad_accion_def_tests = Array(
     // ATRIBUTO: id_accion (select, numerico, min 1 max 11 digitos)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['funcionalidad_accion', 'id_accion', 'select', 12, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_accion_min_size_KO', 'Debe seleccionar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos'],
+    ['funcionalidad_accion', 'id_accion', 'select', 12, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_accion_min_size_KO', 'Debe indicar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_accion', 'select', 13, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'id_accion_max_size_KO', 'Identificador de acci\u00f3n demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_accion', 'select', 14, 'cumple formato', 'format', 'ADD', 'id_accion_format_KO', 'Formato inv\u00e1lido. El identificador de acci\u00f3n solo admite d\u00edgitos'],
     ['funcionalidad_accion', 'id_accion', 'select', 15, 'es correcto', 'valid', 'ADD', true, 'Acci\u00f3n correcta'],
 
     // ---------EDIT----------------------------
-    ['funcionalidad_accion', 'id_accion', 'select', 16, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_accion_min_size_KO', 'Debe seleccionar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos'],
+    ['funcionalidad_accion', 'id_accion', 'select', 16, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_accion_min_size_KO', 'Debe indicar una acci\u00f3n. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_accion', 'select', 17, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'id_accion_max_size_KO', 'Identificador de acci\u00f3n demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['funcionalidad_accion', 'id_accion', 'select', 18, 'cumple formato', 'format', 'EDIT', 'id_accion_format_KO', 'Formato inv\u00e1lido. El identificador de acci\u00f3n solo admite d\u00edgitos'],
     ['funcionalidad_accion', 'id_accion', 'select', 19, 'es correcto', 'valid', 'EDIT', true, 'Acci\u00f3n correcta'],

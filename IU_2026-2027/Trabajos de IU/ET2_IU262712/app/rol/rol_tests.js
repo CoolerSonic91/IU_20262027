@@ -13,13 +13,13 @@ let rol_def_tests = Array(
     // ATRIBUTO: id_rol (input, numerico, min 1 max 11 digitos)
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
-    ['rol', 'id_rol', 'input', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_rol_min_size_KO', 'Identificador de rol vac\u00edo. Debe tener entre 1 y 11 d\u00edgitos'],
+    ['rol', 'id_rol', 'input', 1, 'cumple tama\u00f1o minimo', 'min_size', 'ADD', 'id_rol_min_size_KO', 'Debe indicar un rol. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['rol', 'id_rol', 'input', 2, 'cumple tama\u00f1o maximo', 'max_size', 'ADD', 'id_rol_max_size_KO', 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['rol', 'id_rol', 'input', 3, 'cumple formato', 'format', 'ADD', 'id_rol_format_KO', 'Formato inv\u00e1lido. El identificador de rol solo admite d\u00edgitos'],
     ['rol', 'id_rol', 'input', 4, 'es correcto', 'valid', 'ADD', true, 'Identificador de rol correcto'],
 
     // ---------EDIT----------------------------
-    ['rol', 'id_rol', 'input', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_rol_min_size_KO', 'Identificador de rol vac\u00edo. Debe tener entre 1 y 11 d\u00edgitos'],
+    ['rol', 'id_rol', 'input', 5, 'cumple tama\u00f1o minimo', 'min_size', 'EDIT', 'id_rol_min_size_KO', 'Debe indicar un rol. El identificador debe tener entre 1 y 11 d\u00edgitos'],
     ['rol', 'id_rol', 'input', 6, 'cumple tama\u00f1o maximo', 'max_size', 'EDIT', 'id_rol_max_size_KO', 'Identificador de rol demasiado largo. Debe tener entre 1 y 11 d\u00edgitos'],
     ['rol', 'id_rol', 'input', 7, 'cumple formato', 'format', 'EDIT', 'id_rol_format_KO', 'Formato inv\u00e1lido. El identificador de rol solo admite d\u00edgitos'],
     ['rol', 'id_rol', 'input', 8, 'es correcto', 'valid', 'EDIT', true, 'Identificador de rol correcto'],
