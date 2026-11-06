@@ -548,9 +548,14 @@ class persona extends AbstractEntidad{
 	}
 
 	/**
-	 * en EDIT tambien es obligatorio subir la foto (definicion de tests de la ET1)
+	 * en EDIT la foto nueva es opcional: si no se sube fichero se mantiene la foto actual,
+	 * y si se sube uno se valida igual que en ADD
 	 */
 	EDIT_nuevo_foto_persona_validation(){
+		if (!(this.validations.exist_file('nuevo_foto_persona'))){
+			this.dom.mostrar_exito_campo('nuevo_foto_persona');
+			return true;
+		}
 		return this.ADD_nuevo_foto_persona_validation();
 	}
 
