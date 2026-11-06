@@ -160,7 +160,7 @@ let persona_def_tests = Array(
 
     // -------------------------------------------------------------
     // ATRIBUTO: nuevo_foto_persona (file, jpg o jpeg, nombre alfabetico y punto min 3 max 15, hasta 2 MB)
-    // En ADD y en EDIT la foto es obligatoria.
+    // En ADD la foto es obligatoria. En EDIT es opcional (si no se sube se mantiene la actual).
     // -------------------------------------------------------------
     // ---------ADD-----------------------------
     ['persona', 'nuevo_foto_persona', 'file', 87, 'existe fichero', 'exist_file', 'ADD', 'nuevo_foto_persona_exist_file_ko', 'No se ha subido ninguna foto. Debe subir una foto en jpg o jpeg'],
@@ -172,7 +172,7 @@ let persona_def_tests = Array(
     ['persona', 'nuevo_foto_persona', 'file', 93, 'es correcto', 'valid', 'ADD', true, 'Foto correcta'],
 
     // ---------EDIT----------------------------
-    ['persona', 'nuevo_foto_persona', 'file', 94, 'existe fichero', 'exist_file', 'EDIT', 'nuevo_foto_persona_exist_file_ko', 'No se ha subido ninguna foto. Debe subir una foto en jpg o jpeg'],
+    ['persona', 'nuevo_foto_persona', 'file', 94, 'no se sube fichero (opcional en EDIT)', 'exist_file', 'EDIT', true, 'No se sube foto nueva. Se mantiene la foto actual'],
     ['persona', 'nuevo_foto_persona', 'file', 95, 'tipo de fichero jpg o jpeg', 'type_file', 'EDIT', 'nuevo_foto_persona_type_file_ko', 'Tipo de fichero no permitido. Solo jpg o jpeg'],
     ['persona', 'nuevo_foto_persona', 'file', 96, 'tama\u00f1o de fichero maximo 2 MB', 'max_size_file', 'EDIT', 'nuevo_foto_persona_max_size_file_ko', 'Fichero demasiado grande. Como m\u00e1ximo 2 MB'],
     ['persona', 'nuevo_foto_persona', 'file', 97, 'tama\u00f1o minimo del nombre', 'min_size_name_file', 'EDIT', 'nuevo_foto_persona_min_size_name_file_ko', 'Nombre de fichero demasiado corto. Debe tener entre 3 y 15 caracteres'],
@@ -397,7 +397,7 @@ let persona_pruebas = Array(
     ['persona', 'nuevo_foto_persona', 93, 131, 'ADD', { nuevo_foto_persona: { format_name_file: 'abcdefghij.jpeg', type_file: 'image/jpeg', max_size_file: 1000 } }, true],
 
     // ---------EDIT----------------------------
-    ['persona', 'nuevo_foto_persona', 94, 132, 'EDIT', {}, 'nuevo_foto_persona_exist_file_ko'],
+    ['persona', 'nuevo_foto_persona', 94, 132, 'EDIT', {}, true],
     ['persona', 'nuevo_foto_persona', 95, 133, 'EDIT', { nuevo_foto_persona: { format_name_file: 'foto.jpg', type_file: 'image/png', max_size_file: 1000 } }, 'nuevo_foto_persona_type_file_ko'],
     ['persona', 'nuevo_foto_persona', 96, 134, 'EDIT', { nuevo_foto_persona: { format_name_file: 'foto.jpg', type_file: 'image/jpeg', max_size_file: 2097153 } }, 'nuevo_foto_persona_max_size_file_ko'],
     ['persona', 'nuevo_foto_persona', 97, 135, 'EDIT', { nuevo_foto_persona: { format_name_file: 'ab', type_file: 'image/jpeg', max_size_file: 1000 } }, 'nuevo_foto_persona_min_size_name_file_ko'],
